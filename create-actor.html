@@ -725,7 +725,7 @@
       <button class="auth-modal-close" onclick="closeSuccessModal()" style="position:absolute;top:16px;right:16px;">&times;</button>
       <div class="success-modal-icon">🎉</div>
       <h2>发行成功！</h2>
-      <p>IP 卡合集「<span class="success-actor-name" id="successActorName">—</span>」已成功发行。<br>你也将持有 1 张创世 IP 卡，可前往「我的 IP」查看。</p>
+      <p>IP 卡合集「<span class="success-actor-name" id="successActorName">—</span>」已成功发行。<br>发行者也需要购买 IP 卡才能持有哦～</p>
       <div class="success-buttons">
         <button class="success-btn-primary" id="successGoSignBtn">🎭 去我的 IP</button>
         <button class="success-btn-outline" onclick="closeSuccessModal()">稍后再说</button>
@@ -919,9 +919,9 @@
       avatar: avatar,
       gender: '—',
       totalSupply: nftSupply,
-      minted: 1,          // 创作者自持 1 张创世 IP 卡
-      available: nftSupply - 1,
-      holders: 1,
+      minted: 0,          // 发行者不自动持有，需购买 IP 卡
+      available: nftSupply,
+      holders: 0,
       price: nftPrice + ' USDC',
       initPrice: parseFloat(nftPrice) || 0,
       reserved: 0,
