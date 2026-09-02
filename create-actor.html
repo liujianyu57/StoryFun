@@ -732,7 +732,7 @@
       <p class="success-ip-id">IP <span id="successIpId">—</span></p>
       <p class="success-tip">发行者同样需购买 IP 卡方可持有</p>
       <div class="success-buttons">
-        <button class="success-btn-primary" id="successGoSignBtn">去我的 IP</button>
+        <button class="success-btn-primary" id="successGoSignBtn">查看 IP 合集</button>
         <button class="success-btn-outline" onclick="closeSuccessModal()">稍后再说</button>
       </div>
     </div>
@@ -989,7 +989,7 @@
       ipIdEl.textContent = actorData.ipId;
     }
 
-    // Bind "去我的 IP" button — navigate to 我的 IP (studio.html 经纪人页)
+    // Bind "查看 IP 合集" button — navigate to 我的 IP (studio.html 经纪人页)
     if (goSignBtn) {
       var goSignHandler = function() {
         closeSuccessModal();
