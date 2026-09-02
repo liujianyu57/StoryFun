@@ -430,6 +430,13 @@ body.clean-mode .clean-exit-btn{display:flex}
   <div class="sd-header"><button class="sd-close" id="sdClose">✕</button></div>
   <!-- ═══ 资产区（余额 + 操作） ═══ -->
   <div class="sd-assets" style="padding:0 20px 14px;">
+    <!-- Pass 单独一行（顶部） -->
+    <div class="sd-pass-row" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,rgba(0,0,0,.06),rgba(0,0,0,.02));border:1px solid rgba(0,0,0,.08);margin-bottom:10px;cursor:pointer;" onclick="location.href='pass.html'">
+      <span style="font-size:18px;">🎫</span>
+      <span style="flex:1;font-size:13px;font-weight:600;color:#1a1a2e;">Pass 通行证</span>
+      <span class="sd-balance-pass" style="font-size:13px;font-weight:700;color:#1a1a2e;" id="sdBalancePass">未持有</span>
+      <span style="font-size:14px;color:rgba(0,0,0,.25);">›</span>
+    </div>
     <div class="sd-assets-balance" style="display:flex;gap:8px;margin-bottom:10px;">
       <div class="sd-asset-item" style="flex:1;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.04);">
         <span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.45);letter-spacing:.04em;">STORY</span>
@@ -438,10 +445,6 @@ body.clean-mode .clean-exit-btn{display:flex}
       <div class="sd-asset-item" style="flex:1;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.04);">
         <span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.45);letter-spacing:.04em;">USDC</span>
         <span class="sd-balance-usdc" style="font-size:16px;font-weight:700;color:#1a1a2e;" id="sdBalanceUsdc">100.23</span>
-      </div>
-      <div class="sd-asset-item" style="flex:1;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.04);cursor:pointer;" onclick="location.href='pass.html'">
-        <span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.45);letter-spacing:.04em;">Pass</span>
-        <span class="sd-balance-pass" style="font-size:14px;font-weight:700;color:#1a1a2e;" id="sdBalancePass">未持有</span>
       </div>
     </div>
     <div class="sd-assets-actions" style="display:flex;gap:8px;">
