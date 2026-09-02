@@ -72,7 +72,9 @@
     .issued-ip-cover .ip-avatar-fallback { font-size: 2.2rem; font-weight: 700; color: var(--text-muted); }
     .issued-ip-body { padding: 10px 12px 12px; }
     .issued-ip-name { font-size: 0.92rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .issued-ip-id { font-size: 0.68rem; color: var(--text-muted); font-family: "SF Mono", Menlo, monospace; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .issued-ip-price { font-size: 0.85rem; font-weight: 700; color: var(--accent); margin-top: 3px; }
+    .issued-ip-meta { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+    .issued-ip-id { font-size: 0.62rem; color: var(--text-hint, #a0a4ac); font-family: "SF Mono", Menlo, monospace; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .issued-ip-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 20px 18px; border-radius: 16px; border: 1px dashed var(--border-dark, rgba(0,0,0,0.15)); background: var(--surface); color: var(--text-muted); font-size: 0.88rem; }
     .issued-ip-empty-main { font-size: 1rem; font-weight: 700; color: var(--text); }
     .issued-ip-empty-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
@@ -1196,6 +1198,8 @@
         var name = ip.name || '未命名 IP';
         var ipId = ip.ipId || '';
         var avatar = ip.avatar || '';
+        var price = ip.price || (ip.initPrice ? ip.initPrice + ' USDC' : '—');
+        var totalSupply = ip.totalSupply ? ip.totalSupply.toLocaleString() : '—';
         var avatarHtml = avatar
           ? '<img src="' + avatar + '" alt="' + name + '" loading="lazy" onerror="this.style.display=\'none\'" />'
           : '<span class="ip-avatar-fallback">' + name.charAt(0) + '</span>';
@@ -1204,6 +1208,8 @@
             '<div class="issued-ip-cover">' + avatarHtml + '</div>' +
             '<div class="issued-ip-body">' +
               '<div class="issued-ip-name">' + name + '</div>' +
+              '<div class="issued-ip-price">' + price + '</div>' +
+              '<div class="issued-ip-meta">共 ' + totalSupply + ' 张</div>' +
               '<div class="issued-ip-id">IP ' + ipId + '</div>' +
             '</div>' +
           '</div>'

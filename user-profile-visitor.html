@@ -76,7 +76,9 @@
     .issued-ip-cover .ip-avatar-fallback { font-size: 1.8rem; font-weight: 700; color: var(--text-muted); }
     .issued-ip-body { padding: 8px 10px 10px; }
     .issued-ip-name { font-size: 0.85rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .issued-ip-id { font-size: 0.62rem; color: var(--text-muted); font-family: "SF Mono", Menlo, monospace; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .issued-ip-price { font-size: 0.8rem; font-weight: 700; color: var(--accent); margin-top: 3px; }
+    .issued-ip-meta { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
+    .issued-ip-id { font-size: 0.58rem; color: var(--text-sub, #8b8d98); font-family: "SF Mono", Menlo, monospace; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .issued-ip-empty { padding: 16px 14px; border-radius: 14px; border: 1px dashed var(--border); background: var(--surface); color: var(--text-sub); font-size: 0.82rem; text-align: center; }
 
     .mobile-empty { padding: 60px 24px; text-align: center; color: var(--text-sub); }
@@ -213,6 +215,8 @@
         var name = ip.name || '未命名 IP';
         var ipId = ip.ipId || '';
         var avatar = ip.avatar || '';
+        var price = ip.price || (ip.initPrice ? ip.initPrice + ' USDC' : '—');
+        var totalSupply = ip.totalSupply ? ip.totalSupply.toLocaleString() : '—';
         var avatarHtml = avatar
           ? '<img src="' + avatar + '" alt="' + name + '" loading="lazy" onerror="this.style.display=\'none\'" />'
           : '<span class="ip-avatar-fallback">' + name.charAt(0) + '</span>';
@@ -221,6 +225,8 @@
             '<div class="issued-ip-cover">' + avatarHtml + '</div>' +
             '<div class="issued-ip-body">' +
               '<div class="issued-ip-name">' + name + '</div>' +
+              '<div class="issued-ip-price">' + price + '</div>' +
+              '<div class="issued-ip-meta">共 ' + totalSupply + ' 张</div>' +
               '<div class="issued-ip-id">IP ' + ipId + '</div>' +
             '</div>' +
           '</div>'
