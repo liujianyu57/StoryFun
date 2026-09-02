@@ -128,7 +128,7 @@
       gap: 24px;
     }
 
-    /* ---- IP 形象（账号头像） ---- */
+    /* ---- IP 形象（默认账号头像，可自定义） ---- */
     .ip-avatar-preview {
       display: flex;
       align-items: center;
@@ -137,15 +137,39 @@
       background: var(--bg);
       border-radius: 16px;
     }
-    .ip-avatar-preview img {
+    .ip-avatar-img-wrap {
+      position: relative;
       width: 72px;
       height: 72px;
-      border-radius: 50%;
+      flex-shrink: 0;
+      cursor: pointer;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .ip-avatar-img-wrap img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      display: block;
       border: 3px solid var(--surface);
       box-shadow: 0 4px 16px rgba(27,45,71,0.12);
-      flex-shrink: 0;
       background: var(--bg);
+      border-radius: 14px;
+    }
+    .ip-avatar-edit {
+      position: absolute;
+      right: 4px;
+      bottom: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      color: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
     }
     .ip-avatar-preview .ip-avatar-info {
       display: flex;
@@ -611,13 +635,17 @@
 
     <div class="form-panel">
 
-      <!-- ═══ IP 形象（账号头像） ═══ -->
+      <!-- ═══ IP 形象（默认账号头像，可自定义） ═══ -->
       <div class="ip-avatar-preview">
-        <img id="ipAvatarImg" src="" alt="IP 形象" />
+        <div class="ip-avatar-img-wrap" onclick="document.getElementById('ipAvatarInput').click()">
+          <img id="ipAvatarImg" src="" alt="IP 形象" />
+          <span class="ip-avatar-edit" title="更换形象">📷</span>
+        </div>
         <div class="ip-avatar-info">
           <div class="ip-avatar-title">IP 形象</div>
-          <div class="ip-avatar-desc">IP 卡将使用你的账号头像作为形象，可在个人中心更换。</div>
+          <div class="ip-avatar-desc">默认使用你的账号头像，点击图片可自定义 IP 卡形象。</div>
         </div>
+        <input type="file" id="ipAvatarInput" accept="image/*" style="display:none;" onchange="handleIpAvatarFile(event)" />
       </div>
 
       <!-- ═══ Basic info: IP name + bio ═══ -->
@@ -777,6 +805,33 @@
     }
   }
 
+  // ═══ IP 形象自定义：本地选择图片并预览 ═══
+  var _customAvatarDataUrl = null; // 自定义形象（base64），优先于账号头像
+
+  function handleIpAvatarFile(e) {
+    var file = e.target.files && e.target.files[0];
+    if (!file) return;
+    if (!file.type || file.type.indexOf('image/') !== 0) {
+      showToast('请选择图片文件');
+      e.target.value = '';
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('图片不能超过 5MB');
+      e.target.value = '';
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      _customAvatarDataUrl = ev.target.result;
+      var avatarImg = document.getElementById('ipAvatarImg');
+      if (avatarImg) avatarImg.src = _customAvatarDataUrl;
+      showToast('✅ IP 形象已更新');
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     // ── Char counters ──
     var nameInput = document.getElementById('actorName');
@@ -914,9 +969,9 @@
     if (!name) { showToast('请输入 IP 名称'); return; }
     if (!nftPrice) { showToast('请输入价格'); return; }
 
-    // IP 形象 = 账号头像（账号 = 创作者 = IP）
+    // IP 形象：优先自定义图片，否则用账号头像（账号 = 创作者 = IP）
     var info = getAccountInfo();
-    var avatar = info.avatar;
+    var avatar = _customAvatarDataUrl || info.avatar;
 
     var actorData = {
       name: name,
