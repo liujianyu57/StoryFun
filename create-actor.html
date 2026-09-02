@@ -128,64 +128,77 @@
       gap: 24px;
     }
 
-    /* ---- IP 形象（默认账号头像，可自定义） ---- */
-    .ip-avatar-preview {
+    /* ---- IP 卡预览（大卡，对齐 actor-card.js 视觉） ---- */
+    .ipc-preview {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 16px;
-      padding: 20px;
-      background: var(--bg);
-      border-radius: 16px;
+      gap: 10px;
     }
-    .ip-avatar-img-wrap {
+    .ipc-card {
       position: relative;
-      width: 72px;
-      height: 72px;
-      flex-shrink: 0;
-      cursor: pointer;
-      border-radius: 14px;
+      width: 300px;
+      height: 220px;
+      border-radius: 24px;
       overflow: hidden;
+      cursor: pointer;
+      background: var(--bg);
+      box-shadow: 0 2px 12px rgba(27,45,71,0.06);
+      transition: box-shadow 0.3s ease;
+      flex-shrink: 0;
     }
-    .ip-avatar-img-wrap img {
+    .ipc-card:hover { box-shadow: 0 16px 40px rgba(27,45,71,0.12); }
+    .ipc-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      border: 3px solid var(--surface);
-      box-shadow: 0 4px 16px rgba(27,45,71,0.12);
-      background: var(--bg);
-      border-radius: 14px;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .ip-avatar-edit {
+    .ipc-card:hover img { transform: scale(1.04); }
+    .ipc-card::after {
+      content: "";
       position: absolute;
-      right: 4px;
-      bottom: 4px;
-      width: 22px;
-      height: 22px;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 62%, rgba(0,0,0,0.08) 100%);
+      pointer-events: none;
+    }
+    /* 高级笔编辑按钮（右下角） */
+    .ipc-edit-btn {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      z-index: 2;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: rgba(0,0,0,0.7);
+      background: rgba(15,23,42,0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.68rem;
       color: #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      transition: all 0.25s ease;
     }
-    .ip-avatar-preview .ip-avatar-info {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-width: 0;
+    .ipc-edit-btn svg { width: 18px; height: 18px; }
+    .ipc-card:hover .ipc-edit-btn {
+      background: rgba(0,0,0,0.85);
+      transform: scale(1.06);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
     }
-    .ip-avatar-preview .ip-avatar-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .ip-avatar-preview .ip-avatar-desc {
+    .ipc-label {
       font-size: 13px;
+      font-weight: 600;
       color: var(--text-muted);
-      line-height: 1.6;
+      letter-spacing: 0.04em;
+    }
+    .ipc-hint {
+      font-size: 12px;
+      color: var(--text-hint);
+      margin-top: -4px;
     }
 
     /* ---- Basic info fields ---- */
@@ -543,6 +556,10 @@
         gap: 32px;
       }
 
+      /* ── IP 卡预览大卡：移动端自适应 ── */
+      .ipc-card { width: 100%; max-width: 300px; height: auto; aspect-ratio: 300 / 220; }
+      .ipc-preview { margin: 0 auto; }
+
       /* ── 表单字段：Apple 风格输入框 ── */
       .form-row { grid-template-columns: 1fr; gap: 16px; margin-bottom: 0; }
       .form-group label {
@@ -635,16 +652,16 @@
 
     <div class="form-panel">
 
-      <!-- ═══ IP 形象（默认账号头像，可自定义） ═══ -->
-      <div class="ip-avatar-preview">
-        <div class="ip-avatar-img-wrap" onclick="document.getElementById('ipAvatarInput').click()">
-          <img id="ipAvatarImg" src="" alt="IP 形象" />
-          <span class="ip-avatar-edit" title="更换形象">📷</span>
+      <!-- ═══ IP 卡预览（大卡，默认账号头像/可自定义） ═══ -->
+      <div class="ipc-preview">
+        <div class="ipc-card" onclick="document.getElementById('ipAvatarInput').click()" title="点击更换 IP 卡形象">
+          <img id="ipAvatarImg" src="" alt="IP 卡形象" />
+          <span class="ipc-edit-btn" title="更换形象">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+          </span>
         </div>
-        <div class="ip-avatar-info">
-          <div class="ip-avatar-title">IP 形象</div>
-          <div class="ip-avatar-desc">默认使用你的账号头像，点击图片可自定义 IP 卡形象。</div>
-        </div>
+        <div class="ipc-label">IP 卡预览</div>
+        <div class="ipc-hint">默认使用账号头像，点击卡片可自定义形象</div>
         <input type="file" id="ipAvatarInput" accept="image/*" style="display:none;" onchange="handleIpAvatarFile(event)" />
       </div>
 
