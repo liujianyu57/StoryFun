@@ -989,11 +989,11 @@
       ipIdEl.textContent = actorData.ipId;
     }
 
-    // Bind "查看 IP 合集" button — navigate to 我的 IP (studio.html 经纪人页)
+    // Bind "查看 IP 合集" button — navigate to actor-profile（按名称读取刚发行的 IP）
     if (goSignBtn) {
       var goSignHandler = function() {
         closeSuccessModal();
-        location.href = 'studio.html';
+        location.href = 'actor-profile.html?name=' + encodeURIComponent(actorData.name);
       };
       goSignBtn.onclick = goSignHandler;
     }
