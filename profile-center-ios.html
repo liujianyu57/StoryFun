@@ -298,15 +298,68 @@
       .issued-ip-title { font-size: 1.05rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
       .issued-ip-list { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
       .issued-ip-list::-webkit-scrollbar { display: none; }
-      /* 复用 actor-card.js 卡片样式，覆盖横向列表尺寸 */
-      .issued-ip-list .ac-card { width: 140px; flex-shrink: 0; border-radius: 16px; }
-      .issued-ip-list .ac-card-banner { height: 140px; }
-      .issued-ip-list .ac-card-body { padding: 10px 12px 12px; gap: 3px; }
-      .issued-ip-list .ac-card-body h3 { font-size: 0.92rem; }
-      .issued-ip-list .ac-collection-tag { left: 8px; bottom: 8px; font-size: 0.5rem; }
-      .issued-ip-list .ip-avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; color: var(--text-muted); }
-      .issued-ip-price { font-size: 0.82rem; font-weight: 700; color: var(--accent); margin-top: 2px; }
-      .issued-ip-meta { font-size: 0.7rem; color: var(--text-muted); }
+      /* ═══ 发行的 IP 横排卡（头像左 + 信息右） ═══ */
+      .issued-ip-list .issued-ip-hrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+        width: 300px;
+        padding: 10px;
+        border-radius: 16px;
+        background: #fff;
+        border: 1px solid var(--border-light, rgba(0,0,0,0.06));
+        box-shadow: 0 2px 10px rgba(27,45,71,0.05);
+      }
+      .issued-ip-avatar {
+        position: relative;
+        width: 88px;
+        height: 88px;
+        border-radius: 12px;
+        overflow: hidden;
+        flex-shrink: 0;
+        cursor: pointer;
+        background: linear-gradient(135deg,#e0f7ff 0%,#ffffff 100%);
+      }
+      .issued-ip-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .issued-ip-avatar .ip-avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700; color: var(--text-muted); }
+      .issued-ip-id-tag {
+        position: absolute;
+        left: 5px;
+        bottom: 5px;
+        max-width: calc(100% - 10px);
+        padding: 2px 7px;
+        border-radius: 999px;
+        font-size: 0.48rem;
+        font-weight: 600;
+        color: #fff;
+        background: rgba(15,23,42,0.6);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-variant-numeric: tabular-nums;
+      }
+      .issued-ip-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+      .issued-ip-title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+      .issued-ip-hname { margin: 0; font-size: 0.92rem; font-weight: 700; color: var(--text); cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .issued-ip-power { font-size: 0.8rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
+      .issued-ip-power small { font-size: 0.6em; font-weight: 500; color: var(--text-muted); }
+      .issued-ip-sub { font-size: 0.7rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .issued-ip-buy-btn {
+        margin-top: 2px;
+        padding: 7px 14px;
+        border-radius: 999px;
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-size: 0.78rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        align-self: flex-start;
+        transition: all 0.2s ease;
+      }
+      .issued-ip-buy-btn:hover { opacity: 0.85; }
       .issued-ip-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; padding: 16px 14px; border-radius: 14px; border: 1px dashed rgba(0,0,0,0.15); background: #fff; color: var(--text-muted); font-size: 0.82rem; }
       .issued-ip-empty-main { font-size: 0.95rem; font-weight: 700; color: var(--text); }
       .issued-ip-empty-sub { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
@@ -811,6 +864,7 @@
 
   <script src="auth.js"></script>
   <script src="actor-card.js"></script>
+  <script src="sign-modal.js"></script>
   <script src="load-sidebar.js"></script>
 <script src="load-desktop-header.js?v=3"></script>
   <script>
@@ -1001,24 +1055,63 @@
         var avatarHtml = avatar
           ? '<img src="' + avatar + '" alt="' + name + '" loading="lazy" onerror="this.style.display=\'none\'" />'
           : '<span class="ip-avatar-fallback">' + name.charAt(0) + '</span>';
+        var total = parseInt(ip.totalSupply) || 0;
+        var minted = parseInt(ip.minted) || 0;
+        var available = (parseInt(ip.available) != null) ? parseInt(ip.available) : Math.max(total - minted, 0);
+        var heat = parseFloat(ip.heat) || 0;
+        var initPrice = parseFloat(ip.initPrice) || 0;
+        var power = (typeof computeIPPower === 'function') ? computeIPPower(initPrice, heat) : 0;
+        var dataAttrs = 'data-actor="' + name + '" data-id="' + (ip.ipId || ipId || name) + '" data-total="' + total + '" data-minted="' + minted + '" data-available="' + available + '" data-price="' + price + '" data-init-price="' + initPrice + '" data-collection="' + ipId + '" data-avatar="' + avatar + '" data-heat="' + heat + '"';
         return (
-          '<article class="ac-card issued-ip-card" onclick="location.href=\'actor-profile.html?name=' + encodeURIComponent(name) + '\'">' +
-            '<div class="ac-card-banner" style="background:linear-gradient(135deg,#e0f7ff 0%,#ffffff 100%);">' +
-              '<div class="ac-avatar">' + avatarHtml + '</div>' +
-              (ipId ? '<div class="ac-collection-tag">IP ' + ipId + '</div>' : '') +
+          '<article class="issued-ip-hrow" ' + dataAttrs + '>' +
+            '<div class="issued-ip-avatar" onclick="location.href=\'actor-profile.html?name=' + encodeURIComponent(name) + '\'">' +
+              avatarHtml +
+              (ipId ? '<span class="issued-ip-id-tag">IP ' + ipId + '</span>' : '') +
             '</div>' +
-            '<div class="ac-card-body">' +
-              '<h3>' + name + '</h3>' +
-              '<div class="issued-ip-price">' + price + '</div>' +
-              '<div class="issued-ip-meta">共 ' + totalSupply + ' 张</div>' +
+            '<div class="issued-ip-info">' +
+              '<div class="issued-ip-title-row">' +
+                '<h3 class="issued-ip-hname" onclick="location.href=\'actor-profile.html?name=' + encodeURIComponent(name) + '\'">' + name + '</h3>' +
+                (power > 0 ? '<span class="issued-ip-power">' + power.toFixed(2) + ' <small>积分/h</small></span>' : '') +
+              '</div>' +
+              '<div class="issued-ip-sub">共 ' + totalSupply + ' 张 · ' + price + '</div>' +
+              '<button class="issued-ip-buy-btn ac-mint-btn" ' + dataAttrs + '>' + price + ' 购买</button>' +
             '</div>' +
           '</article>'
         );
       }).join('');
     }
 
+    /* ── 购买事件委托（与 IP 市场一致） ── */
+    function bindIssuedIPBuyEvents() {
+      document.querySelectorAll('#mobileIssuedIPList .ac-mint-btn').forEach(function(btn) {
+        btn.onclick = function(e) {
+          e.stopPropagation();
+          var card = btn.closest('.issued-ip-hrow');
+          if (!card) return;
+          var name = card.dataset.actor || '';
+          var avatarSrc = card.dataset.avatar || 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80';
+          var initPrice = parseFloat(card.dataset.initPrice) || 0;
+          if (typeof SignModal === 'undefined' || !SignModal.open) return;
+          SignModal.open({
+            name: name,
+            title: '确认购买 · Lv.1 IP 卡',
+            image: avatarSrc,
+            tag: 'IP 卡' + (card.dataset.collection ? ' · ' + card.dataset.collection : ''),
+            price: card.dataset.price || '10 USDC',
+            pricing: 'curve',
+            coeff: initPrice > 0 && typeof computePriceCoefficient === 'function' ? computePriceCoefficient(initPrice).toFixed(4) : null,
+            total: parseInt(card.dataset.total) || 10000,
+            minted: parseInt(card.dataset.minted) || 0,
+            onConfirm: function(done) { setTimeout(function() { done(); }, 1200); },
+            success: { text: '购买成功，IP 卡已入账' }
+          });
+        };
+      });
+    }
+
     function renderAllIssuedIP() {
       renderIssuedIPList('mobileIssuedIPList');
+      bindIssuedIPBuyEvents();
     }
 
     document.addEventListener('DOMContentLoaded', function() {
