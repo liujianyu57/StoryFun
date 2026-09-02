@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Story.fun | 创建新角色</title>
+  <title>Story.fun | 发行 IP</title>
   <style>
     :root {
       --bg: #f6f6f6;
@@ -125,291 +125,40 @@
       gap: 24px;
     }
 
-    /* ---- DreamOS Import Section ---- */
-    .dreamos-section {
+    /* ---- IP 形象（账号头像） ---- */
+    .ip-avatar-preview {
       display: flex;
-      flex-direction: column;
+      align-items: center;
       gap: 16px;
+      padding: 20px;
       background: var(--bg);
       border-radius: 16px;
-      padding: 20px;
     }
-    .dreamos-section-title {
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-    .dreamos-title-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    /* ── Dev Toggle (fixed, right edge of page) ── */
-    .dev-toggle-fixed {
-      position: fixed;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 10px 10px 14px;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--border-dark);
-      border-right: none;
-      border-radius: 12px 0 0 12px;
-      box-shadow: 0 4px 16px rgba(27,45,71,0.08);
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.25s ease;
-    }
-    .dev-toggle-fixed:hover {
-      background: #fff;
-      box-shadow: 0 6px 24px rgba(27,45,71,0.12);
-    }
-    .dev-toggle-fixed .dtf-label {
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--text-muted);
-      writing-mode: vertical-lr;
-      letter-spacing: 0.08em;
-      transition: color 0.2s ease;
-      line-height: 1.2;
-    }
-    .dev-toggle-fixed .dtf-label.has {
-      color: var(--accent);
-    }
-    .dev-toggle-fixed .dtf-label.none {
-      color: var(--danger);
-    }
-    .dev-toggle-fixed .dtf-switch {
-      width: 18px;
-      height: 28px;
-      border-radius: 999px;
-      background: var(--border-dark);
-      position: relative;
-      transition: background 0.25s ease;
-      flex-shrink: 0;
-    }
-    .dev-toggle-fixed .dtf-switch.active {
-      background: var(--accent);
-    }
-    .dev-toggle-fixed .dtf-switch .dtf-knob {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #fff;
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    }
-    .dev-toggle-fixed .dtf-switch.active .dtf-knob {
-      transform: translateY(10px);
-    }
-
-    .dreamos-section-title .badge-dreamos {
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--accent);
-      background: var(--accent-soft);
-      padding: 2px 10px;
-      border-radius: 99px;
-      border: 1px solid var(--accent-glow);
-      letter-spacing: 0.03em;
-    }
-    .dreamos-section-hint {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    /* ── DreamOS Search ── */
-    .dreamos-search-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    .dreamos-search {
-      width: 100%;
-      padding: 10px 36px 10px 36px;
-      border: 1px solid var(--border-dark);
-      border-radius: 999px;
-      font-size: 13px;
-      font-family: inherit;
-      background: var(--surface);
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .dreamos-search::placeholder {
-      color: var(--text-hint);
-    }
-    .dreamos-search:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-soft);
-    }
-    .dreamos-search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 14px;
-      pointer-events: none;
-      line-height: 1;
-    }
-    .dreamos-search-clear {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--border-dark);
-      color: var(--text-muted);
-      font-size: 10px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      line-height: 1;
-    }
-    .dreamos-search-clear:hover {
-      background: var(--text-muted);
-      color: #fff;
-    }
-    .dreamos-search-clear.visible {
-      display: flex;
-    }
-    .actor-select-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-    .dreamos-grid-scroll {
-      max-height: calc(2.5 * (56px + 34px + 14px) + 1.5 * 10px); /* 2.5 rows of cards + gaps */
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding-right: 4px;
-    }
-    .dreamos-grid-scroll::-webkit-scrollbar {
-      width: 4px;
-    }
-    .dreamos-grid-scroll::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .dreamos-grid-scroll::-webkit-scrollbar-thumb {
-      background: var(--border-dark);
-      border-radius: 999px;
-    }
-    .actor-select-card {
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 10px 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      user-select: none;
-    }
-    .actor-select-card:hover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      transform: translateY(-2px);
-    }
-    .actor-select-card.active {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      box-shadow: 0 0 0 3px var(--accent-glow);
-    }
-    .actor-select-card img {
-      width: 56px;
-      height: 56px;
+    .ip-avatar-preview img {
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       object-fit: cover;
+      border: 3px solid var(--surface);
+      box-shadow: 0 4px 16px rgba(27,45,71,0.12);
       flex-shrink: 0;
       background: var(--bg);
     }
-    .actor-select-card .asc-name {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text);
-      text-align: center;
-      line-height: 1.3;
-    }
-    .actor-select-card .asc-check {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 2px solid var(--border-dark);
-      display: grid;
-      place-items: center;
-      font-size: 10px;
-      color: transparent;
-      transition: all 0.2s ease;
-      flex-shrink: 0;
-    }
-    .actor-select-card.active .asc-check {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-    .dreamos-empty {
+    .ip-avatar-preview .ip-avatar-info {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      padding: 32px 20px;
-      text-align: center;
+      gap: 4px;
+      min-width: 0;
     }
-    .dreamos-empty .empty-icon {
-      font-size: 40px;
-      opacity: 0.3;
+    .ip-avatar-preview .ip-avatar-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
     }
-    .dreamos-empty p {
-      font-size: 14px;
+    .ip-avatar-preview .ip-avatar-desc {
+      font-size: 13px;
       color: var(--text-muted);
       line-height: 1.6;
-      max-width: 320px;
-    }
-    .dreamos-empty .dreamos-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 22px;
-      border-radius: 999px;
-      border: none;
-      background: var(--accent);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-    .dreamos-empty .dreamos-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 900px) {
-      .actor-select-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 680px) {
-      .actor-select-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* ---- Basic info fields ---- */
@@ -512,7 +261,7 @@
       margin-top: 2px;
     }
 
-    /* ---- NFT params section ---- */
+    /* ---- IP 卡发行参数 section ---- */
     .nft-section-divider {
       border: none;
       border-top: 1px solid var(--border-dark);
@@ -767,12 +516,6 @@
         gap: 32px;
       }
 
-      .dreamos-section {
-        background: #fff;
-        border-radius: 16px;
-        padding: 16px;
-      }
-
       /* ── 表单字段：Apple 风格输入框 ── */
       .form-row { grid-template-columns: 1fr; gap: 16px; margin-bottom: 0; }
       .form-group label {
@@ -801,19 +544,10 @@
       }
       .form-group textarea { min-height: 80px; }
 
-      /* ── DreamOS 搜索框 ── */
-      .dreamos-search {
-        border-radius: 14px;
-        border: none;
-        background: rgba(0,0,0,0.04);
-        padding: 12px 36px;
-        font-size: 0.9rem;
-      }
-
       /* ── 定价模式切换 ── */
       .pricing-mode-toggle { margin: 0 auto 20px; }
 
-      /* ── NFT 区域 ── */
+      /* ── 发行参数区域 ── */
       .nft-section-title { font-size: 1rem; }
       .nft-section-desc { font-size: 0.82rem; color: #8E8E93; }
       .hint-text { font-size: 0.75rem; color: #AEAEB2; }
@@ -858,13 +592,6 @@
   </style>
 </head>
 <body>
-  <!-- 开发调试：页面右侧固定切换有/无素材 -->
-  <div class="dev-toggle-fixed" id="devToggleFixed" title="开发调试：切换有/无素材状态">
-    <div class="dtf-switch" id="dtfSwitch">
-      <div class="dtf-knob"></div>
-    </div>
-    <div class="dtf-label has" id="dtfLabel">有素材</div>
-  </div>
   <div class="app-shell">
 
     <!-- Mobile Navigation Bar -->
@@ -874,58 +601,51 @@
           <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-      <span class="step-nav-title">发行角色IP</span>
+      <span class="step-nav-title">发行IP</span>
     </div>
 
-    <h1 class="page-title">发行角色 IP</h1>
-    <p class="page-subtitle">发行一个角色 IP 之后可在该 IP 下签约角色，角色可派遣产生收益。</p>
+    <h1 class="page-title">发行 IP</h1>
+    <p class="page-subtitle">账号即创作者，即一个 IP。发行限量 IP 卡合集，粉丝购买 IP 卡即可分享你的作品收益。</p>
 
     <div class="form-panel">
 
-      <!-- ═══ DreamOS Import Section (before name) ═══ -->
-      <div class="dreamos-section" id="dreamosSection">
-        <div class="dreamos-section-title">
-          <div class="dreamos-title-left">
-            选择角色素材
-          </div>
+      <!-- ═══ IP 形象（账号头像） ═══ -->
+      <div class="ip-avatar-preview">
+        <img id="ipAvatarImg" src="" alt="IP 形象" />
+        <div class="ip-avatar-info">
+          <div class="ip-avatar-title">IP 形象</div>
+          <div class="ip-avatar-desc">IP 卡将使用你的账号头像作为形象，可在个人中心更换。</div>
         </div>
-        <div class="dreamos-section-hint">进入DreamOS项目 → 创建角色 → 进入Story.fun发行 IP <a href="#" onclick="showToast('跳转到DreamOS')" style="color:var(--accent);font-weight:600;text-decoration:none;">前往DreamOS</a></div>
-        <div class="dreamos-search-wrap">
-          <input type="text" class="dreamos-search" id="dreamosSearch" placeholder="搜索..." autocomplete="off" />
-          <span class="dreamos-search-icon">🔍</span>
-          <span class="dreamos-search-clear" id="dreamosSearchClear">✕</span>
-        </div>
-        <div id="dreamosContent"></div>
       </div>
 
-      <!-- ═══ Basic info: name + gender + bio ═══ -->
+      <!-- ═══ Basic info: IP name + bio ═══ -->
       <div class="basic-info-section">
         <div class="form-row full">
           <div class="form-group">
-            <label>角色姓名</label>
-            <input type="text" placeholder="请输入角色姓名" maxlength="20" id="actorName" />
+            <label>IP 名称</label>
+            <input type="text" placeholder="请输入 IP 名称" maxlength="20" id="actorName" />
             <span class="char-count" id="nameCount">0/20</span>
           </div>
         </div>
         <div class="form-row full">
           <div class="form-group">
-            <label>简介</label>
-            <textarea placeholder="请输入角色 IP 介绍" id="actorBio"></textarea>
+            <label>IP 简介</label>
+            <textarea placeholder="请输入 IP 简介" id="actorBio"></textarea>
             <span class="char-count" id="bioCount">0/500</span>
           </div>
         </div>
       </div>
 
-      <!-- NFT 发行参数 -->
+      <!-- IP 卡发行参数 -->
       <hr class="nft-section-divider" />
 
       <div>
-        <h3 class="nft-section-title">角色 IP 发行参数</h3>
-        <p class="nft-section-desc">设定角色 IP 的发行参数，发行后不可修改。</p>
+        <h3 class="nft-section-title">IP 卡发行参数</h3>
+        <p class="nft-section-desc">设定 IP 卡的发行参数，发行后不可修改。</p>
 
-        <!-- 角色发行总量（两种模式共享） -->
+        <!-- 发行总量（两种模式共享） -->
         <div class="form-group" style="margin-bottom: 20px;">
-          <label>角色发行总量</label>
+          <label>发行总量</label>
           <input type="number" placeholder="100 - 5000" min="100" max="5000" step="100" id="nftSupply" />
         </div>
 
@@ -940,7 +660,7 @@
           <div class="form-group">
             <label>固定价格（USDC）</label>
             <input type="number" placeholder="10 - 1000" step="0.1" min="0" id="nftPriceFixed" oninput="updatePriceCoefficient('fixed')" />
-            <span class="hint-text">每个角色都以固定不变的价格购买，不会随销量变化。</span>
+            <span class="hint-text">每张 IP 卡都以固定不变的价格购买，不会随销量变化。</span>
           </div>
         </div>
 
@@ -949,7 +669,7 @@
           <div class="form-group">
             <label>初始价格（USDC）</label>
             <input type="number" placeholder="10 - 1000" step="0.1" min="0" id="nftPriceCurve" oninput="updatePriceCoefficient('curve')" />
-            <span class="hint-text">初始价格为联合曲线起始价，每签约一个角色，价格按公式 <code>P = P₀ × 5^(已签约数/发行总量)</code> 自动上涨，早期签约更优惠。</span>
+            <span class="hint-text">初始价格为联合曲线起始价，每售出 1 张 IP 卡，价格按公式 <code>P = P₀ × 5^(已售数/发行总量)</code> 自动上涨，早期购买更优惠。</span>
           </div>
         </div>
 
@@ -1006,9 +726,9 @@
       <button class="auth-modal-close" onclick="closeSuccessModal()" style="position:absolute;top:16px;right:16px;">&times;</button>
       <div class="success-modal-icon">🎉</div>
       <h2>发行成功！</h2>
-      <p>角色 IP <span id="successActorId">#0001</span> ·「<span class="success-actor-name" id="successActorName">—</span>」已成功发行。<br>发行者也需要签约才能获得该角色哦～</p>
+      <p>IP 卡合集「<span class="success-actor-name" id="successActorName">—</span>」已成功发行。<br>你也将持有 1 张创世 IP 卡，可前往「我的 IP」查看。</p>
       <div class="success-buttons">
-        <button class="success-btn-primary" id="successGoSignBtn">🎭 去签约</button>
+        <button class="success-btn-primary" id="successGoSignBtn">🎭 去我的 IP</button>
         <button class="success-btn-outline" onclick="closeSuccessModal()">稍后再说</button>
       </div>
     </div>
@@ -1020,208 +740,38 @@
 
   <script>
   // ══════════════════════════════════════════════
-  //  ACTOR_IP_DB — Mock Database (from DreamOS)
+  //  IP 发行 — 默认带出账号信息（账号 = 创作者 = IP）
   // ══════════════════════════════════════════════
-  var ACTOR_IP_DB = {
-    'Luna': {
-      name: 'Luna',
-      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80',
-      description: '未来偶像型AI角色，科技感造型，适合对话与剧情分润场景。',
-      gender: 'female'
-    },
-    '苏婉清': {
-      name: '苏婉清',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80',
-      description: '温婉端庄的江南女子，琴棋书画样样精通，举止间尽显大家闺秀风范。',
-      gender: 'female'
-    },
-    '李云飞': {
-      name: '李云飞',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-      description: '身手矫健的侠客，性格豪爽仗义，自幼习武练就一身好本领。',
-      gender: 'male'
-    },
-    '林梦瑶': {
-      name: '林梦瑶',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80',
-      description: '聪慧机敏的现代女性，擅长推理分析，拥有敏锐的洞察力。',
-      gender: 'female'
-    },
-    '赵无极': {
-      name: '赵无极',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80',
-      description: '深不可测的武林高手，亦正亦邪，武功深不可测，行事风格独特。',
-      gender: 'male'
-    },
-    '上官婉儿': {
-      name: '上官婉儿',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-      description: '才情横溢的宫廷女官，精通诗词歌赋，智慧与美貌并重。',
-      gender: 'female'
-    },
-    '叶倾城': {
-      name: '叶倾城',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
-      description: '倾国倾城的绝世佳人，一颦一笑皆动人心魄，气质高贵冷艳。',
-      gender: 'female'
-    },
-    '慕容云': {
-      name: '慕容云',
-      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
-      description: '冷峻孤傲的世家公子，剑术超群，性格深沉内敛，眉宇间带着一丝忧郁。',
-      gender: 'male'
-    },
-    '花木兰': {
-      name: '花木兰',
-      image: 'https://images.unsplash.com/photo-1592621385612-4d7129426394?auto=format&fit=crop&w=200&q=80',
-      description: '英姿飒爽的女将军，替父从军征战沙场，巾帼不让须眉，忠孝两全。',
-      gender: 'female'
-    },
-    '东方朔': {
-      name: '东方朔',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      description: '神秘莫测的方士，通晓天文地理，善奇门遁甲之术，行事飘忽不定。',
-      gender: 'male'
-    },
-    '柳如是': {
-      name: '柳如是',
-      image: 'https://images.unsplash.com/photo-1602233158242-3ba0ac4d2167?auto=format&fit=crop&w=200&q=80',
-      description: '秦淮河畔的才女，琴棋书画无一不精，性格清高傲骨，不为世俗所困。',
-      gender: 'female'
-    },
-    '萧景琰': {
-      name: '萧景琰',
-      image: 'https://images.unsplash.com/photo-1506089676908-3592f7389d4d?auto=format&fit=crop&w=200&q=80',
-      description: '威震四方的大将军，战功赫赫，为人刚正不阿，深受将士爱戴。',
-      gender: 'male'
-    },
-    '江小鱼': {
-      name: '江小鱼',
-      image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=200&q=80',
-      description: '古灵精怪的江湖少年，机智幽默，轻功了得，总能在危机关头化险为夷。',
-      gender: 'male'
-    }
-  };
-
-  // ── Gender mapping helper ──
-  var GENDER_MAP = {
-    male: 'male',
-    female: 'female',
-    other: 'other'
-  };
-
-  // ══════════════════════════════════════════════
-  //  Load & Render DreamOS Actor Materials
-  // ══════════════════════════════════════════════
-
-  function loadActorMaterials() {
-    var container = document.getElementById('dreamosContent');
-    if (!container) return;
-
-    var allNames = Object.keys(ACTOR_IP_DB);
-    if (allNames.length === 0) {
-      renderEmptyState(container, 'no_materials');
-      return;
-    }
-
-    renderActorGrid(container, allNames);
+  function getAccountInfo() {
+    var u = (typeof currentUser !== 'undefined' && currentUser) ? currentUser : {};
+    return {
+      name: u.name || u.username || '我的 IP',
+      bio: u.bio || '',
+      avatar: u.avatar || 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80'
+    };
   }
 
-  function renderEmptyState(container, type) {
-    if (type === '未登录') {
-      container.innerHTML =
-        '<div class="dreamos-empty">' +
-        '  <div class="empty-icon">🔐</div>' +
-        '  <p>请先登录，查看你在 DreamOS 中已创建的角色素材。</p>' +
-        '</div>';
-    } else {
-      container.innerHTML =
-        '<div class="dreamos-empty">' +
-        '  <div class="empty-icon">🎭</div>' +
-        '  <p>您还没有在 DreamOS 中创建角色素材。请先前往 DreamOS 创建角色，再回来进行 NFT 发行。</p>' +
-        '  <button class="dreamos-btn" onclick="showToast(\'跳转到DreamOS\')">前往 DreamOS 创建 →</button>' +
-        '</div>';
+  function fillAccountDefaults() {
+    var info = getAccountInfo();
+    var nameInput = document.getElementById('actorName');
+    var bioInput = document.getElementById('actorBio');
+    var avatarImg = document.getElementById('ipAvatarImg');
+
+    // 默认带出用户名与简介（可修改）
+    if (nameInput && !nameInput.value.trim()) {
+      nameInput.value = info.name;
+      var nameCount = document.getElementById('nameCount');
+      if (nameCount) nameCount.textContent = info.name.length + '/20';
+    }
+    if (bioInput && !bioInput.value.trim()) {
+      bioInput.value = info.bio;
+      var bioCount = document.getElementById('bioCount');
+      if (bioCount) bioCount.textContent = info.bio.length + '/500';
+    }
+    if (avatarImg && !avatarImg.getAttribute('src')) {
+      avatarImg.src = info.avatar;
     }
   }
-
-  function renderActorGrid(container, names) {
-    var html = '<div class="dreamos-grid-scroll"><div class="actor-select-grid">';
-    for (var i = 0; i < names.length; i++) {
-      var name = names[i];
-      var actor = ACTOR_IP_DB[name];
-      if (!actor) continue;
-      html +=
-        '<div class="actor-select-card" data-name="' + name.replace(/'/g, "\\'") + '" onclick="selectActorMaterial(\'' + name.replace(/'/g, "\\'") + '\')">' +
-        '  <img src="' + actor.image + '" alt="' + actor.name + '" loading="lazy" onerror="this.style.display=\'none\'" />' +
-        '  <div class="asc-name">' + actor.name + '</div>' +
-        '  <div class="asc-check">✓</div>' +
-        '</div>';
-    }
-    html += '</div>';
-    container.innerHTML = html;
-  }
-
-  // ══════════════════════════════════════════════
-  //  Select Actor Material → Fill Form
-  // ══════════════════════════════════════════════
-
-  var _selectedMaterial = null;
-
-  function selectActorMaterial(name) {
-    var actor = ACTOR_IP_DB[name];
-    if (!actor) return;
-
-    _selectedMaterial = name;
-
-    // Update active state on cards
-    var cards = document.querySelectorAll('.actor-select-card');
-    for (var i = 0; i < cards.length; i++) {
-      var card = cards[i];
-      if (card.dataset.name === name) {
-        card.classList.add('active');
-      } else {
-        card.classList.remove('active');
-      }
-    }
-
-    // Fill form fields
-    document.getElementById('actorName').value = actor.name;
-    document.getElementById('nameCount').textContent = actor.name.length + '/20';
-
-    // Set bio
-    document.getElementById('actorBio').value = actor.description;
-    document.getElementById('bioCount').textContent = actor.description.length + '/500';
-
-    showToast('✅ 已导入「' + actor.name + '」素材信息');
-  }
-
-  // ══════════════════════════════════════════════
-  //  Init — on DOM ready + auth-ready
-  // ══════════════════════════════════════════════
-
-  // Global cache for search filtering (filled by loadActorMaterials)
-  var _allAvailableNames = [];
-
-  function initDreamOSSection() {
-    loadActorMaterials();
-  }
-
-  // Populate search cache and sync search filter after loading materials
-  var _origRenderActorGrid = renderActorGrid;
-  renderActorGrid = function(container, names) {
-    _allAvailableNames = names.slice();
-    _origRenderActorGrid(container, names);
-    // After rendering, apply search filter if search box is visible
-    if (typeof window._filterActorGrid === 'function') {
-      window._filterActorGrid();
-    } else {
-      // Search init not ready yet; just sync clear button
-      var searchInput = document.getElementById('dreamosSearch');
-      if (searchInput && searchInput.value.trim()) {
-        document.getElementById('dreamosSearchClear').classList.add('visible');
-      }
-    }
-  };
 
   document.addEventListener('DOMContentLoaded', function() {
     // ── Char counters ──
@@ -1239,44 +789,9 @@
       });
     }
 
-    // ── DreamOS Search ──
-    var searchInput = document.getElementById('dreamosSearch');
-    var searchClear = document.getElementById('dreamosSearchClear');
-
-    // _allAvailableNames is declared globally above and filled by renderActorGrid override
-    // Expose globally so renderActorGrid override can call it too
-    window._filterActorGrid = function() {
-      var query = searchInput.value.trim().toLowerCase();
-      if (query) {
-        searchClear.classList.add('visible');
-      } else {
-        searchClear.classList.remove('visible');
-      }
-      // Filter the cached names
-      var filtered = _allAvailableNames.filter(function(name) {
-        return name.toLowerCase().indexOf(query) > -1;
-      });
-      var container = document.getElementById('dreamosContent');
-      if (filtered.length === 0) {
-        container.innerHTML =
-          '<div class="dreamos-empty">' +
-          '  <div class="empty-icon">🔍</div>' +
-          '  <p>未找到与「' + query + '」匹配的角色素材</p>' +
-          '</div>';
-      } else {
-        // Use _origRenderActorGrid directly to avoid recursion with the override
-        _origRenderActorGrid(container, filtered);
-      }
-    };
-
-    searchInput.addEventListener('input', window._filterActorGrid);
-
-    searchClear.addEventListener('click', function() {
-      searchInput.value = '';
-      searchClear.classList.remove('visible');
-      window._filterActorGrid();
-      searchInput.focus();
-    });
+    // ── 默认带出账号信息 ──
+    fillAccountDefaults();
+    document.addEventListener('auth-ready', fillAccountDefaults);
 
     // ── Pricing Mode Toggle ──
     var pricingToggle = document.getElementById('pricingModeToggle');
@@ -1325,52 +840,6 @@
         }
       }
     });
-
-    // ── Dev toggle (fixed right edge): switch between "有素材" / "无素材" ──
-
-    var _devToggleState = true; // true = 有素材, false = 无素材
-    var dtfSwitch = document.getElementById('dtfSwitch');
-    var dtfLabel = document.getElementById('dtfLabel');
-
-    function applyDevToggle() {
-      if (_devToggleState) {
-        dtfSwitch.classList.add('active');
-        dtfLabel.textContent = '有素材';
-        dtfLabel.className = 'dtf-label has';
-        loadActorMaterials();
-      } else {
-        dtfSwitch.classList.remove('active');
-        dtfLabel.textContent = '无素材';
-        dtfLabel.className = 'dtf-label none';
-        var container = document.getElementById('dreamosContent');
-        if (container) {
-          renderEmptyState(container, 'no_materials');
-        }
-      }
-    }
-
-    // Click on the fixed toggle wrapper
-    document.getElementById('devToggleFixed').addEventListener('click', function(e) {
-      e.stopPropagation();
-      _devToggleState = !_devToggleState;
-      applyDevToggle();
-    });
-
-    // ── Load DreamOS materials ──
-    // Use setTimeout to ensure auth.js has initialized currentUser
-    setTimeout(initDreamOSSection, 200);
-
-    // Sync search state after grid is rendered (search box empty → show all)
-    setTimeout(function() {
-      if (_allAvailableNames.length > 0 && typeof window._filterActorGrid === 'function') {
-        window._filterActorGrid();
-      }
-    }, 500);
-  });
-
-  // Re-load when auth state changes (e.g. login/logout)
-  document.addEventListener('auth-ready', function() {
-    initDreamOSSection();
   });
 
   // ── Pricing Mode (global) ──
@@ -1438,14 +907,12 @@
     }
 
 
-    if (!name) { showToast('请输入角色姓名'); return; }
+    if (!name) { showToast('请输入 IP 名称'); return; }
     if (!nftPrice) { showToast('请输入价格'); return; }
 
-    // Get avatar from selected DreamOS material or use default
-    var avatar = 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80';
-    if (_selectedMaterial && ACTOR_IP_DB[_selectedMaterial]) {
-      avatar = ACTOR_IP_DB[_selectedMaterial].image;
-    }
+    // IP 形象 = 账号头像（账号 = 创作者 = IP）
+    var info = getAccountInfo();
+    var avatar = info.avatar;
 
     var actorData = {
       name: name,
@@ -1453,9 +920,9 @@
       avatar: avatar,
       gender: '—',
       totalSupply: nftSupply,
-      minted: 0,
-      available: nftSupply,
-      holders: 0,
+      minted: 1,          // 创作者自持 1 张创世 IP 卡
+      available: nftSupply - 1,
+      holders: 1,
       price: nftPrice + ' USDC',
       initPrice: parseFloat(nftPrice) || 0,
       reserved: 0,
@@ -1463,13 +930,14 @@
       standard: 'Solana SPL',
       views: '0',
       heat: '0',
-      creator: currentUser && currentUser.username ? currentUser.username : '—',
+      creator: currentUser && currentUser.username ? currentUser.username : (currentUser && currentUser.name ? currentUser.name : '—'),
       collection: '—',
-      childActors: []
+      childActors: [],
+      isCreatorIP: true   // 新模型标记：账号 = 创作者 = IP
     };
 
 
-    console.log('Actor Data:', actorData);
+    console.log('IP Data:', actorData);
 
     // Save to localStorage so actor-profile.html can read it
     try {
@@ -1493,29 +961,18 @@
   function showSuccessModal(actorData) {
     var overlay = document.getElementById('successModalOverlay');
     var nameEl = document.getElementById('successActorName');
-    var idEl = document.getElementById('successActorId');
     var goSignBtn = document.getElementById('successGoSignBtn');
 
-    // Generate IP number based on existing created actors count
-    var ipNum = 1;
-    try {
-      var createdActors = JSON.parse(localStorage.getItem('storyfun_created_actors')) || {};
-      ipNum = Object.keys(createdActors).length;
-    } catch(e) {}
-    if (idEl) {
-      idEl.textContent = '#0000'.slice(0, -String(ipNum).length) + ipNum;
-    }
-
-    // Fill actor name
+    // Fill IP name
     if (nameEl) {
       nameEl.textContent = actorData.name;
     }
 
-    // Bind "去签约" button — navigate to actor-profile page
+    // Bind "去我的 IP" button — navigate to 我的 IP (studio.html 经纪人页)
     if (goSignBtn) {
       var goSignHandler = function() {
         closeSuccessModal();
-        location.href = 'actor-profile.html?name=' + encodeURIComponent(actorData.name);
+        location.href = 'studio.html';
       };
       goSignBtn.onclick = goSignHandler;
     }

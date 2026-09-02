@@ -662,7 +662,7 @@
 <div style="display:flex;flex-direction:column;padding-left:20px;gap:2px;">
   <a class="mobile-drawer-link${currentPage === 'publish.html' ? ' active' : ''}" href="publish.html" style="font-size:14px;padding:10px 16px;">发布短剧</a>
   <a class="mobile-drawer-link${currentPage === 'publish-video.html' ? ' active' : ''}" href="publish-video.html" style="font-size:14px;padding:10px 16px;">发布视频</a>
-  <a class="mobile-drawer-link${currentPage === 'create-actor.html' ? ' active' : ''}" href="create-actor.html" style="font-size:14px;padding:10px 16px;">发行角色IP</a>
+  <a class="mobile-drawer-link${currentPage === 'create-actor.html' ? ' active' : ''}" href="create-actor.html" style="font-size:14px;padding:10px 16px;">发行IP</a>
 </div>`;
       }
       return `<a class="mobile-drawer-link${activeClass}" href="${item.href}">${item.label}</a>`;
@@ -841,7 +841,7 @@
         <div class="nav-dropdown-menu">
           <a class="nav-dropdown-item" href="publish.html">发布短剧</a>
           <a class="nav-dropdown-item" href="publish-video.html">发布视频</a>
-          <a class="nav-dropdown-item" href="create-actor.html">发行角色IP</a>
+          <a class="nav-dropdown-item" href="create-actor.html">发行IP</a>
         </div>
       </div>
       <a class="nav-link" href="whitepaper.html">白皮书</a>
