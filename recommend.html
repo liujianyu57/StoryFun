@@ -439,10 +439,6 @@ body.clean-mode .clean-exit-btn{display:flex}
         <span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.45);letter-spacing:.04em;">USDC</span>
         <span class="sd-balance-usdc" style="font-size:16px;font-weight:700;color:#1a1a2e;" id="sdBalanceUsdc">100.23</span>
       </div>
-      <div class="sd-asset-item" style="flex:1;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.04);cursor:pointer;" onclick="showToast('💎 点数购买功能请前往个人中心')">
-        <span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.45);letter-spacing:.04em;">点数</span>
-        <span class="sd-balance-pass" style="font-size:14px;font-weight:700;color:#1a1a2e;" id="sdBalancePoints">500</span>
-      </div>
       <div class="sd-asset-item" style="flex:1;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.04);cursor:pointer;" onclick="location.href='pass.html'">
         <span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.45);letter-spacing:.04em;">Pass</span>
         <span class="sd-balance-pass" style="font-size:14px;font-weight:700;color:#1a1a2e;" id="sdBalancePass">未持有</span>
@@ -738,15 +734,6 @@ function syncSideAssets() {
     try { passHeld = localStorage.getItem('storyfun_pass_held') === '1'; } catch(e) {}
     passEl.textContent = passHeld ? '已持有' : '未持有';
     passEl.style.color = passHeld ? '#34c759' : '#1a1a2e';
-  }
-  var pointsEl = document.getElementById('sdBalancePoints');
-  if (pointsEl) {
-    var b = currentUser.balances;
-    var u = b ? b.usdc : null;
-    var points = 500;
-    if (typeof u === 'number') points = u;
-    else if (typeof u === 'object') { var t = 0; for (var k in u) { if (typeof u[k] === 'number') t += u[k]; } points = t; }
-    pointsEl.textContent = Math.round(points).toLocaleString();
   }
 }
 function closeSide(){sideDrawer.classList.remove("open");sideOverlay.classList.remove("open")}
