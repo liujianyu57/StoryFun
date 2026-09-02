@@ -4,7 +4,7 @@
 //  功能：
 //    1. 自动注入短剧卡片完整 CSS（含移动端适配）
 //    2. 提供短剧认证徽章系统（官方/合作/认证/社区）
-//    3. 提供通用IP 卡 数据库（头像 + 挖矿片酬）
+//    3. 提供通用IP 卡 数据库（头像 + 积分）
 //    4. 提供卡片渲染 API renderDramaCard / renderDramaCardList
 //
 //  用法：
@@ -102,7 +102,7 @@
 .card-stats .cs-rating { color: #fff; }
 .card-stats .cs-rating svg { stroke: #fff; opacity: 1; }
 
-/* ═══ 参演IP 卡 头像 + 片酬 ═══ */
+/* ═══ 参演IP 卡 头像 + 积分 ═══ */
 .card-actors {
   position: absolute;
   bottom: 34px;
@@ -320,7 +320,7 @@
     '上官婉儿': '4,720'
   };
   var DEFAULT_AVATAR = 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80';
-  // 片酬金币图标（全站统一规范）
+  // 积分金币图标（全站统一规范）
   var COIN_SVG = '<svg viewBox="0 0 24 24" style="width:11px;height:11px;vertical-align:-1px;margin-right:3px;flex-shrink:0;"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg>';
 
   // ============================================================
@@ -459,7 +459,7 @@
         '<div class="actors-modal-item-avatar"><img src="' + avatarUrl + '" alt="' + escapeHTML(name) + '" /></div>' +
         '<div class="actors-modal-item-info">' +
           '<div class="actors-modal-item-name">' + escapeHTML(name) + '</div>' +
-          '<div class="actors-modal-item-power"><svg viewBox="0 0 24 24" style="width:11px;height:11px;vertical-align:-1px;margin-right:3px;"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg>' + power + ' <span style="font-weight:400;color:#8a8f98;font-size:10px;">片酬/h</span></div>' +
+          '<div class="actors-modal-item-power"><svg viewBox="0 0 24 24" style="width:11px;height:11px;vertical-align:-1px;margin-right:3px;"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg>' + power + ' <span style="font-weight:400;color:#8a8f98;font-size:10px;">积分/h</span></div>' +
         '</div>' +
         '<span class="actors-modal-item-arrow">\u203A</span>' +
       '</a>';

@@ -327,7 +327,7 @@
       <!-- 近 8 周释放数据 -->
       <div class="section-card">
         <div class="section-header">
-          <h3>近期挖矿释放</h3>
+          <h3>近期奖池释放</h3>
           <button class="btn-sm-outline" onclick="openWeeklyReleaseModal()">查看更多 →</button>
         </div>
         <div class="table-wrap">
@@ -336,8 +336,8 @@
               <tr>
                 <th style="width:110px;">周期</th>
                 <th style="width:130px;">周硬顶</th>
-                <th style="width:120px;">质押挖矿</th>
-                <th style="width:120px;">邀请挖矿</th>
+                <th style="width:120px;">激活瓜分</th>
+                <th style="width:120px;">邀请瓜分</th>
                 <th style="width:100px;">使用率</th>
               </tr>
             </thead>
@@ -410,7 +410,7 @@
   <div class="modal-overlay" id="weeklyReleaseModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3>历史挖矿数据</h3>
+        <h3>历史奖池数据</h3>
         <button class="modal-close" onclick="closeModal('weeklyReleaseModal')">✕</button>
       </div>
       <div class="table-wrap">
@@ -419,8 +419,8 @@
             <tr>
               <th style="width:110px;">周期</th>
               <th style="width:130px;">周硬顶</th>
-              <th style="width:120px;">质押挖矿</th>
-              <th style="width:120px;">邀请挖矿</th>
+              <th style="width:120px;">激活瓜分</th>
+              <th style="width:120px;">邀请瓜分</th>
               <th style="width:100px;">使用率</th>
             </tr>
           </thead>
@@ -511,7 +511,7 @@
 
     // ── STORY 总量分配 ──
     const STORY_ALLOC = [
-      { name:'NFT 挖矿池',        pct:'55%', amount:550000000, released:42500000,  progress:'7.7%',  mechanism:'按周释放，逐年指数递减' },
+      { name:'IP 卡积分池',        pct:'55%', amount:550000000, released:42500000,  progress:'7.7%',  mechanism:'按周释放，逐年指数递减' },
       { name:'团队',              pct:'15%', amount:150000000, released:0,         progress:'0%',    mechanism:'12月 cliff + 36月线性释放' },
       { name:'投资人',            pct:'10%', amount:100000000, released:0,         progress:'0%',    mechanism:'6月 cliff + 24月线性释放' },
       { name:'Launchpad + 流动性',pct:'10%', amount:100000000, released:0,         progress:'0%',    mechanism:'TGE 即可用' },
@@ -552,7 +552,7 @@
       { week:6,  range:'02/17 - 02/23', cap:2174900, actual:1857600, usage:'85.4%', note:'—' },
       { week:5,  range:'02/10 - 02/16', cap:2179700, actual:1924500, usage:'88.3%', note:'—' },
       { week:4,  range:'02/03 - 02/09', cap:2184500, actual:2184500, usage:'100%',  note:'触顶 · 按权重缩放' },
-      { week:3,  range:'01/27 - 02/02', cap:2189300, actual:1748200, usage:'79.9%', note:'春节周 · 片酬偏低' },
+      { week:3,  range:'01/27 - 02/02', cap:2189300, actual:1748200, usage:'79.9%', note:'春节周 · 积分偏低' },
       { week:2,  range:'01/20 - 01/26', cap:2194100, actual:2194100, usage:'100%',  note:'触顶 · 按权重缩放' },
       { week:1,  range:'01/13 - 01/19', cap:2198900, actual:2034700, usage:'92.5%', note:'主网上线首周' },
     ];

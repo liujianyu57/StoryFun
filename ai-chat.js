@@ -1,6 +1,6 @@
 // ============================================================
 //  Story.fun - 角色 AI 对话模块
-//  持有 1 个及以上角色 NFT 即可与角色进行 AI 对话
+//  持有 1 张及以上 IP 卡即可与角色进行 AI 对话
 // ============================================================
 
 // ============================================================
@@ -121,7 +121,7 @@ let chatState = {
 };
 
 // ============================================================
-//  检查用户是否持有某角色的 NFT
+//  检查用户是否持有某 IP 卡
 // ============================================================
 function userHasActorNFT(actorName) {
   // 从全局 currentUser 中读取 actorNfts
@@ -132,7 +132,7 @@ function userHasActorNFT(actorName) {
 }
 
 // ============================================================
-//  获取用户持有的 NFT 数量
+//  获取用户持有的 IP 卡数量
 // ============================================================
 function getUserActorNFTCount() {
   if (typeof currentUser !== 'undefined' && currentUser.actorNfts) {
@@ -213,7 +213,7 @@ function createChatModal() {
       <div class="ai-chat-input-area">
         <div class="ai-chat-nft-badge" id="chatNftBadge">
           <span class="badge-icon">🎭</span>
-          <span>NFT 验证通过</span>
+          <span>IP 卡验证通过</span>
         </div>
         <div class="ai-chat-input-row">
           <input type="text" class="ai-chat-input" id="chatInput" placeholder="输入你想说的话..." maxlength="500" />
@@ -258,16 +258,16 @@ function openAIChat(actorName, actorAvatar) {
     return;
   }
   
-  // 检查 NFT 持有
+  // 检查 IP 卡持有
   if (!userHasActorNFT(actorName) && getUserActorNFTCount() <= 0) {
-    showToast('需要持有该角色的 NFT 才能对话', '🎭');
+    showToast('需要持有该 IP 卡才能对话', '🎭');
     return;
   }
   
-  // 如果用户持有任意角色NFT，但不持有该特定角色，也允许对话
-  // （放宽限制：持有1个及以上任意角色NFT即可与任何角色对话）
+  // 如果用户持有任意 IP 卡，但不持有该特定角色，也允许对话
+  // （放宽限制：持有1张及以上任意 IP 卡即可与任何角色对话）
   if (getUserActorNFTCount() <= 0) {
-    showToast('需要持有至少1个角色 NFT 才能对话', '🎭');
+    showToast('需要持有至少1张 IP 卡才能对话', '🎭');
     return;
   }
   

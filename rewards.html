@@ -109,7 +109,7 @@
     }
     @media (min-width: 961px) {
       .overview-grid { grid-template-columns: repeat(4, 1fr); }
-      /* 我的片酬：通栏显示（横跨 4 列） */
+      /* 我的积分：通栏显示（横跨 4 列） */
       .overview-foot { grid-column: 1 / -1; }
     }
     .overview-cell {
@@ -295,7 +295,7 @@
       </div>
     </div>
 
-    <!-- ===== 收益总览（合并累计 + 可领取 + 片酬） ===== -->
+    <!-- ===== 收益总览（合并累计 + 可领取 + 积分） ===== -->
     <div class="overview-card">
       <div class="overview-header">
         <h2 class="overview-title">收益总览</h2>
@@ -328,9 +328,9 @@
           </div>
         </div>
 
-        <!-- 我的片酬：桌面端与「可领取 STORY」同列（第 3 列），移动端通栏 -->
+        <!-- 我的积分：桌面端与「可领取 STORY」同列（第 3 列），移动端通栏 -->
         <div class="overview-foot">
-          <span class="ov-foot-label">我的片酬</span>
+          <span class="ov-foot-label">我的积分</span>
           <span class="ov-foot-value" id="mPendingSalaryNum">5,860.0</span>
           <svg viewBox="0 0 24 24" style="width:15px;height:15px;vertical-align:-2px;"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg>
           <span class="ov-foot-desc">结算后按占比兑换为 STORY</span>
@@ -374,7 +374,7 @@
     <div class="help-modal-overlay" id="adminDemoModal">
       <div class="help-modal-card" style="max-width:420px;">
         <h3>后台设置（演示）</h3>
-        <p style="margin:0 0 16px;font-size:0.85rem;color:var(--text-secondary);line-height:1.6;">模拟平台后台：输入本周 STORY 奖池，放行后用户可按片酬占比领取。</p>
+        <p style="margin:0 0 16px;font-size:0.85rem;color:var(--text-secondary);line-height:1.6;">模拟平台后台：输入本周 STORY 奖池，放行后用户可按积分占比领取。</p>
         <div style="margin-bottom:16px;">
           <label style="display:block;font-size:0.78rem;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">本周 STORY 奖池</label>
           <input id="adminPoolInput" type="number" value="100000" min="0" step="1000" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);font-size:0.9rem;font-weight:600;color:var(--text);outline:none;background:var(--surface);box-sizing:border-box;" />
@@ -473,10 +473,10 @@
     const STORY_PRICE = 0.10;
     let currentFilter = 'all';
 
-    // ===== 片酬 & 奖池模型（demo：模拟后台）=====
-    // 我的片酬（积分，非 STORY）
+    // ===== 积分 & 奖池模型（demo：模拟后台）=====
+    // 我的积分（积分，非 STORY）
     const MY_SALARY = 5860.0;
-    // 全网片酬基准（模拟值，用于算占比）
+    // 全网积分基准（模拟值，用于算占比）
     const NET_SALARY = 1250000;
     // 本周 STORY 奖池（后台输入，localStorage 持久化）
     const POOL_KEY = 'sf2_weekly_pool';
@@ -487,7 +487,7 @@
     function isApproved() { return localStorage.getItem(APPROVE_KEY) === '1'; }
     function setApproved(v) { localStorage.setItem(APPROVE_KEY, v ? '1' : '0'); }
 
-    // 我的占比 = 我的片酬 ÷ 全网片酬
+    // 我的占比 = 我的积分 ÷ 全网积分
     function myShare() { return NET_SALARY > 0 ? MY_SALARY / NET_SALARY : 0; }
     // 可领 STORY = 奖池 × 占比
     function claimableStory() { return Math.round(getPool() * myShare()); }
@@ -565,10 +565,10 @@
       // 累计 USDC：基础累计 + 已领取累计
       var claimedUsdcExtra = parseFloat(localStorage.getItem('sf2_claimed_usdc') || '0') || 0;
       document.getElementById('mCumulativeUsdc').textContent=(WALLET.usdcEarned + claimedUsdcExtra).toFixed(2);
-      // 我的片酬（金币图标，数值）：放行（结算）后清零
+      // 我的积分（金币图标，数值）：放行（结算）后清零
       const settled = isApproved();
       document.getElementById('mPendingSalaryNum').textContent = (settled ? 0 : MY_SALARY).toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-      // 可领取 STORY：放行（结算）后由片酬兑换，未放行为 0
+      // 可领取 STORY：放行（结算）后由积分兑换，未放行为 0
       const claimVal = settled ? claimableStory() : 0;
       document.getElementById('mClaimableStory').textContent = claimVal.toLocaleString();
       const claimBtn = document.getElementById('claimStoryBtn');

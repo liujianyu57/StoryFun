@@ -213,7 +213,7 @@
       <div class="narrator-tabs">
         <button class="narrator-tab active" data-tab="tab1" onclick="switchTab('tab1', this)">短剧管理</button>
         <button class="narrator-tab" data-tab="tab3" onclick="switchTab('tab3', this)">视频管理</button>
-        <button class="narrator-tab" data-tab="tab2" onclick="switchTab('tab2', this)">短剧NFT</button>
+        <button class="narrator-tab" data-tab="tab2" onclick="switchTab('tab2', this)">短剧 IP 卡</button>
       </div>
 
       <div class="filter-row" id="filterRow">
@@ -296,7 +296,7 @@
               </div>
             </div>
             <div class="card-action" data-status="approved">
-              <button class="button" style="flex:0.7;"><span class="btn-icon">🔨</span> 铸造短剧NFT</button>
+              <button class="button" style="flex:0.7;"><span class="btn-icon">🔨</span> 铸造短剧 IP 卡</button>
               <button class="button" style="flex:0.3;background:transparent;color:var(--accent);border:1px solid rgba(0, 0, 0,0.25);font-weight:600;" onclick="openEditDramaModal(this)"><span class="btn-icon">✏️</span> 编辑</button>
             </div>
           </article>
@@ -399,8 +399,8 @@
           <div class="nft-card">
 
             <div class="nft-cover-wrap">
-              <img class="nft-cover" src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=80" alt="星际迷航 NFT" />
-              <span class="nft-id-badge">#NFT-002</span>
+              <img class="nft-cover" src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=80" alt="星际迷航 IP 卡" />
+              <span class="nft-id-badge">#IP-002</span>
             </div>
             <div class="nft-body">
               <h4>星际迷航</h4>
@@ -527,7 +527,7 @@
     <div class="modal-overlay" id="mintModal">
       <div class="modal" style="max-width:480px;">
         <div class="modal-header">
-          <h3>🔨 铸造短剧 NFT</h3>
+          <h3>🔨 铸造短剧 IP 卡</h3>
           <button class="modal-close" onclick="closeMintModal()">✕</button>
         </div>
         <div class="modal-body">
@@ -535,7 +535,7 @@
             <img id="mintDramaCover" src="" alt="" />
             <h4 id="mintDramaTitle">—</h4>
           </div>
-          <p style="color:var(--text-muted);line-height:1.7;">确认铸造该短剧为链上 NFT，铸造后该短剧将可产生 STORY 挖矿收益。</p>
+          <p style="color:var(--text-muted);line-height:1.7;">确认铸造该短剧为链上 IP 卡，铸造后该短剧将可参与 STORY 奖池瓜分。</p>
           <!-- Fee Display -->
           <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-radius:14px;background:rgba(0, 0, 0,0.06);border:1px solid rgba(0, 0, 0,0.12);margin-top:16px;">
             <span style="color:var(--text-muted);font-size:0.92rem;">手续费</span>
@@ -566,7 +566,7 @@
           </div>
           <div class="modal-info">
             <div class="modal-field"><span>支付钱包</span><strong id="actorMintWallet">0x1234....fods</strong></div>
-            <div class="modal-field"><span>Mint 合约</span><strong id="actorMintContract">ActorNFT.mint()</strong></div>
+            <div class="modal-field"><span>Mint 合约</span><strong id="actorMintContract">IPCard.mint()</strong></div>
             <div class="modal-field"><span>可Mint 余额</span><strong id="actorMintBalance">9,000</strong></div>
             <div class="modal-total"><span>预计支付</span><strong id="actorMintEstimate">10.0 USDC</strong></div>
           </div>
@@ -615,7 +615,7 @@
             <h4 style="margin:0 0 10px;font-size:0.95rem;">3 设置IP 卡分润比例</h4>
             <div style="display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:16px;border:1px solid var(--border);background:#fafcff;">
               <div style="flex:1;">
-                <p style="margin:0 0 4px;font-size:0.82rem;color:var(--text-muted);">该 IP 卡占用短剧NFT总收入的</p>
+                <p style="margin:0 0 4px;font-size:0.82rem;color:var(--text-muted);">该 IP 卡占用短剧 IP 卡总收入的</p>
                 <div style="display:flex;align-items:center;gap:10px;margin-top:4px;">
                   <input type="range" id="bindRoyaltySlider" min="1" max="70" value="10" style="flex:1;accent-color:var(--accent);height:6px;cursor:pointer;" oninput="updateBindRoyaltyDisplay()" />
                   <span id="bindRoyaltyValue" style="font-size:1.3rem;font-weight:700;color:var(--accent);min-width:60px;text-align:right;">10%</span>
@@ -624,7 +624,7 @@
             </div>
             <div style="display:flex;gap:16px;margin-top:12px;">
               <div style="flex:1;padding:10px 14px;border-radius:12px;background:rgba(0, 0, 0,0.05);border:1px solid rgba(0, 0, 0,0.10);text-align:center;">
-                <p style="margin:0 0 2px;font-size:0.78rem;color:var(--text-muted);">短剧NFT分润</p>
+                <p style="margin:0 0 2px;font-size:0.78rem;color:var(--text-muted);">短剧 IP 卡分润</p>
                 <p id="bindDramaRemaining" style="margin:0;font-size:1.1rem;font-weight:700;color:var(--accent);">60%</p>
               </div>
               <div style="flex:1;padding:10px 14px;border-radius:12px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.10);text-align:center;">
@@ -769,7 +769,7 @@
             badge.textContent = '✅ 已铸造';
             header.appendChild(badge);
           }
-          // 只隐藏「铸造短剧NFT」按钮，同时让编辑按钮撑满
+          // 只隐藏「铸造短剧 IP 卡」按钮，同时让编辑按钮撑满
           const mintBtn = currentMintCard.querySelector('.card-action .button:first-child');
           if (mintBtn) {
             mintBtn.style.display = 'none';
@@ -778,25 +778,25 @@
           }
         }
 
-        // 并在「短剧NFT」页签中添加对应的 NFT 卡片
+        // 并在「短剧 IP 卡」页签中添加对应的 IP 卡卡片
         if (currentMintCard) {
           const title = currentMintCard.querySelector('.card-body h3').textContent.trim();
           const cover = currentMintCard.querySelector('.card-header img').src;
           const sub = currentMintCard.querySelector('.card-sub span')?.textContent || title;
-          // 生成新 NFT ID
+          // 生成新 IP 卡 ID
           const existingIds = document.querySelectorAll('#tab2 .nft-id-badge');
           const maxNum = Array.from(existingIds).reduce((max, el) => {
             const m = el.textContent.match(/\d+/);
             return m ? Math.max(max, parseInt(m[0])) : max;
           }, 0);
-          const newId = '#NFT-' + String(maxNum + 1).padStart(3, '0');
+          const newId = '#IP-' + String(maxNum + 1).padStart(3, '0');
 
           const nftCard = document.createElement('div');
           nftCard.className = 'nft-card';
           nftCard.innerHTML = `
 
             <div class="nft-cover-wrap">
-              <img class="nft-cover" src="${cover}" alt="${title} NFT" />
+              <img class="nft-cover" src="${cover}" alt="${title} IP 卡" />
               <span class="nft-id-badge">${newId}</span>
             </div>
             <div class="nft-body">
@@ -825,7 +825,7 @@
 
     document.addEventListener('click', function(e) {
       const btn = e.target.closest('.card-list-item .card-action .button');
-      if (btn && btn.textContent.trim().includes('铸造短剧NFT')) {
+      if (btn && btn.textContent.trim().includes('铸造短剧 IP 卡')) {
         e.preventDefault();
         const card = btn.closest('.card-list-item');
         if (card && card.dataset.status === 'approved') {
@@ -850,7 +850,7 @@
       document.getElementById('actorMintImage').alt = name;
       document.getElementById('actorMintTag').textContent = 'AI 角色';
       document.getElementById('actorMintWallet').textContent = '0x1234....fods';
-      document.getElementById('actorMintContract').textContent = 'ActorNFT.mint()';
+      document.getElementById('actorMintContract').textContent = 'IPCard.mint()';
       document.getElementById('actorMintBalance').textContent = openMint.toLocaleString();
       document.getElementById('actorMintEstimate').textContent = (mintPrice * reserved).toFixed(1) + ' USDC';
       actorMintModal.classList.add('active');

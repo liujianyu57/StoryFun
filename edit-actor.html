@@ -364,7 +364,7 @@
       margin-bottom: 6px;
     }
 
-    /* ---- NFT params section ---- */
+    /* ---- IP 卡 params section ---- */
     .nft-section-divider {
       border: none;
       border-top: 1px solid var(--border-dark);
@@ -393,7 +393,7 @@
       margin-top: 16px;
     }
 
-    /* ---- NFT Preview card ---- */
+    /* ---- IP 卡 Preview card ---- */
     .nft-preview-card {
       display: flex;
       align-items: center;
@@ -633,16 +633,16 @@
         </div>
       </div>
 
-      <!-- NFT 发行参数 -->
+      <!-- IP 卡发行参数 -->
       <hr class="nft-section-divider" />
 
       <div>
-        <h3 class="nft-section-title">🔗 NFT 发行参数</h3>
-        <p class="nft-section-desc">设定角色 NFT 的链上发行参数，发布后重新提交审核。</p>
+        <h3 class="nft-section-title">🔗 IP 卡发行参数</h3>
+        <p class="nft-section-desc">设定IP 卡的链上发行参数，发布后重新提交审核。</p>
 
         <div class="params-row">
           <div class="form-group">
-            <label>NFT发行总量</label>
+            <label>IP 卡发行总量</label>
             <input type="number" id="totalSupply" placeholder="请输入" min="1" />
           </div>
           <div class="form-group">
@@ -663,7 +663,7 @@
           </div>
         </div>
 
-        <!-- NFT Preview card -->
+        <!-- IP 卡 Preview card -->
         <div class="nft-preview-card">
           <div class="nft-preview-avatar" id="previewAvatar">AI</div>
           <div class="nft-preview-info">
@@ -675,7 +675,7 @@
 
         <!-- Info note -->
         <div class="info-note">
-          <span>修改发行参数后，角色需重新提交审核。审核通过之后可铸造角色 NFT。</span>
+          <span>修改发行参数后，角色需重新提交审核。审核通过之后可铸造 IP 卡。</span>
         </div>
       </div>
 
@@ -824,7 +824,7 @@
         document.getElementById('descCount').textContent = this.value.length + '/500';
       });
 
-      // NFT 参数实时预览
+      // IP 卡参数实时预览
       ['totalSupply', 'reserved', 'mintPrice', 'holdThreshold'].forEach(id => {
         document.getElementById(id).addEventListener('input', updatePreview);
       });
@@ -868,7 +868,7 @@
       const statusMap = { approved: '已通过', pending: '审核中', rejected: '未通过' };
       statusText.textContent = statusMap[data.status] || data.status;
 
-      // NFT 参数（可编辑，无 readonly）
+      // IP 卡参数（可编辑，无 readonly）
       document.getElementById('totalSupply').value = data.totalSupply;
       document.getElementById('reserved').value = data.reserved;
       document.getElementById('mintPrice').value = data.mintPrice;
