@@ -746,11 +746,6 @@
         <span class="step-circle">2</span>
         <span class="step-label">剧集管理</span>
       </div>
-      <span style="color:#deeaf7;font-size:1.2rem;">›</span>
-      <div class="step-item">
-        <span class="step-circle">3</span>
-        <span class="step-label">绑定 IP</span>
-      </div>
     </div>
 
     <!-- Mobile Step Navigation Bar -->
@@ -853,41 +848,15 @@
 
       <div class="form-panel-footer">
         <button class="button-ghost" onclick="goToStep(1)">← 上一步</button>
-        <button class="button" onclick="goToStep(3)">下一步：绑定 IP →</button>
+        <button class="button" style="padding:12px 36px;" onclick="submitForReview()">发布</button>
       </div>
     </div>
 
 
-    <!-- Step 3: 角色管理 - Figma Card Grid Style -->
-    <div class="form-panel" id="step3" style="display:none;">
-      <div class="form-panel-body">
-        <!-- Actor IP Grid -->
-        <div class="char-grid" id="charGrid">
-          <!-- Actor IPs rendered by JS -->
-        </div>
+    <!-- Step 3: 角色管理 - 已移除（短剧天然归属账号，无需绑定 IP） -->
 
-        <!-- Limit Hint -->
-        <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.7;display:flex;flex-direction:column;gap:4px;">
-          <div>· 每部短剧最多绑定 5 个IP 卡，上架 7 天内可新增，发布后不可解除或更换。</div>
-          <div>· 绑定后，IP 卡将关联短剧的完播和热度数据，用于升级 IP 卡和产出STORY。</div>
-          <div>· 绑定 IP 为选填，可不绑定直接发布。</div>
-        </div>
-
-      </div>
-
-      <div class="form-panel-footer">
-        <div style="display:flex;gap:10px;">
-          <button class="button-outline" onclick="charManager.saveDraft()">保存草稿</button>
-        </div>
-        <div style="display:flex;gap:10px;">
-          <button class="button-ghost" onclick="goToStep(2)">← 上一步</button>
-          <button class="button" style="padding:12px 36px;" onclick="submitForReview()">发布</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Actor Bind Modal -->
-    <div class="char-modal-overlay" id="actorBindModal">
+    <!-- Actor Bind Modal（绑定功能已移除，弹窗保留代码兜底隐藏） -->
+    <div class="char-modal-overlay" id="actorBindModal" style="display:none;">
       <div class="char-modal">
         <div class="char-modal-header">
           <h3 id="actorBindModalTitle">🎭 选择IP 卡</h3>
@@ -950,8 +919,8 @@ function submitForReview() {
  * Step Navigation
  */
 function goToStep(num) {
-  const steps = ['step1','step2','step3'];
-  const stepTitles = ['基本信息', '剧集管理', '绑定 IP'];
+  const steps = ['step1','step2'];
+  const stepTitles = ['基本信息', '剧集管理'];
 
   // Show/hide panels
   const stepItems = document.querySelectorAll('.step-item');
@@ -994,7 +963,7 @@ function goToStep(num) {
 
 
   if (rightBtn) {
-    if (num === 3) {
+    if (num === 2) {
       rightBtn.innerHTML = '<span>发布</span>';
       rightBtn.onclick = function() { submitForReview(); };
     } else {
@@ -1069,6 +1038,7 @@ function goToStep(num) {
 
       render() {
         const grid = document.getElementById('charGrid');
+        if (!grid) return; // 绑定 UI 已移除（短剧天然归属账号）
         grid.innerHTML = this.characters.map(k => this.renderCard(k)).join('');
         if (this.characters.length < 5) {
           grid.insertAdjacentHTML('beforeend', this.renderAddCard());
