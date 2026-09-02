@@ -2066,7 +2066,18 @@
     renderAllIssuedIP();
   }
 
-  document.addEventListener('DOMContentLoaded', ipDemoSyncBtn);
+  // 进入页面默认「未发IP」：备份当前数据后清空，展示空态（点击按钮可恢复）
+  function ipDemoInitAsNotIssued() {
+    try {
+      var cur = localStorage.getItem('storyfun_created_actors');
+      if (cur) localStorage.setItem(IP_DEMO_BACKUP_KEY, cur); // 始终备份最新数据
+      localStorage.removeItem('storyfun_created_actors');
+    } catch(e) {}
+    ipDemoSyncBtn();
+    renderAllIssuedIP();
+  }
+
+  document.addEventListener('DOMContentLoaded', ipDemoInitAsNotIssued);
   document.addEventListener('auth-ready', ipDemoSyncBtn);
   </script>
 </body>
