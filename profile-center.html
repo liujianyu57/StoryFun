@@ -58,6 +58,26 @@
     .user-stat-item .stat-num { font-size: 18px; font-weight: 700; color: var(--text); }
     .user-stat-item .stat-label { font-size: 12px; color: var(--text-sub); }
 
+    /* ===== Issued IP Section ===== */
+    .issued-ip-section { display: flex; flex-direction: column; gap: 12px; }
+    .issued-ip-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .issued-ip-title { font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+    .issued-ip-more { padding: 6px 16px; border-radius: 999px; border: 1px solid var(--border-dark, rgba(0,0,0,0.12)); background: var(--surface); color: var(--accent); font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
+    .issued-ip-more:hover { border-color: var(--accent); }
+    .issued-ip-list { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .issued-ip-list::-webkit-scrollbar { display: none; }
+    .issued-ip-card { flex-shrink: 0; width: 150px; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); overflow: hidden; cursor: pointer; transition: all 0.25s ease; -webkit-tap-highlight-color: transparent; }
+    .issued-ip-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(27,45,71,0.10); }
+    .issued-ip-card:active { transform: scale(0.98); }
+    .issued-ip-cover { width: 100%; aspect-ratio: 1; overflow: hidden; background: var(--border-light); display: flex; align-items: center; justify-content: center; }
+    .issued-ip-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .issued-ip-cover .ip-avatar-fallback { font-size: 2.2rem; font-weight: 700; color: var(--text-muted); }
+    .issued-ip-body { padding: 10px 12px 12px; }
+    .issued-ip-name { font-size: 0.92rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .issued-ip-id { font-size: 0.68rem; color: var(--text-muted); font-family: "SF Mono", Menlo, monospace; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .issued-ip-empty { display: flex; align-items: center; gap: 12px; padding: 20px 18px; border-radius: 16px; border: 1px dashed var(--border-dark, rgba(0,0,0,0.15)); background: var(--surface); color: var(--text-muted); font-size: 0.88rem; flex-wrap: wrap; }
+    .issued-ip-empty .ip-empty-btn { margin-left: auto; padding: 8px 18px; border-radius: 999px; border: none; background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+
     /* ===== Tabs (Desktop) ===== */
     .tab-bar { display: flex; align-items: center; gap: 0; background: rgba(0,0,0,0.03); border-radius: 12px; padding: 3px; width: fit-content; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .tab-bar::-webkit-scrollbar { display: none; }
@@ -872,6 +892,15 @@
     </button>
   </div>
 
+  <!-- ===== MOBILE ISSUED IP SECTION ===== -->
+  <div class="issued-ip-section" id="mobileIssuedIPSection" style="padding:12px 16px;background:#fff;">
+    <div class="issued-ip-header">
+      <span class="issued-ip-title">发行的 IP</span>
+      <button class="issued-ip-more" onclick="location.href='create-actor.html'">发行新 IP</button>
+    </div>
+    <div class="issued-ip-list" id="mobileIssuedIPList"></div>
+  </div>
+
   <!-- ===== MOBILE TABS ===== -->
   <div class="mobile-tabs">
     <button class="mtab-item active" data-mtab="published" onclick="switchMobileTab('published')">作品</button>
@@ -935,6 +964,15 @@
           <div class="user-stat-item" onclick="location.href='social.html?tab=mutual'" style="cursor:pointer"><span class="stat-num">6</span><span class="stat-label">互关</span></div>
           <div class="user-stat-item"><span class="stat-num">999</span><span class="stat-label">获赞</span></div>
         </div>
+      </div>
+
+      <!-- Desktop Issued IP Section -->
+      <div class="issued-ip-section" id="issuedIPSection" style="margin-bottom:24px;">
+        <div class="issued-ip-header">
+          <span class="issued-ip-title">发行的 IP</span>
+          <button class="issued-ip-more" onclick="location.href='create-actor.html'">发行新 IP</button>
+        </div>
+        <div class="issued-ip-list" id="issuedIPList"></div>
       </div>
 
       <!-- Desktop Tabs -->
@@ -1132,6 +1170,50 @@
       document.getElementById('mobileSubTabWorks').style.display = sub === 'works' ? 'grid' : 'none';
     }
 
+    /* ── Issued IP Section ── */
+    function getMyIssuedIPs() {
+      try {
+        var map = JSON.parse(localStorage.getItem('storyfun_created_actors')) || {};
+        return Object.keys(map).map(function(k) { return map[k]; });
+      } catch(e) { return []; }
+    }
+
+    function renderIssuedIPList(containerId) {
+      var container = document.getElementById(containerId);
+      if (!container) return;
+      var ips = getMyIssuedIPs();
+      if (ips.length === 0) {
+        container.innerHTML =
+          '<div class="issued-ip-empty">' +
+            '<span>你还没有发行 IP，快来创建你的第一个 IP 卡合集吧</span>' +
+            '<button class="ip-empty-btn" onclick="location.href=\'create-actor.html\'">去发行</button>' +
+          '</div>';
+        return;
+      }
+      container.innerHTML = ips.map(function(ip) {
+        var name = ip.name || '未命名 IP';
+        var ipId = ip.ipId || '';
+        var avatar = ip.avatar || '';
+        var avatarHtml = avatar
+          ? '<img src="' + avatar + '" alt="' + name + '" loading="lazy" onerror="this.style.display=\'none\'" />'
+          : '<span class="ip-avatar-fallback">' + name.charAt(0) + '</span>';
+        return (
+          '<div class="issued-ip-card" onclick="location.href=\'actor-profile.html?name=' + encodeURIComponent(name) + '\'">' +
+            '<div class="issued-ip-cover">' + avatarHtml + '</div>' +
+            '<div class="issued-ip-body">' +
+              '<div class="issued-ip-name">' + name + '</div>' +
+              '<div class="issued-ip-id">IP ' + ipId + '</div>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    function renderAllIssuedIP() {
+      renderIssuedIPList('issuedIPList');
+      renderIssuedIPList('mobileIssuedIPList');
+    }
+
     /* ── Load Profile ── */
     function loadProfile() {
       if (typeof currentUser === 'undefined') {
@@ -1307,8 +1389,10 @@
       const bioInput = document.getElementById('editBioInput');
       if (bioInput) bioInput.addEventListener('input', updateBioCharCount);
       loadProfile();
+      renderAllIssuedIP();
     });
     document.addEventListener('header-loaded', loadProfile);
+    document.addEventListener('auth-ready', renderAllIssuedIP);
 
     document.addEventListener('click', function(e) {
       if (e.target.classList.contains('modal-overlay') && e.target.classList.contains('active')) {
