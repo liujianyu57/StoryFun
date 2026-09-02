@@ -33,7 +33,8 @@
     .main-content { padding: 24px 24px 80px; display: flex; flex-direction: column; gap: 24px; }
 
     /* ===== Desktop User Info Card ===== */
-    .user-info-card { background: var(--surface); border-radius: var(--radius); padding: 24px 28px; box-shadow: var(--shadow-sm); }
+    .user-info-card { background: var(--surface); border-radius: var(--radius); padding: 24px 28px; box-shadow: var(--shadow-sm); display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .user-info-left { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
     .user-info-inner { display: flex; align-items: center; gap: 20px; }
 
     .avatar-wrap { flex-shrink: 0; }
@@ -59,20 +60,21 @@
     .user-stat-item .stat-label { font-size: 12px; color: var(--text-sub); }
 
     /* ===== Issued IP Section ===== */
-    .issued-ip-section { display: flex; flex-direction: column; gap: 12px; }
+    .issued-ip-section { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+    .user-info-card > .issued-ip-section { border-left: 1px solid var(--border, #e6eff7); padding-left: 28px; }
     .issued-ip-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .issued-ip-title { font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
     .issued-ip-list { display: flex; gap: 14px; overflow-x: auto; padding: 4px 2px 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .issued-ip-list::-webkit-scrollbar { display: none; }
-    /* 复用 actor-card.js 卡片样式，覆盖横向列表尺寸 */
-    .issued-ip-list .ac-card { width: 170px; flex-shrink: 0; border-radius: 18px; }
-    .issued-ip-list .ac-card-banner { height: 170px; }
-    .issued-ip-list .ac-card-body { padding: 12px 14px 14px; gap: 4px; }
-    .issued-ip-list .ac-card-body h3 { font-size: 1rem; }
-    .issued-ip-list .ac-collection-tag { left: 10px; bottom: 10px; font-size: 0.52rem; }
-    .issued-ip-list .ip-avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 2.4rem; font-weight: 700; color: var(--text-muted); }
-    .issued-ip-price { font-size: 0.88rem; font-weight: 700; color: var(--accent); margin-top: 2px; }
-    .issued-ip-meta { font-size: 0.74rem; color: var(--text-muted); }
+    /* 复用 actor-card.js 卡片样式，覆盖横向列表尺寸（右栏窄空间用 120px 小卡） */
+    .issued-ip-list .ac-card { width: 120px; flex-shrink: 0; border-radius: 16px; }
+    .issued-ip-list .ac-card-banner { height: 120px; }
+    .issued-ip-list .ac-card-body { padding: 10px 12px 12px; gap: 3px; }
+    .issued-ip-list .ac-card-body h3 { font-size: 0.9rem; }
+    .issued-ip-list .ac-collection-tag { left: 8px; bottom: 8px; font-size: 0.48rem; }
+    .issued-ip-list .ip-avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; color: var(--text-muted); }
+    .issued-ip-price { font-size: 0.8rem; font-weight: 700; color: var(--accent); margin-top: 2px; }
+    .issued-ip-meta { font-size: 0.7rem; color: var(--text-muted); }
     .issued-ip-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 20px 18px; border-radius: 16px; border: 1px dashed var(--border-dark, rgba(0,0,0,0.15)); background: var(--surface); color: var(--text-muted); font-size: 0.88rem; }
     .issued-ip-empty-main { font-size: 1rem; font-weight: 700; color: var(--text); }
     .issued-ip-empty-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
@@ -283,7 +285,6 @@
     @media (max-width: 760px) {
       /* Show profile menu button on mobile, hide desktop-only elements */
       .user-info-card { display: none; }
-      #issuedIPSection { display: none; }
       #mobileIssuedIPSection { display: flex; }
       .profile-menu-btn { display: flex !important; }
       .profile-drawer-overlay, .profile-drawer { z-index: 6000; }
@@ -937,43 +938,45 @@
 
       <!-- Desktop User Info Card -->
       <div class="user-info-card">
-        <div class="user-info-inner">
-          <div class="avatar-wrap" style="position:relative;">
-            <div class="avatar-gradient">
-              <div class="avatar-bg" id="avatarContainer">
-                <span class="avatar-letter gradient-text" id="avatarLetter">叙</span>
+        <div class="user-info-left">
+          <div class="user-info-inner">
+            <div class="avatar-wrap" style="position:relative;">
+              <div class="avatar-gradient">
+                <div class="avatar-bg" id="avatarContainer">
+                  <span class="avatar-letter gradient-text" id="avatarLetter">叙</span>
+                </div>
+              </div>
+              <button class="btn-edit-icon avatar-edit-icon" onclick="openEditProfileModal()" aria-label="编辑资料">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                  <path d="m15 5 4 4"/>
+                </svg>
+              </button>
+            </div>
+            <div class="user-info-body">
+              <div class="user-info-top">
+                <div class="user-info-texts">
+                  <div class="user-name" id="profileName">加密小白</div>
+                  <div class="user-bio" id="profileBio">在Web3的世界里探索短剧的无限可能。创作者、收藏家、梦想家。</div>
+                </div>
               </div>
             </div>
-            <button class="btn-edit-icon avatar-edit-icon" onclick="openEditProfileModal()" aria-label="编辑资料">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
-                <path d="m15 5 4 4"/>
-              </svg>
-            </button>
           </div>
-          <div class="user-info-body">
-            <div class="user-info-top">
-              <div class="user-info-texts">
-                <div class="user-name" id="profileName">加密小白</div>
-                <div class="user-bio" id="profileBio">在Web3的世界里探索短剧的无限可能。创作者、收藏家、梦想家。</div>
-              </div>
-            </div>
+          <div class="user-stats">
+            <div class="user-stat-item" onclick="location.href='social.html?tab=following'" style="cursor:pointer"><span class="stat-num">12</span><span class="stat-label">关注</span></div>
+            <div class="user-stat-item" onclick="location.href='social.html?tab=followers'" style="cursor:pointer"><span class="stat-num">88</span><span class="stat-label">粉丝</span></div>
+            <div class="user-stat-item" onclick="location.href='social.html?tab=mutual'" style="cursor:pointer"><span class="stat-num">6</span><span class="stat-label">互关</span></div>
+            <div class="user-stat-item"><span class="stat-num">999</span><span class="stat-label">获赞</span></div>
           </div>
         </div>
-        <div class="user-stats">
-          <div class="user-stat-item" onclick="location.href='social.html?tab=following'" style="cursor:pointer"><span class="stat-num">12</span><span class="stat-label">关注</span></div>
-          <div class="user-stat-item" onclick="location.href='social.html?tab=followers'" style="cursor:pointer"><span class="stat-num">88</span><span class="stat-label">粉丝</span></div>
-          <div class="user-stat-item" onclick="location.href='social.html?tab=mutual'" style="cursor:pointer"><span class="stat-num">6</span><span class="stat-label">互关</span></div>
-          <div class="user-stat-item"><span class="stat-num">999</span><span class="stat-label">获赞</span></div>
-        </div>
-      </div>
 
-      <!-- Desktop Issued IP Section -->
-      <div class="issued-ip-section" id="issuedIPSection" style="margin-bottom:24px;">
-        <div class="issued-ip-header">
-          <span class="issued-ip-title">发行的 IP</span>
+        <!-- Desktop Issued IP Section（右栏） -->
+        <div class="issued-ip-section" id="issuedIPSection">
+          <div class="issued-ip-header">
+            <span class="issued-ip-title">发行的 IP</span>
+          </div>
+          <div class="issued-ip-list" id="issuedIPList"></div>
         </div>
-        <div class="issued-ip-list" id="issuedIPList"></div>
       </div>
 
       <!-- Desktop Tabs -->
