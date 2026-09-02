@@ -96,25 +96,9 @@
     }
     .issued-ip-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .issued-ip-avatar .ip-avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700; color: var(--text-muted); }
-    .issued-ip-id-tag {
-      position: absolute;
-      left: 5px;
-      bottom: 5px;
-      max-width: calc(100% - 10px);
-      padding: 2px 7px;
-      border-radius: 999px;
-      font-size: 0.48rem;
-      font-weight: 600;
-      color: #fff;
-      background: rgba(15,23,42,0.6);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-variant-numeric: tabular-nums;
-    }
     .issued-ip-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
     .issued-ip-hname { font-size: 0.92rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .issued-ip-sub { font-size: 0.7rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .issued-ip-sub { font-size: 0.68rem; color: var(--text-sub, #8b8d98); font-family: "SF Mono", Menlo, monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.01em; }
     .issued-ip-empty { padding: 16px 14px; border-radius: 14px; border: 1px dashed var(--border); background: var(--surface); color: var(--text-sub); font-size: 0.82rem; text-align: center; }
 
     .mobile-empty { padding: 60px 24px; text-align: center; color: var(--text-sub); }
@@ -259,11 +243,10 @@
         return (
           '<div class="issued-ip-hrow" onclick="location.href=\'actor-profile.html?name=' + encodeURIComponent(name) + '\'">' +
             '<div class="issued-ip-avatar">' + avatarHtml +
-              (ipId ? '<span class="issued-ip-id-tag">IP ' + ipId + '</span>' : '') +
             '</div>' +
             '<div class="issued-ip-info">' +
               '<div class="issued-ip-hname">' + name + '</div>' +
-              '<div class="issued-ip-sub">共 ' + totalSupply + ' 张 · ' + price + '</div>' +
+              '<div class="issued-ip-sub">IP ' + ipId + '</div>' +
             '</div>' +
           '</div>'
         );

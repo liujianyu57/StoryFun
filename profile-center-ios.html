@@ -323,28 +323,12 @@
       }
       .issued-ip-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
       .issued-ip-avatar .ip-avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700; color: var(--text-muted); }
-      .issued-ip-id-tag {
-        position: absolute;
-        left: 5px;
-        bottom: 5px;
-        max-width: calc(100% - 10px);
-        padding: 2px 7px;
-        border-radius: 999px;
-        font-size: 0.48rem;
-        font-weight: 600;
-        color: #fff;
-        background: rgba(15,23,42,0.6);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-variant-numeric: tabular-nums;
-      }
       .issued-ip-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
       .issued-ip-title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
       .issued-ip-hname { margin: 0; font-size: 0.92rem; font-weight: 700; color: var(--text); cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .issued-ip-power { font-size: 0.8rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
       .issued-ip-power small { font-size: 0.6em; font-weight: 500; color: var(--text-muted); }
-      .issued-ip-sub { font-size: 0.7rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .issued-ip-sub { font-size: 0.68rem; color: var(--text-sub, #8b8d98); font-family: "SF Mono", Menlo, monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.01em; }
       .issued-ip-buy-btn {
         margin-top: 2px;
         padding: 7px 14px;
@@ -1066,14 +1050,13 @@
           '<article class="issued-ip-hrow" ' + dataAttrs + '>' +
             '<div class="issued-ip-avatar" onclick="location.href=\'actor-profile.html?name=' + encodeURIComponent(name) + '\'">' +
               avatarHtml +
-              (ipId ? '<span class="issued-ip-id-tag">IP ' + ipId + '</span>' : '') +
             '</div>' +
             '<div class="issued-ip-info">' +
               '<div class="issued-ip-title-row">' +
                 '<h3 class="issued-ip-hname" onclick="location.href=\'actor-profile.html?name=' + encodeURIComponent(name) + '\'">' + name + '</h3>' +
                 (power > 0 ? '<span class="issued-ip-power">' + power.toFixed(2) + ' <small>积分/h</small></span>' : '') +
               '</div>' +
-              '<div class="issued-ip-sub">共 ' + totalSupply + ' 张 · ' + price + '</div>' +
+              '<div class="issued-ip-sub">IP ' + ipId + '</div>' +
               '<button class="issued-ip-buy-btn ac-mint-btn" ' + dataAttrs + '>' + price + ' 购买</button>' +
             '</div>' +
           '</article>'
