@@ -408,7 +408,7 @@
         <path d="M7 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         <path d="M7 17h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
-      <span class="bottom-nav-label">角色IP</span>
+      <span class="bottom-nav-label">IP市场</span>
     </a>
     <a class="bottom-nav-item bottom-nav-create" href="publish.html" data-tab="create">
       <svg class="bottom-nav-icon-create" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

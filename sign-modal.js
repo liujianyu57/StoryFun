@@ -30,7 +30,7 @@ window.SignModal = (function () {
       '.mint-modal-hero{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;background:#f0f5fa}',
       '.mint-modal-hero img{width:100%;height:100%;object-fit:cover;display:block}',
       '.mint-modal-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,0.08) 100%)}',
-      '.mint-modal-badge{position:absolute;left:16px;bottom:16px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);color:var(--text);font-size:0.78rem;font-weight:600}',
+      '.mint-modal-badge{position:absolute;left:16px;bottom:16px;right:16px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);color:var(--text);font-size:0.78rem;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
       '.mint-modal-body{padding:24px 28px 28px;display:flex;flex-direction:column;gap:20px}',
       '.mint-modal-header{display:flex;align-items:baseline;justify-content:space-between;gap:8px}',
       '.mint-modal-header h2{margin:0;font-size:1rem;font-weight:600;color:var(--text-muted);flex-shrink:0}',

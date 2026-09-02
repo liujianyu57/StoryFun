@@ -636,7 +636,7 @@
     const navItems = [
       { href: '1011.html', label: '1011' },
       { href: 'index.html', label: '剧场' },
-      { href: 'actors.html', label: '角色 IP' },
+      { href: 'actors.html', label: 'IP 市场' },
       { href: 'studio.html', label: '经纪人' },
       { href: 'narrator.html', label: '创作' },
       { href: 'publish.html', label: '发布' },
@@ -833,7 +833,7 @@
       </div>
       <a class="nav-link" href="recommend.html">推荐</a>
       <a class="nav-link" href="index.html">剧场</a>
-      <a class="nav-link" href="actors.html">角色 IP</a>
+      <a class="nav-link" href="actors.html">IP 市场</a>
       <a class="nav-link" href="studio.html">经纪人</a>
       <a class="nav-link" href="narrator.html">创作</a>
       <div class="nav-dropdown">

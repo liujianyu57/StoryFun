@@ -4,9 +4,9 @@
 //  功能：
 //    1. 自动注入角色 IP 卡片完整 CSS（含三档响应式：桌面/平板/手机）
 //    2. 提供发行标识徽章系统（官方/合作/认证/社区）
-//    3. 提供角色头像与片酬数据库
+//    3. 提供角色头像与积分数据库
 //    4. 提供卡片渲染 API renderActorCard / renderActorCardList
-//    5. 提供交互初始化 hooks（排序/签约弹窗/价格曲线/片酬弹窗等）
+//    5. 提供交互初始化 hooks（排序/签约弹窗/价格曲线/积分弹窗等）
 //
 //  用法：
 //    <script src="actor-card.js"></script>
@@ -119,16 +119,21 @@
   left: 12px;\
   bottom: 12px;\
   z-index: 3;\
+  max-width: calc(100% - 24px);\
   padding: 3px 10px;\
   border-radius: 999px;\
-  font-size: 0.62rem;\
-  font-weight: 700;\
-  letter-spacing: 0.02em;\
+  font-size: 0.56rem;\
+  font-weight: 600;\
+  letter-spacing: 0.01em;\
   color: #fff;\
   background: rgba(15, 23, 42, 0.55);\
   backdrop-filter: blur(4px);\
   border: 1px solid rgba(255,255,255,0.35);\
   pointer-events: none;\
+  overflow: hidden;\
+  text-overflow: ellipsis;\
+  white-space: nowrap;\
+  font-variant-numeric: tabular-nums;\
 }\
 \
 /* ═══ 统计行 ═══ */\
@@ -335,7 +340,7 @@
     '上官婉儿': 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80'
   };
 
-  /** 片酬升级表 */
+  /** 积分升级表 */
   var UPGRADE_TABLE = [
     { level: 1, threshold: 0,      multiplier: 1.0 },
     { level: 2, threshold: 10000,  multiplier: 2.0 },
@@ -346,7 +351,7 @@
 
   var DEFAULT_AVATAR = 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80';
 
-  // 片酬金币图标（全站统一规范）
+  // 积分金币图标（全站统一规范）
   var COIN_SVG = '<svg viewBox="0 0 24 24" style="width:12px;height:12px;vertical-align:-1px;margin-right:3px;flex-shrink:0;"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg>';
 
   // ============================================================
@@ -386,7 +391,7 @@
     return 1.6 * powX / (powX + 0.6);
   }
 
-  /** 计算 IP 片酬 */
+  /** 计算 IP 积分 */
   function computeIPPower(initPrice, heat) {
     return computePriceCoefficient(initPrice || 0) * (heat || 0);
   }
@@ -448,7 +453,7 @@
     // 统计行
     var statsHTML = '<div class="ac-stats">' +
       '<span class="ac-stat-item" data-stat="ip-power">' +
-        '<span class="ac-num">' + COIN_SVG + ipPower.toFixed(2) + ' <span style="font-size:0.58em;color:var(--text-muted);">片酬/h</span></span>' +
+        '<span class="ac-num">' + COIN_SVG + ipPower.toFixed(2) + ' <span style="font-size:0.58em;color:var(--text-muted);">积分/h</span></span>' +
       '</span>' +
     '</div>';
 
