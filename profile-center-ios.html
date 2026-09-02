@@ -298,18 +298,17 @@
       .issued-ip-section { display: flex; flex-direction: column; gap: 12px; }
       .issued-ip-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
       .issued-ip-title { font-size: 1.05rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
-      .issued-ip-list { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .issued-ip-list { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
       .issued-ip-list::-webkit-scrollbar { display: none; }
-      .issued-ip-card { flex-shrink: 0; width: 120px; border-radius: 14px; border: 1px solid var(--border-light); background: #fff; overflow: hidden; cursor: pointer; transition: all 0.25s ease; -webkit-tap-highlight-color: transparent; }
-      .issued-ip-card:active { transform: scale(0.97); }
-      .issued-ip-cover { width: 100%; aspect-ratio: 1; overflow: hidden; background: var(--border-light); display: flex; align-items: center; justify-content: center; }
-      .issued-ip-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
-      .issued-ip-cover .ip-avatar-fallback { font-size: 1.8rem; font-weight: 700; color: var(--text-muted); }
-      .issued-ip-body { padding: 8px 10px 10px; }
-      .issued-ip-name { font-size: 0.85rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .issued-ip-price { font-size: 0.8rem; font-weight: 700; color: var(--accent); margin-top: 3px; }
-      .issued-ip-meta { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
-      .issued-ip-id { font-size: 0.58rem; color: var(--text-sub, #8b8d98); font-family: "SF Mono", Menlo, monospace; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      /* 复用 actor-card.js 卡片样式，覆盖横向列表尺寸 */
+      .issued-ip-list .ac-card { width: 140px; flex-shrink: 0; border-radius: 16px; }
+      .issued-ip-list .ac-card-banner { height: 140px; }
+      .issued-ip-list .ac-card-body { padding: 10px 12px 12px; gap: 3px; }
+      .issued-ip-list .ac-card-body h3 { font-size: 0.92rem; }
+      .issued-ip-list .ac-collection-tag { left: 8px; bottom: 8px; font-size: 0.5rem; }
+      .issued-ip-list .ip-avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; color: var(--text-muted); }
+      .issued-ip-price { font-size: 0.82rem; font-weight: 700; color: var(--accent); margin-top: 2px; }
+      .issued-ip-meta { font-size: 0.7rem; color: var(--text-muted); }
       .issued-ip-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; padding: 16px 14px; border-radius: 14px; border: 1px dashed rgba(0,0,0,0.15); background: #fff; color: var(--text-muted); font-size: 0.82rem; }
       .issued-ip-empty-main { font-size: 0.95rem; font-weight: 700; color: var(--text); }
       .issued-ip-empty-sub { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
@@ -919,6 +918,7 @@
   </div>
 
   <script src="auth.js"></script>
+  <script src="actor-card.js"></script>
   <script src="load-sidebar.js"></script>
 <script src="load-desktop-header.js?v=3"></script>
   <script>
@@ -1128,15 +1128,17 @@
           ? '<img src="' + avatar + '" alt="' + name + '" loading="lazy" onerror="this.style.display=\'none\'" />'
           : '<span class="ip-avatar-fallback">' + name.charAt(0) + '</span>';
         return (
-          '<div class="issued-ip-card" onclick="location.href=\'actor-profile.html?name=' + encodeURIComponent(name) + '\'">' +
-            '<div class="issued-ip-cover">' + avatarHtml + '</div>' +
-            '<div class="issued-ip-body">' +
-              '<div class="issued-ip-name">' + name + '</div>' +
+          '<article class="ac-card issued-ip-card" onclick="location.href=\'actor-profile.html?name=' + encodeURIComponent(name) + '\'">' +
+            '<div class="ac-card-banner" style="background:linear-gradient(135deg,#e0f7ff 0%,#ffffff 100%);">' +
+              '<div class="ac-avatar">' + avatarHtml + '</div>' +
+              (ipId ? '<div class="ac-collection-tag">IP ' + ipId + '</div>' : '') +
+            '</div>' +
+            '<div class="ac-card-body">' +
+              '<h3>' + name + '</h3>' +
               '<div class="issued-ip-price">' + price + '</div>' +
               '<div class="issued-ip-meta">共 ' + totalSupply + ' 张</div>' +
-              '<div class="issued-ip-id">IP ' + ipId + '</div>' +
             '</div>' +
-          '</div>'
+          '</article>'
         );
       }).join('');
     }
