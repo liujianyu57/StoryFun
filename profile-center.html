@@ -2005,5 +2005,70 @@
 <script src="auth.js"></script>
 <script>setTimeout(function(){if(typeof initAuth==="function")initAuth()},100)</script>
 <script src="search.js"></script>
+
+  <!-- 演示调试：已发IP / 未发IP 切换 -->
+  <button id="ipDemoToggle" onclick="toggleIpDemo()" title="演示调试：切换已发IP/未发IP"
+    style="position:fixed;right:16px;bottom:96px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(0,0,0,0.12);background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);color:var(--text);font-size:0.8rem;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(27,45,71,0.12);transition:all 0.2s ease;-webkit-tap-highlight-color:transparent;">
+    <span id="ipDemoDot" style="width:8px;height:8px;border-radius:50%;background:#34c759;flex-shrink:0;"></span>
+    <span id="ipDemoLabel">已发IP</span>
+  </button>
+  <script>
+  // ═══ 演示调试：已发IP / 未发IP 切换 ═══
+  var IP_DEMO_BACKUP_KEY = 'storyfun_created_actors_backup';
+  var IP_DEMO_SAMPLE_KEY = 'storyfun_ip_demo_sample';
+
+  function ipDemoHasData() {
+    try {
+      var m = JSON.parse(localStorage.getItem('storyfun_created_actors')) || {};
+      return Object.keys(m).length > 0;
+    } catch(e) { return false; }
+  }
+
+  function ipDemoSyncBtn() {
+    var has = ipDemoHasData();
+    var label = document.getElementById('ipDemoLabel');
+    var dot = document.getElementById('ipDemoDot');
+    if (label) label.textContent = has ? '已发IP' : '未发IP';
+    if (dot) dot.style.background = has ? '#34c759' : '#ff3b30';
+  }
+
+  function toggleIpDemo() {
+    var has = ipDemoHasData();
+    if (has) {
+      // 当前已发 → 备份并清空，展示未发空态
+      try {
+        var cur = localStorage.getItem('storyfun_created_actors');
+        if (cur) localStorage.setItem(IP_DEMO_BACKUP_KEY, cur);
+        localStorage.removeItem('storyfun_created_actors');
+      } catch(e) {}
+    } else {
+      // 当前未发 → 恢复备份；无备份则写入示例 IP
+      try {
+        var backup = localStorage.getItem(IP_DEMO_BACKUP_KEY);
+        if (backup) {
+          localStorage.setItem('storyfun_created_actors', backup);
+        } else {
+          var sample = {
+            '加密小白': {
+              name: '加密小白',
+              desc: '演示用示例 IP',
+              avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
+              totalSupply: 1000, minted: 0, available: 1000, holders: 0,
+              ipId: '31389183018301831830801',
+              isCreatorIP: true
+            }
+          };
+          localStorage.setItem('storyfun_created_actors', JSON.stringify(sample));
+          localStorage.setItem(IP_DEMO_SAMPLE_KEY, '1');
+        }
+      } catch(e) {}
+    }
+    ipDemoSyncBtn();
+    renderAllIssuedIP();
+  }
+
+  document.addEventListener('DOMContentLoaded', ipDemoSyncBtn);
+  document.addEventListener('auth-ready', ipDemoSyncBtn);
+  </script>
 </body>
 </html>
