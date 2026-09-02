@@ -85,7 +85,7 @@
                     '</a>' +
                     '<a href="studio.html" class="sb-nav-item" data-page="studio.html">' +
                         '<svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>' +
-                        '<span class="sb-label">经纪人</span>' +
+                        '<span class="sb-label">IP 收益</span>' +
                     '</a>' +
                     '<a href="profile-center.html" class="sb-nav-item" data-page="profile-center.html">' +
                         '<svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' +

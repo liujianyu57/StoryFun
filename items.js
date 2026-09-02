@@ -1,7 +1,7 @@
 /* ============================================================
    Story.fun 道具系统（demo 实现）
    库存 localStorage 持久化 + 模拟支付（不真实扣款）
-   道具：体力补给包 supply / 训练手册 manual / Story Claw 周卡 clawWeek / Story Claw 月卡 clawMonth
+   道具：能量补给包 supply / 经验包 manual / Story Claw 周卡 clawWeek / Story Claw 月卡 clawMonth
    ============================================================ */
 window.ItemStore = (function () {
   const KEY = 'sf2_items_v1';
@@ -74,16 +74,16 @@ window.ItemStore = (function () {
     },
 
     // ---- 消耗规则（与 PRD 一致）----
-    // 补满体力按等级固定消耗补给包：Lv1~5 = 1/2/5/13/32
+    // 补满能量按等级固定消耗补给包：Lv1~5 = 1/2/5/13/32
     supplyNeeded: function (level) { return [0, 1, 2, 5, 13, 32][level] || 1; },
-    // 升级按路径消耗训练手册：Lv1→2=1, 2→3=2, 3→4=4, 4→5=8
+    // 升级按路径消耗经验包：Lv1→2=1, 2→3=2, 3→4=4, 4→5=8
     manualNeeded: function (level) { return [0, 1, 2, 4, 8][level] || 1; },
   };
 })();
 
 window.ITEM_DEFS = {
-  supply:    { key: 'supply',    name: '体力补给包', icon: '🧃', price: 10,    unit: 'USDC', desc: '补满角色体力', detail: '补满角色体力，按角色等级消耗。' },
-  manual:    { key: 'manual',    name: '训练手册',   icon: '📘', price: 10,   unit: 'USDC', desc: '升级角色', detail: '角色升级材料，升级时按角色等级消耗。' },
-  clawWeek:  { key: 'clawWeek',  name: 'Story Claw 周卡',  icon: '🐾', price: 800,  unit: 'STORY', desc: '7 天自动运营', detail: '购买后立即生效，7 天自动运营：\n· 期间所有角色产出 +5%\n· 自动安排最优演出\n· 自动补充体力\n· 体力耗尽自动休息\n续费延长有效期，产出加成不叠加。' },
-  clawMonth: { key: 'clawMonth', name: 'Story Claw 月卡',  icon: '🐾', price: 3000, unit: 'STORY', desc: '30 天自动运营', detail: '购买后立即生效，30 天自动运营：\n· 期间所有角色产出 +5%\n· 自动安排最优演出\n· 自动补充体力\n· 体力耗尽自动休息\n续费延长有效期，产出加成不叠加。' },
+  supply:    { key: 'supply',    name: '能量补给包', icon: '🧃', price: 10,    unit: 'USDC', desc: '补满角色能量', detail: '补满角色能量，按角色等级消耗。' },
+  manual:    { key: 'manual',    name: '经验包',   icon: '📘', price: 10,   unit: 'USDC', desc: '升级角色', detail: '角色升级材料，升级时按角色等级消耗。' },
+  clawWeek:  { key: 'clawWeek',  name: 'Story Claw 周卡',  icon: '🐾', price: 800,  unit: 'STORY', desc: '7 天自动运营', detail: '购买后立即生效，7 天自动运营：\n· 期间所有角色产出 +5%\n· 自动安排最优激活\n· 自动补充能量\n· 能量耗尽自动停用\n续费延长有效期，产出加成不叠加。' },
+  clawMonth: { key: 'clawMonth', name: 'Story Claw 月卡',  icon: '🐾', price: 3000, unit: 'STORY', desc: '30 天自动运营', detail: '购买后立即生效，30 天自动运营：\n· 期间所有角色产出 +5%\n· 自动安排最优激活\n· 自动补充能量\n· 能量耗尽自动停用\n续费延长有效期，产出加成不叠加。' },
 };

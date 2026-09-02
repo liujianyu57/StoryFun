@@ -637,7 +637,7 @@
       { href: '1011.html', label: '1011' },
       { href: 'index.html', label: '剧场' },
       { href: 'actors.html', label: 'IP 市场' },
-      { href: 'studio.html', label: '经纪人' },
+      { href: 'studio.html', label: 'IP 收益' },
       { href: 'narrator.html', label: '创作' },
       { href: 'publish.html', label: '发布' },
       { href: 'whitepaper.html', label: '白皮书' },
@@ -834,7 +834,7 @@
       <a class="nav-link" href="recommend.html">推荐</a>
       <a class="nav-link" href="index.html">剧场</a>
       <a class="nav-link" href="actors.html">IP 市场</a>
-      <a class="nav-link" href="studio.html">经纪人</a>
+      <a class="nav-link" href="studio.html">IP 收益</a>
       <a class="nav-link" href="narrator.html">创作</a>
       <div class="nav-dropdown">
         <a class="nav-link" href="publish.html">发布</a>

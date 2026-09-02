@@ -423,7 +423,7 @@
         <rect x="14" y="12" width="3" height="4" rx="0.5" stroke="currentColor" stroke-width="1.3"/>
         <path d="M2 7h20M10 12v4m4-4v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
       </svg>
-      <span class="bottom-nav-label">经纪人</span>
+      <span class="bottom-nav-label">IP收益</span>
     </a>
     <a class="bottom-nav-item" href="profile-center.html" data-tab="profile">
       <svg class="bottom-nav-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

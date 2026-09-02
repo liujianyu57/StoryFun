@@ -3,7 +3,7 @@
    自包含样式（不依赖页面 .modal-overlay/.modal-card），任何页面可调用
    场景直达购买，无商品列表页：
    - 商店（🛒 入口）：4 件商品快捷行（无描述，直达对应弹窗）
-   - 数量购买弹窗：补给包 / 训练手册（数量 + 合计）
+   - 数量购买弹窗：补给包 / 经验包（数量 + 合计）
    - 订阅弹窗：Story Claw 周卡 / 月卡权益计划卡（上下对比）
    - 订阅确认弹窗：开通 / 续费二次确认
    ============================================================ */
@@ -11,14 +11,14 @@ window.Shop = (function () {
   var pendingKey = null;      // 数量购买弹窗当前商品
 
   var ITEMS = [
-    { key: 'supply', name: '体力补给包', icon: '🧃', price: 10, unit: 'USDC', tile: '#FFF3E2',
-      desc: '补满角色体力，按角色等级消耗。' },
-    { key: 'manual', name: '训练手册', icon: '📘', price: 10, unit: 'USDC', tile: '#EDF2FF',
+    { key: 'supply', name: '能量补给包', icon: '🧃', price: 10, unit: 'USDC', tile: '#FFF3E2',
+      desc: '补满角色能量，按角色等级消耗。' },
+    { key: 'manual', name: '经验包', icon: '📘', price: 10, unit: 'USDC', tile: '#EDF2FF',
       desc: '角色升级材料，升级时按角色等级消耗。' },
     { key: 'clawWeek', name: 'Story Claw 周卡', icon: '🐾', price: 800, unit: 'STORY', tile: '#EAF6EF', claw: 'week', days: 7,
-      benefits: ['自动使用体力包进行补充', '无体力包时自动休息', '自动安排最优演出', '产出STORY +5%'] },
+      benefits: ['自动使用能量包进行补充', '无能量包时自动停用', '自动安排最优激活', '产出STORY +5%'] },
     { key: 'clawMonth', name: 'Story Claw 月卡', icon: '🐾', price: 3000, unit: 'STORY', tile: '#EAF6EF', claw: 'month', days: 30,
-      benefits: ['自动使用体力包进行补充', '无体力包时自动休息', '自动安排最优演出', '产出STORY +5%'] },
+      benefits: ['自动使用能量包进行补充', '无能量包时自动停用', '自动安排最优激活', '产出STORY +5%'] },
   ];
 
   function findItem(key) {
@@ -110,7 +110,7 @@ window.Shop = (function () {
   }
 
   // ============================================================
-  //  数量购买弹窗（补给包 / 训练手册）
+  //  数量购买弹窗（补给包 / 经验包）
   // ============================================================
   function mountBuy() {
     if (document.getElementById('shopBuyModal')) return;
@@ -179,7 +179,7 @@ window.Shop = (function () {
     ItemStore.buy(pendingKey, n);
     closeBuyModal();
     renderCenter();
-    toast('购买成功，已放入道具背包（经纪人页面）');
+    toast('购买成功，已放入道具背包（IP收益页面）');
     try { document.dispatchEvent(new CustomEvent('sf:items-changed', { detail: { n: n } })); } catch (e) {}
   }
 

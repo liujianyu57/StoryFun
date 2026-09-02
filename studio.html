@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Story.fun | 经纪人</title>
+  <title>Story.fun | IP 收益</title>
   <style>
     :root {
       --bg: #f5faff;
@@ -154,7 +154,7 @@
     .status-sep { width: 1px; height: 14px; background: var(--border); }
     .studio-status strong { color: var(--text); font-weight: 700; font-size: 1.05rem; }
 
-    /* ── 主内容列：演出角色 + 待办/升级 ── */
+    /* ── 主内容列：激活角色 + 待办/升级 ── */
     .main-col {
       display: flex;
       flex-direction: column;
@@ -584,7 +584,7 @@
     }
     .panel-head .link-btn:hover { text-decoration: underline; }
 
-    /* ── 演出中的角色：5 槽位固定一行，内容区高度恒定（保证候场底边与升级对齐） ── */
+    /* ── 激活中的角色：5 槽位固定一行，内容区高度恒定（保证未激活底边与升级对齐） ── */
     #deployArea { height: 330px; display: flex; }
     .deploy-grid {
       display: grid;
@@ -804,7 +804,7 @@
     .batch-btn.charge:hover, .batch-btn.rest:hover { border-color: var(--accent); color: var(--accent); }
     .batch-btn:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
 
-    /* ── 候场角色：窄竖排卡 + 单列滚动（面板高度固定，列表内部滚动） ── */
+    /* ── 未激活角色：窄竖排卡 + 单列滚动（面板高度固定，列表内部滚动） ── */
     .pool-panel { display: flex; flex-direction: column; min-width: 0; min-height: 0; height: 100%; }
     .pool-wrapper { flex: 1; min-height: 0; overflow: hidden; position: relative; }
     .pool-list {
@@ -1299,12 +1299,12 @@
     @media(min-width:769px){.desktop-header{left:160px;right:0;display:flex}body{padding-top:56px}}
     @media(max-width:768px){.desktop-header{display:none}}
 
-    /* ── 移动端按钮 + 底部候场横栏 ── */
+    /* ── 移动端按钮 + 底部未激活横栏 ── */
     .mobile-actions { display: none; }
     .mob-more-wrap { display: none; }
     .mob-titlebar { display: none; }
 
-    /* ── 移动端：左竖条候场池 + 右焦点在演卡 ── */
+    /* ── 移动端：左竖条未激活池 + 右焦点激活卡 ── */
     @media(max-width: 720px) {
       body { background: #F2F2F7; padding: 44px 0 110px; }
       .app-shell { padding: 0; }
@@ -1332,7 +1332,7 @@
       }
       /* 移动端：Claw 收进菜单 */
       #clawTopBadge { display: none !important; }
-      /* 移动端：片酬 + 可领取 浅色收益卡 */
+      /* 移动端：积分 + 可领取 浅色收益卡 */
       .studio-status {
         flex: 1; min-width: 0;
         display: flex; align-items: center; justify-content: space-between; gap: 8px;
@@ -1352,7 +1352,7 @@
 
       .studio-main { display: block; padding: 0 10px; }
 
-      /* 隐藏桌面端候场面板 + 待办/升级面板 */
+      /* 隐藏桌面端未激活面板 + 待办/升级面板 */
       .pool-panel { display: none; }
       .sub-panels { display: none; }
 
@@ -1406,7 +1406,7 @@
       .mob-more-menu a:last-child { border-bottom: none; }
       .mob-more-menu a:hover { background: var(--accent-soft); color: var(--accent); }
 
-      /* 右：焦点在演卡 */
+      /* 右：焦点激活卡 */
       #deployArea { height: auto; min-height: 0; }
       .deploy-panel {
         border-radius: 16px;
@@ -1518,7 +1518,7 @@
         text-align: center; font-size: 0.62rem; color: var(--text-muted);
         margin: 6px 0 0; min-height: 0;
       }
-      /* 设计稿：一键演出 = 橙红渐变大按钮（移动端） */
+      /* 设计稿：一键激活 = 橙红渐变大按钮（移动端） */
       .batch-btn.primary {
         height: 46px;
         background: linear-gradient(90deg, #F59E0B, #EF4444);
@@ -1709,7 +1709,7 @@
     <!-- ===== 顶部状态 ===== -->
     <div class="studio-topbar">
       <div class="mob-titlebar">
-        <h1 class="mob-title">经纪人</h1>
+        <h1 class="mob-title">IP 收益</h1>
         <div class="mob-more-wrap" id="mobMoreWrap">
           <button class="mob-more-btn" onclick="toggleMobMore(event)">···</button>
           <div class="mob-more-menu" id="mobMoreMenu">
@@ -1721,28 +1721,28 @@
         </div>
       </div>
       <div class="studio-status">
-        <span style="font-size:1.15rem;font-weight:800;color:var(--text);letter-spacing:-0.01em;display:inline-flex;align-items:center;gap:5px;"><span id="salaryLabel">本周片酬</span> <strong id="statusWeekly">0.0</strong> <svg viewBox="0 0 24 24" style="width:17px;height:17px;vertical-align:middle;" aria-label="片酬"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg></span>
+        <span style="font-size:1.15rem;font-weight:800;color:var(--text);letter-spacing:-0.01em;display:inline-flex;align-items:center;gap:5px;"><span id="salaryLabel">本周积分</span> <strong id="statusWeekly">0.0</strong> <svg viewBox="0 0 24 24" style="width:17px;height:17px;vertical-align:middle;" aria-label="积分"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg></span>
         <button id="deskClaimBadge" onclick="deskClaimNow()" style="display:none;align-items:center;gap:6px;padding:4px 8px 4px 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text-muted);cursor:pointer;font-size:0.76rem;font-weight:600;flex-shrink:0;"><span id="deskClaimBadgeText">领取 STORY</span></button>
         <button id="clawTopBadge" onclick="openClawSheet()" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:0.76rem;color:var(--text-muted);flex-shrink:0;"><span id="clawTopIcon">💤</span> Story Claw</button>
         <span class="trust-risk-badge" id="trustRiskBadge" onclick="openUserTrustTooltip()" style="display:none;margin-left:6px;vertical-align:middle;"><span class="dot"></span> 风险账户</span>
       </div>
     </div>
 
-    <!-- ===== 主区：在演 + 候场 ===== -->
+    <!-- ===== 主区：激活中 + 未激活 ===== -->
     <div class="studio-main">
 
       <div class="main-col">
 
-      <!-- 演出中的角色 -->
+      <!-- 激活中的角色 -->
       <section class="deploy-panel">
         <div class="panel-head">
-          <h2>演出中 <span class="status-dots" style="margin-left:6px;" id="statusDots"></span></h2>
+          <h2>激活中 <span class="status-dots" style="margin-left:6px;" id="statusDots"></span></h2>
         </div>
         <div id="deployArea"><!-- 桌面：5 格一行；移动：焦点卡 + 箭头 + 圆点 --></div>
         <div class="batch-actions">
-          <button class="batch-btn primary" id="batchPerformBtn" onclick="autoPerform()">一键演出</button>
+          <button class="batch-btn primary" id="batchPerformBtn" onclick="autoPerform()">一键激活</button>
           <button class="batch-btn charge" id="batchChargeBtn" onclick="openBatchModal('charge')">一键补充</button>
-          <button class="batch-btn rest" id="batchRestBtn" onclick="autoRest()">一键休息</button>
+          <button class="batch-btn rest" id="batchRestBtn" onclick="autoRest()">一键停用</button>
           <button id="itemsTopBtn" onclick="openItemsSheet()" title="我的道具" style="margin-left:auto;padding:7px 18px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:0.8rem;font-weight:600;color:var(--text);flex-shrink:0;">🎒 我的道具</button>
           <button id="recycleTopBtn" onclick="openRecycleList()" title="角色回收" style="margin-left:8px;padding:7px 18px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:0.8rem;font-weight:600;color:var(--text);flex-shrink:0;">♻ 回收</button>
         </div>
@@ -1752,7 +1752,7 @@
       <div class="mobile-actions" id="mobileActions">
         <button class="mob-act-btn mob-todo" onclick="openMobileTodoModal()" title="待办"><span class="mob-icon">📋</span><strong id="mobileTodoBadge">0</strong><span class="mob-label">待办</span></button>
         <button class="mob-act-btn mob-upgrade" onclick="openUpgradeModal()" title="升级"><span class="mob-icon">↑</span><strong id="mobileUpgradeBadge">0</strong><span class="mob-label">升级</span></button>
-        <button class="mob-act-btn mob-pool" onclick="openFullPicker()" title="候场"><span class="mob-icon">🎭</span><span class="mob-label">候场</span></button>
+        <button class="mob-act-btn mob-pool" onclick="openFullPicker()" title="未激活"><span class="mob-icon">🎭</span><span class="mob-label">未激活</span></button>
         <button class="mob-act-btn mob-items" onclick="openItemsSheet()" title="道具"><span class="mob-icon">🎒</span><span class="mob-label">道具</span></button>
         <button class="mob-act-btn mob-recycle" onclick="openRecycleList()" title="回收"><span class="mob-icon">♻</span><span class="mob-label">回收</span></button>
       </div>
@@ -1760,7 +1760,7 @@
       <!-- ===== 常驻双面板：待办 + 升级管理入口 ===== -->
       <div class="sub-panels">
 
-        <!-- 待办（常驻，只提示演出/补充） -->
+        <!-- 待办（常驻，只提示激活/补充） -->
         <section class="todo-panel">
           <div class="sub-panel-head">
             <h3>待办</h3>
@@ -1781,10 +1781,10 @@
 
       </div><!-- /.main-col -->
 
-      <!-- 候场角色 -->
+      <!-- 未激活角色 -->
       <section class="pool-panel">
         <div class="panel-head">
-          <h2>候场</h2>
+          <h2>未激活</h2>
           <span class="count" id="poolCount">0</span>
         </div>
         <div class="pool-wrapper">
@@ -1818,7 +1818,7 @@
     <div class="modal-card wide" style="position:relative;">
       <h2>候选角色</h2>
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;z-index:1;" onclick="closeFullPicker()">✕</button>
-      <p style="text-align:center;color:var(--text-muted);font-size:0.78rem;margin:0 0 12px 0;">休息中的角色每小时恢复1点体力</p>
+      <p style="text-align:center;color:var(--text-muted);font-size:0.78rem;margin:0 0 12px 0;">停用中的角色每小时恢复1点能量</p>
       <div class="picker-grid" id="fullPickerGrid"></div>
     </div>
   </div>
@@ -1854,7 +1854,7 @@
   <div class="modal-overlay" id="batchModal">
     <div class="modal-card" style="position:relative;">
       <h2 style="text-align:center;margin:0 0 4px;">一键补充</h2>
-      <div style="text-align:center;font-size:0.78rem;color:var(--text-muted);margin-bottom:14px;">补满演出中角色的体力</div>
+      <div style="text-align:center;font-size:0.78rem;color:var(--text-muted);margin-bottom:14px;">补满激活中角色的能量</div>
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);" onclick="closeBatchModal()">✕</button>
       <div style="background:var(--bg);border-radius:12px;padding:16px;margin-bottom:12px;text-align:center;">
         <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;">
@@ -1872,15 +1872,15 @@
     </div>
   </div>
 
-  <!-- ===== 演出角色 Modal ===== -->
+  <!-- ===== 激活角色 Modal ===== -->
   <div class="modal-overlay" id="stakeModal">
     <div class="modal-card">
-      <h2>安排演出</h2>
+      <h2>安排激活</h2>
       <div style="text-align:center;margin-bottom:4px;">
         <div style="font-size:1.5rem;font-weight:800;color:var(--text);" id="modalStakeActorName">—</div>
         <div style="font-size:0.85rem;color:var(--text-muted);margin-top:2px;" id="modalStakeActorLevel">—</div>
       </div>
-      <p class="modal-sub" style="font-size:0.88rem;color:var(--text-muted);margin-bottom:20px;border-top:1px solid var(--border);padding-top:14px;">该角色演出时自动产生片酬收益。演出中每小时消耗 1 点体力，体力耗尽则停止产出。</p>
+      <p class="modal-sub" style="font-size:0.88rem;color:var(--text-muted);margin-bottom:20px;border-top:1px solid var(--border);padding-top:14px;">该角色激活时自动产生积分收益。激活中每小时消耗 1 点能量，能量耗尽则停止产出。</p>
       <button class="modal-btn confirm" onclick="confirmStake()">确认安排</button>
       <button class="modal-btn cancel" onclick="closeStakeModal()">取消</button>
     </div>
@@ -1895,7 +1895,7 @@
       <div id="modalLevelSummary" style="text-align:center;margin-bottom:16px;padding:10px 14px;border-radius:10px;background:rgba(0, 0, 0,0.05);">
         <span id="modalLevelCompareSummary" style="font-size:0.92rem;font-weight:700;color:var(--text);">Lv1 → Lv2</span>
         <span style="color:var(--text-sub);margin:0 6px;">·</span>
-        <span style="font-size:0.82rem;font-weight:600;color:var(--text-sub);">片酬</span>
+        <span style="font-size:0.82rem;font-weight:600;color:var(--text-sub);">积分</span>
         <span id="modalLevelRateSummary" style="font-size:0.88rem;font-weight:700;color:var(--accent);">1.0 → 2.2 /h</span>
       </div>
 
@@ -1913,10 +1913,10 @@
     </div>
   </div>
 
-  <!-- ===== Charge Modal (补充体力) ===== -->
+  <!-- ===== Charge Modal (补充能量) ===== -->
   <div class="modal-overlay" id="chargeModal">
     <div class="modal-card" style="position:relative;">
-      <h2 id="chargeModalTitle" style="text-align:center;margin:0 0 16px;">补满体力</h2>
+      <h2 id="chargeModalTitle" style="text-align:center;margin:0 0 16px;">补满能量</h2>
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;z-index:1;" onclick="closeChargeModal()">✕</button>
 
       <!-- 消耗 + 持有 -->
@@ -1939,7 +1939,7 @@
     </div>
   </div>
 
-  <!-- ===== 片酬与奖池说明弹窗 ===== -->
+  <!-- ===== 积分与奖池说明弹窗 ===== -->
   <div class="modal-overlay" id="actualOutputModal">
     <div class="modal-card" style="max-width:440px;position:relative;">
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;z-index:1;" onclick="closeActualOutputModal()">✕</button>
@@ -1953,7 +1953,7 @@
       <!-- 奖池分配双卡 -->
       <div style="display:flex;gap:8px;margin-bottom:14px;">
         <div style="flex:1;background:var(--bg);border-radius:12px;padding:10px 12px;text-align:center;">
-          <div style="font-size:0.68rem;color:var(--text-muted);margin-bottom:2px;">演出奖池（75%）</div>
+          <div style="font-size:0.68rem;color:var(--text-muted);margin-bottom:2px;">激活奖池（75%）</div>
           <div style="font-weight:700;font-size:0.95rem;color:var(--text);" id="actualOutputPoolStaking">1,586,539</div>
         </div>
         <div style="flex:1;background:var(--bg);border-radius:12px;padding:10px 12px;text-align:center;">
@@ -1981,24 +1981,24 @@
         <div style="font-size:0.85rem;font-weight:600;color:var(--text);">我的所有角色的周累计名义产出累加</div>
         <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">单卡公式见下方说明 ↓</div>
       </div>
-      <p class="modal-sub" style="margin-bottom:12px;">单卡名义产出 = 单卡小时权重 × R_base × 有效演出时长</p>
+      <p class="modal-sub" style="margin-bottom:12px;">单卡名义产出 = 单卡小时权重 × R_base × 有效激活时长</p>
       <div style="background:var(--bg);border-radius:14px;padding:16px;margin-bottom:16px;">
         <div style="font-size:0.85rem;line-height:1.8;color:var(--text-muted);">
           <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);">
             <span>单卡小时权重</span>
-            <span style="font-weight:700;color:var(--accent);text-align:right;">= 角色片酬</span>
+            <span style="font-weight:700;color:var(--accent);text-align:right;">= 角色积分</span>
           </div>
           <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);">
-            <span>角色片酬</span>
-            <span style="font-weight:700;color:var(--text);text-align:right;">= IP片酬 × 片酬系数 × CP系数</span>
+            <span>角色积分</span>
+            <span style="font-weight:700;color:var(--text);text-align:right;">= IP积分 × 积分系数 × CP系数</span>
           </div>
           <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);">
             <span>R_base</span>
             <span style="font-weight:700;color:var(--accent);">1 STORY / 单位权重 / 小时</span>
           </div>
           <div style="display:flex;justify-content:space-between;padding:4px 0;">
-            <span>有效演出时长</span>
-            <span style="font-weight:700;color:var(--text);">演出中且体力 > 0 的累计时长</span>
+            <span>有效激活时长</span>
+            <span style="font-weight:700;color:var(--text);">激活中且能量 > 0 的累计时长</span>
           </div>
         </div>
       </div>
@@ -2018,7 +2018,7 @@
             <span style="font-weight:700;color:var(--accent);" id="weeklyPoolTotal">2,115,385 STORY</span>
           </div>
           <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);">
-            <span>├ 本周演出奖池 <span style="font-size:0.72rem;color:var(--text-sub);">（75%）</span></span>
+            <span>├ 本周激活奖池 <span style="font-size:0.72rem;color:var(--text-sub);">（75%）</span></span>
             <span style="font-weight:700;color:var(--accent);" id="weeklyPoolStaking">1,586,539 STORY</span>
           </div>
           <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);">
@@ -2039,19 +2039,19 @@
     </div>
   </div>
 
-  <!-- ===== 片酬详情弹窗 ===== -->
+  <!-- ===== 积分详情弹窗 ===== -->
   <div class="modal-overlay" id="actorPowerModal">
     <div class="modal-card" style="max-width:420px;padding:24px 20px 20px;position:relative;">
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;z-index:1;" onclick="closeActorPowerModal()">✕</button>
-      <h2 style="font-size:1.15rem;margin:0 0 4px;">角色片酬</h2>
+      <h2 style="font-size:1.15rem;margin:0 0 4px;">角色积分</h2>
       <div id="powerModalBreakdown" style="display:flex;flex-direction:column;gap:0;margin-bottom:18px;text-align:left;"></div>
     </div>
   </div>
 
-  <!-- ===== 休息确认弹窗 ===== -->
+  <!-- ===== 停用确认弹窗 ===== -->
   <div class="modal-overlay" id="recallConfirmModal">
     <div class="modal-card" style="position:relative;">
-      <h2>确认休息</h2>
+      <h2>确认停用</h2>
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;z-index:1;" onclick="closeRecallModal()">✕</button>
 
       <!-- L1: 角色 -->
@@ -2060,7 +2060,7 @@
 
       <!-- L3: 桌面按钮行 -->
       <div class="recall-desk-btns" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-        <button class="modal-btn confirm" onclick="confirmRecall()" id="recallDeskBtn" style="background:rgba(244,91,105,0.9);flex:1;margin-bottom:0;">休息</button>
+        <button class="modal-btn confirm" onclick="confirmRecall()" id="recallDeskBtn" style="background:rgba(244,91,105,0.9);flex:1;margin-bottom:0;">停用</button>
         <button class="modal-btn cancel" onclick="closeRecallModal()" style="flex:1;">取消</button>
       </div>
 
@@ -2082,7 +2082,7 @@
     </div>
   </div>
 
-  <!-- ===== 演出规则说明弹窗 ===== -->
+  <!-- ===== 激活规则说明弹窗 ===== -->
   <div class="modal-overlay" id="rulesModal">
     <div class="modal-card" style="max-width:560px;padding:24px;position:relative;">
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;z-index:1;" onclick="closeRulesModal()">✕</button>
@@ -2090,24 +2090,24 @@
       <div class="rules-modal-scroll">
 
         <div class="rules-section">
-          <p style="margin:0;font-size:0.85rem;line-height:1.8;">签约角色、安排演出，每小时获得片酬。<br>升级角色，成倍提升每小时片酬。<br>体力耗尽时及时补充，产出不间断。<br>每周一 00:00 (UTC) 开始结算本期收益，前往收益页领取。</p>
+          <p style="margin:0;font-size:0.85rem;line-height:1.8;">签约角色、安排激活，每小时获得积分。<br>升级角色，成倍提升每小时积分。<br>能量耗尽时及时补充，产出不间断。<br>每周一 00:00 (UTC) 开始结算本期收益，前往收益页领取。</p>
         </div>
 
         <!-- 怎么玩 -->
         <div class="rules-section">
           <div class="qa-item">
             <div class="qa-question" onclick="this.parentElement.classList.toggle('open')"><span class="qa-arrow">▸</span>怎么让角色开始赚钱？</div>
-            <div class="qa-answer"><div class="qa-answer-inner">安排候场角色演出，每小时消耗 1 点体力并产出片酬。<br>片酬在每期结束时统一结算，结算后可前往收益页面领取。</div></div>
+            <div class="qa-answer"><div class="qa-answer-inner">安排未激活角色激活，每小时消耗 1 点能量并产出积分。<br>积分在每期结束时统一结算，结算后可前往收益页面领取。</div></div>
           </div>
 
           <div class="qa-item">
-            <div class="qa-question" onclick="this.parentElement.classList.toggle('open')"><span class="qa-arrow">▸</span>体力怎么管理？</div>
+            <div class="qa-question" onclick="this.parentElement.classList.toggle('open')"><span class="qa-arrow">▸</span>能量怎么管理？</div>
             <div class="qa-answer"><div class="qa-answer-inner">
             <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
-              <div>演出中：每小时消耗 1 点体力，正常产出片酬</div>
-              <div>体力耗尽：产出暂停为 0，需要及时处理</div>
-              <div>休息：每小时自动恢复 1 点体力，但暂停片酬</div>
-              <div>补充体力（付费）：瞬间回满 168，立即恢复产出</div>
+              <div>激活中：每小时消耗 1 点能量，正常产出积分</div>
+              <div>能量耗尽：产出暂停为 0，需要及时处理</div>
+              <div>停用：每小时自动恢复 1 点能量，但暂停积分</div>
+              <div>补充能量（付费）：瞬间回满 168，立即恢复产出</div>
             </div>
             </div></div>
           </div>
@@ -2117,16 +2117,16 @@
         <!-- 能赚多少 -->
         <div class="rules-section">
           <div class="qa-item">
-            <div class="qa-question" onclick="this.parentElement.classList.toggle('open')"><span class="qa-arrow">▸</span>片酬怎么算？</div>
+            <div class="qa-question" onclick="this.parentElement.classList.toggle('open')"><span class="qa-arrow">▸</span>积分怎么算？</div>
             <div class="qa-answer"><div class="qa-answer-inner">
-            <p style="font-size:0.82rem;color:var(--text-muted);margin:0 0 8px;">咖位越高、角色越贵、短剧越火，每小时片酬就越高。</p>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin:0 0 8px;">咖位越高、角色越贵、短剧越火，每小时积分就越高。</p>
             <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px;font-family:'SF Mono','Menlo',monospace;font-size:0.82rem;color:var(--text);">
-              <div>角色片酬 = Lv.1 角色片酬 × 片酬系数</div>
-              <div>Lv.1 角色片酬 = 价格系数 × 热度系数</div>
+              <div>角色积分 = Lv.1 角色积分 × 积分系数</div>
+              <div>Lv.1 角色积分 = 价格系数 × 热度系数</div>
             </div>
             <p style="font-size:0.78rem;color:var(--text-muted);margin:0 0 6px;">系数说明</p>
             <div style="display:flex;flex-direction:column;gap:6px;font-size:0.82rem;">
-              <div>片酬系数：Lv1=1 · Lv2=3 · Lv3=9 · Lv4=27 · Lv5=81</div>
+              <div>积分系数：Lv1=1 · Lv2=3 · Lv3=9 · Lv4=27 · Lv5=81</div>
               <div>价格系数（发行价 P0）：</div>
               <div style="padding-left:16px;font-family:'SF Mono','Menlo',monospace;color:var(--text-muted);line-height:1.8;">
                 P0 ≤ 100U → 系数 = P0 ÷ 100（线性增长）<br>
@@ -2158,10 +2158,10 @@
             <div class="qa-answer"><div class="qa-answer-inner">
             <p style="font-size:0.84rem;line-height:1.7;margin:0 0 8px;color:var(--text-muted);">升级条件：消耗 2 张同IP同等级分身 + IP参演短剧累计完播数达标</p>
             <div style="display:flex;flex-direction:column;gap:6px;">
-              <div>Lv1→Lv2：≥1万完播 · 片酬 1→3</div>
-              <div>Lv2→Lv3：≥5万完播 · 片酬 3→9</div>
-              <div>Lv3→Lv4：≥20万完播 · 片酬 9→27</div>
-              <div>Lv4→Lv5：≥100万完播 · 片酬 27→81</div>
+              <div>Lv1→Lv2：≥1万完播 · 积分 1→3</div>
+              <div>Lv2→Lv3：≥5万完播 · 积分 3→9</div>
+              <div>Lv3→Lv4：≥20万完播 · 积分 9→27</div>
+              <div>Lv4→Lv5：≥100万完播 · 积分 27→81</div>
             </div>
             </div></div>
           </div>
@@ -2194,7 +2194,7 @@
       { level: 5, name: '顶流',  miningCoeff: 81,  costCoeff: 32,   energyMax: 168,  color: '#d9534f' },
     ];
 
-    function salaryUnit() { return '片酬/h'; }
+    function salaryUnit() { return '积分/h'; }
 
     // ============================================================
     //  价格系数
@@ -2208,7 +2208,7 @@
     }
 
     // ============================================================
-    //  IP片酬 / 角色片酬
+    //  IP积分 / 角色积分
     // ============================================================
     function computeIPPower(actor) {
       const priceCoeff = computePriceCoefficient(actor.initPrice || 0);
@@ -2363,7 +2363,7 @@
     }
 
     // ============================================================
-    //  渲染：待办（常驻面板，只提示演出/补充）
+    //  渲染：待办（常驻面板，只提示激活/补充）
     // ============================================================
     function renderTodo() {
       var list = document.getElementById('todoList');
@@ -2371,26 +2371,26 @@
       if (!list) return;
       var items = [];
 
-      // 1. 有空位 → 提示演出
+      // 1. 有空位 → 提示激活
       var deployed = getDeployedActors();
       var idle = MY_ACTORS.filter(function(a) { return !a.isStaking; });
       if (deployed.length < MAX_STAKING_SLOTS && idle.length > 0) {
         items.push({
           cls: 'play',
-          msg: '还有 ' + (MAX_STAKING_SLOTS - deployed.length) + ' 个在演位空缺',
-          label: '去演出',
+          msg: '还有 ' + (MAX_STAKING_SLOTS - deployed.length) + ' 个激活位空缺',
+          label: '去激活',
           action: 'openFullPicker()'
         });
       }
 
-      // 2. 演出中体力很低 → 提示补充
+      // 2. 激活中能量很低 → 提示补充
       var urgent = MY_ACTORS.filter(function(a) { return a.isStaking && a.energy <= 8; })
         .sort(function(a, b) { return a.energy - b.energy; });
       if (urgent.length > 0) {
         var u = urgent[0];
         items.push({
           cls: 'danger',
-          msg: u.name + ' 体力仅剩 ' + u.energy + '，即将停工',
+          msg: u.name + ' 能量仅剩 ' + u.energy + '，即将停工',
           label: '去补充',
           action: 'openChargeModal(\'' + u.id + '\')'
         });
@@ -2399,7 +2399,7 @@
       if (countEl) countEl.textContent = items.length > 0 ? items.length + ' 项' : '';
 
       if (items.length === 0) {
-        list.innerHTML = '<div class="todo-ok">演出正常 · 体力充足</div>';
+        list.innerHTML = '<div class="todo-ok">激活正常 · 能量充足</div>';
         return;
       }
 
@@ -2494,14 +2494,14 @@
           + '<span class="ur-lv-tag next">Lv' + (actor.level + 1) + '</span>'
           + '</div>'
           + '<div class="ur-rate-row" onclick="event.stopPropagation();">'
-          + '<span class="ur-rate-label">片酬</span>'
+          + '<span class="ur-rate-label">积分</span>'
           + '<span class="ur-rate">' + before.toFixed(1) + ' → ' + after.toFixed(1) + '<span style="font-size:0.58rem;color:var(--text-sub);"> ' + salaryUnit() + '</span></span>'
           + '</div>'
           + '</div>'
           + '<div class="ur-conditions">'
           + '<div class="ur-cond">'
           + '<div class="ur-cond-body">'
-          + '<span class="ur-cond-label">训练手册 ×' + manualReq + '</span>'
+          + '<span class="ur-cond-label">经验包 ×' + manualReq + '</span>'
           + '<span class="ur-cond-status' + (manualDone ? ' done' : ' pending') + '"' + (!manualDone ? ' onclick="event.stopPropagation();openShopSafe(\'manual\')"' : '') + '>' + (manualDone ? '✓' : '+') + '</span>'
           + '</div>'
           + '<div class="ur-cond-bar-wrap"><i class="fill-amber" style="width:' + manualPct + '%;"></i><span class="ur-cond-bar-text">' + manualStock + '/' + manualReq + '</span></div>'
@@ -2522,7 +2522,7 @@
     }
 
     // ============================================================
-    //  渲染：演出中的角色（桌面 5 格 / 移动焦点卡）
+    //  渲染：激活中的角色（桌面 5 格 / 移动焦点卡）
     // ============================================================
     function renderDeployPanel() {
       var area = document.getElementById('deployArea');
@@ -2556,13 +2556,13 @@
             + '<svg class="slot-energy-icon" width="11" height="11" viewBox="0 0 11 11" fill="var(--accent)" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 0.5L2.5 5.5h2.5l-1 5 4-5H5.5l1-5z"/></svg>'
             + '<span class="slot-energy-num">' + actor.energy + '/' + actor.energyMax + '</span>'
             + '</div>'
-            + '<div class="slot-out" onclick="event.stopPropagation();openActorPowerModal(\'' + actor.id + '\')" title="查看片酬详情"><svg viewBox="0 0 24 24" style="width:12px;height:12px;vertical-align:-1px;margin-right:3px;flex-shrink:0;"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg>' + computeActorPower(actor).toFixed(2) + ' <span>' + salaryUnit() + '</span></div>'
+            + '<div class="slot-out" onclick="event.stopPropagation();openActorPowerModal(\'' + actor.id + '\')" title="查看积分详情"><svg viewBox="0 0 24 24" style="width:12px;height:12px;vertical-align:-1px;margin-right:3px;flex-shrink:0;"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg>' + computeActorPower(actor).toFixed(2) + ' <span>' + salaryUnit() + '</span></div>'
             + '</div>'
             + '<div class="slot-actions">'
             + (actor.energy < actor.energyMax
                 ? '<button class="mini-btn charge" onclick="event.stopPropagation();openChargeModal(\'' + actor.id + '\')">补充</button>'
                 : '<button class="mini-btn disabled" disabled>已满</button>')
-            + '<button class="mini-btn rest" onclick="event.stopPropagation();recallActor(\'' + actor.id + '\')">休息</button>'
+            + '<button class="mini-btn rest" onclick="event.stopPropagation();recallActor(\'' + actor.id + '\')">停用</button>'
             + '</div>'
             + '</div>';
         } else {
@@ -2570,7 +2570,7 @@
             + '<div class="slot-empty-vision">'
             + '<span class="ve-glow"></span>'
             + FIGURE_VISION_SVG
-            + '<span class="ve-label">安排演出</span>'
+            + '<span class="ve-label">安排激活</span>'
             + '</div>'
             + '</div>';
         }
@@ -2606,7 +2606,7 @@
           + '</div>';
       } else {
         cardHtml = '<div class="focus-card fig-card">'
-          + '<div class="fig-empty" onclick="openFullPicker()"><span style="font-size:1.6rem;">🎭</span><span>安排演出</span></div>'
+          + '<div class="fig-empty" onclick="openFullPicker()"><span style="font-size:1.6rem;">🎭</span><span>安排激活</span></div>'
           + '</div>';
       }
 
@@ -2625,7 +2625,7 @@
     }
 
     // ============================================================
-    //  渲染：移动端底部候场横栏 + 右上角按钮
+    //  渲染：移动端底部未激活横栏 + 右上角按钮
     // ============================================================
     // ============================================================
     //  移动端待办弹窗
@@ -2642,8 +2642,8 @@
       if (deployed.length < MAX_STAKING_SLOTS && idle.length > 0) {
         items.push({
           cls: 'play',
-          msg: '还有 ' + (MAX_STAKING_SLOTS - deployed.length) + ' 个在演位空缺',
-          label: '去演出',
+          msg: '还有 ' + (MAX_STAKING_SLOTS - deployed.length) + ' 个激活位空缺',
+          label: '去激活',
           action: 'closeMobileTodoModal();openFullPicker()'
         });
       }
@@ -2654,14 +2654,14 @@
         var u = urgent[0];
         items.push({
           cls: 'danger',
-          msg: u.name + ' 体力仅剩 ' + u.energy + '，即将停工',
+          msg: u.name + ' 能量仅剩 ' + u.energy + '，即将停工',
           label: '去补充',
           action: 'closeMobileTodoModal();openChargeModal(\'' + u.id + '\')'
         });
       }
 
       if (items.length === 0) {
-        list.innerHTML = '<div class="mob-todo-ok">演出正常 · 体力充足</div>';
+        list.innerHTML = '<div class="mob-todo-ok">激活正常 · 能量充足</div>';
       } else {
         list.innerHTML = items.map(function(a) {
           return '<div class="mob-todo-item ' + a.cls + '">'
@@ -2706,7 +2706,7 @@
     }
 
     // ============================================================
-    //  渲染：候场角色（窄竖排卡，整卡点击即演出/升级）
+    //  渲染：未激活角色（窄竖排卡，整卡点击即激活/升级）
     // ============================================================
     function renderPool() {
       var container = document.getElementById('poolList');
@@ -2717,7 +2717,7 @@
       if (countEl) countEl.textContent = idle.length;
 
       if (idle.length === 0) {
-        container.innerHTML = '<div class="pool-empty">全部角色都在演出</div>';
+        container.innerHTML = '<div class="pool-empty">全部角色都在激活</div>';
         return;
       }
 
@@ -2726,7 +2726,7 @@
         var pct = actor.energyMax > 0 ? Math.round((actor.energy / actor.energyMax) * 100) : 0;
         var barCls = energyBarCls(actor.energy);
 
-        return '<div class="pool-item" onclick="openStakeModal(\'' + actor.id + '\')" title="点击安排演出">'
+        return '<div class="pool-item" onclick="openStakeModal(\'' + actor.id + '\')" title="点击安排激活">'
           + '<div class="pool-av-wrap">'
           + '<img src="' + actor.avatar + '" alt="" />'
           + '<span class="pool-lv" style="background:' + levelCfg.color + ';">Lv' + actor.level + '</span>'
@@ -2784,20 +2784,20 @@
           + '<svg class="slot-energy-icon" width="11" height="11" viewBox="0 0 11 11" fill="var(--accent)" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 0.5L2.5 5.5h2.5l-1 5 4-5H5.5l1-5z"/></svg>'
           + '<span class="slot-energy-num">' + actor.energy + '/' + actor.energyMax + '</span>'
           + '</div>'
-+ '<div class="slot-out" onclick="event.stopPropagation();openActorPowerModal(\'' + actor.id + '\')" title="查看片酬详情"><svg viewBox="0 0 24 24" style="width:12px;height:12px;vertical-align:-1px;margin-right:3px;flex-shrink:0;"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg>' + computeActorPower(actor).toFixed(2) + ' <span>' + salaryUnit() + '</span></div>'
++ '<div class="slot-out" onclick="event.stopPropagation();openActorPowerModal(\'' + actor.id + '\')" title="查看积分详情"><svg viewBox="0 0 24 24" style="width:12px;height:12px;vertical-align:-1px;margin-right:3px;flex-shrink:0;"><circle cx="12" cy="12" r="10" fill="#f5b042"/><circle cx="12" cy="12" r="10" stroke="#d9951a" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="7" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/><path d="M12 8l.9 1.9 2.1.2-1.6 1.4.5 2-1.9-1-1.9 1 .5-2-1.6-1.4 2.1-.2L12 8z" fill="#fff"/></svg>' + computeActorPower(actor).toFixed(2) + ' <span>' + salaryUnit() + '</span></div>'
             + '</div>'
             + '<div class="slot-actions">'
             + (actor.energy < actor.energyMax
                 ? '<button class="mini-btn charge" onclick="event.stopPropagation();openChargeModal(\'' + actor.id + '\')">补充</button>'
                 : '<button class="mini-btn disabled" disabled>已满</button>')
-            + '<button class="mini-btn primary" onclick="event.stopPropagation();openStakeModal(\'' + actor.id + '\')">演出</button>'
+            + '<button class="mini-btn primary" onclick="event.stopPropagation();openStakeModal(\'' + actor.id + '\')">激活</button>'
           + '</div>'
           + '</div>';
       }).join('');
     }
 
     // ============================================================
-    //  批量操作：一键演出 / 一键补充 / 一键休息
+    //  批量操作：一键激活 / 一键补充 / 一键停用
     // ============================================================
     let pendingBatchType = null;
 
@@ -2809,7 +2809,7 @@
         return Math.min(emptyCount, idle.length);
       }
       if (type === 'charge') {
-        // 只补充演出中的角色
+        // 只补充激活中的角色
         return MY_ACTORS.filter(function(a) { return a.isStaking && a.energy < a.energyMax; }).length;
       }
       if (type === 'rest') {
@@ -2819,9 +2819,9 @@
     }
 
     function openBatchModal(type) {
-      // 一键补充（charge 专用弹窗，参考补满体力设计）
+      // 一键补充（charge 专用弹窗，参考补满能量设计）
       var targets = MY_ACTORS.filter(function(a) { return a.isStaking && a.energy < a.energyMax; });
-      if (targets.length === 0) { showToast('演出中的角色体力已满'); return; }
+      if (targets.length === 0) { showToast('激活中的角色能量已满'); return; }
       var totalNeed = 0;
       targets.forEach(function(a) { totalNeed += ItemStore.supplyNeeded(a.level); });
       var stock = ItemStore.count('supply');
@@ -2860,37 +2860,37 @@
       }
       ItemStore.spend('supply', totalNeed);
       targets.forEach(function(a) { a.energy = a.energyMax; a.status = 'active'; });
-      showToast('已补充 ' + targets.length + ' 位角色的体力（消耗补给包 ×' + totalNeed + '）');
+      showToast('已补充 ' + targets.length + ' 位角色的能量（消耗补给包 ×' + totalNeed + '）');
       closeBatchModal();
       renderAll();
     }
 
-    // 一键演出：按片酬从高到低填满空在演位
+    // 一键激活：按积分从高到低填满空激活位
     function autoPerform() {
       var deployed = getDeployedActors();
       var emptyCount = MAX_STAKING_SLOTS - deployed.length;
-      if (emptyCount <= 0) { showToast('在演位已满'); return; }
+      if (emptyCount <= 0) { showToast('激活位已满'); return; }
       var candidates = MY_ACTORS.filter(function(a) { return !a.isStaking; })
         .sort(function(a, b) { return computeActorPower(b) - computeActorPower(a); });
-      if (candidates.length === 0) { showToast('没有候场角色'); return; }
+      if (candidates.length === 0) { showToast('没有未激活角色'); return; }
       var count = Math.min(emptyCount, candidates.length);
       candidates.slice(0, count).forEach(function(a) {
         a.isStaking = true;
         a.status = 'active';
         a.stakingDays = 0;
       });
-      showToast('已安排 ' + count + ' 位角色演出');
+      showToast('已安排 ' + count + ' 位角色激活');
     }
 
-    // 一键休息：所有在演角色休息
+    // 一键停用：所有激活角色停用
     function autoRest() {
       var targets = getDeployedActors();
-      if (targets.length === 0) { showToast('没有在演角色'); return; }
+      if (targets.length === 0) { showToast('没有激活角色'); return; }
       targets.forEach(function(a) {
         a.isStaking = false;
         a.status = 'idle';
       });
-      showToast('已让 ' + targets.length + ' 位角色休息');
+      showToast('已让 ' + targets.length + ' 位角色停用');
     }
 
     // 批量按钮状态（无可用项时置灰）
@@ -2931,7 +2931,7 @@
     }
 
     // ============================================================
-    //  演出 Modal
+    //  激活 Modal
     // ============================================================
     // 角色名 + #编号（toast 提示用）
     function actorLabel(a) {
@@ -2944,13 +2944,13 @@
       if (!actor) return;
       const deployed = getDeployedActors();
       if (deployed.length >= MAX_STAKING_SLOTS) {
-        showToast('在演位已满（最多 5 位），请先安排一位休息');
+        showToast('激活位已满（最多 5 位），请先安排一位停用');
         return;
       }
       actor.isStaking = true;
       actor.status = 'active';
       actor.stakingDays = 0;
-      showToast(actorLabel(actor) + ' 已安排演出');
+      showToast(actorLabel(actor) + ' 已安排激活');
       renderAll();
     }
 
@@ -2967,21 +2967,21 @@
         actor.isStaking = true;
         actor.status = 'active';
         actor.stakingDays = 0;
-        showToast(actorLabel(actor) + ' 已安排演出');
+        showToast(actorLabel(actor) + ' 已安排激活');
       }
       closeStakeModal();
       renderAll();
     }
 
     // ============================================================
-    //  休息确认
+    //  停用确认
     // ============================================================
     function recallActor(actorId) {
       const actor = MY_ACTORS.find(a => a.id === actorId);
       if (!actor) return;
       actor.isStaking = false;
       actor.status = 'idle';
-      showToast(actorLabel(actor) + ' 已休息');
+      showToast(actorLabel(actor) + ' 已停用');
       renderAll();
     }
 
@@ -2997,14 +2997,14 @@
       if (actor) {
         actor.isStaking = false;
         actor.status = 'idle';
-        showToast(actorLabel(actor) + ' 已休息');
+        showToast(actorLabel(actor) + ' 已停用');
       }
       closeRecallModal();
       renderAll();
     }
 
     // ============================================================
-    //  补充体力 Modal
+    //  补充能量 Modal
     // ============================================================
     function openChargeModal(actorId) {
       pendingChargeActorId = actorId;
@@ -3068,7 +3068,7 @@
       if (actor) {
         const need = ItemStore.supplyNeeded(actor.level);
         if (!ItemStore.spend('supply', need)) {
-          showToast('体力补给包不足，还差 ' + (need - ItemStore.count('supply')) + ' 个，可点击"购买"补充');
+          showToast('能量补给包不足，还差 ' + (need - ItemStore.count('supply')) + ' 个，可点击"购买"补充');
           return;
         }
         actor.energy = actor.energyMax;
@@ -3144,12 +3144,12 @@
         + '</div>'
         + '<div style="height:1px;background:#f0f0f4;"></div>'
         + '<div style="display:flex;align-items:center;gap:12px;padding:9px 0;">'
-        + '<div style="flex:1;min-width:0;font-size:13.5px;font-weight:600;color:#1d1d1f;">自动休息</div>'
+        + '<div style="flex:1;min-width:0;font-size:13.5px;font-weight:600;color:#1d1d1f;">自动停用</div>'
         + '<label class="claw-switch"><input type="checkbox" id="clawAutoRest" onchange="saveClawSettings()"><span class="track"></span><span class="thumb"></span></label>'
         + '</div>'
         + '<div style="height:1px;background:#f0f0f4;"></div>'
         + '<div style="display:flex;align-items:center;gap:12px;padding:9px 0;">'
-        + '<div style="flex:1;min-width:0;font-size:13.5px;font-weight:600;color:#1d1d1f;">自动演出</div>'
+        + '<div style="flex:1;min-width:0;font-size:13.5px;font-weight:600;color:#1d1d1f;">自动激活</div>'
         + '<label class="claw-switch"><input type="checkbox" id="clawAutoOptimal" onchange="saveClawSettings()"><span class="track"></span><span class="thumb"></span></label>'
         + '</div>'
         + '</div>';
@@ -3180,7 +3180,7 @@
       return claimVal > 0 ? { val: claimVal } : null;
     }
     // 智能主按钮（移动端）：按状态自动切换
-    // 1 领取（最高优先） > 2 一键演出（有空位且有候场） > 3 一键补充（全在演） > 4 签约角色（无角色可派）
+    // 1 领取（最高优先） > 2 一键激活（有空位且有未激活） > 3 一键补充（全激活中） > 4 签约角色（无角色可派）
     function updateStudioClaimBadge() {
       var btn = document.getElementById('batchPerformBtn');
       if (!btn) return;
@@ -3192,8 +3192,8 @@
       btn.disabled = false;
 
       if (!isMobile) {
-        // 桌面端：一键演出保持原逻辑
-        btn.textContent = '一键演出';
+        // 桌面端：一键激活保持原逻辑
+        btn.textContent = '一键激活';
         btn.onclick = autoPerform;
         btn.disabled = getBatchCount && getBatchCount('perform') <= 0;
         if (hint) hint.textContent = '';
@@ -3236,22 +3236,22 @@
         // 1. 领取优先
         btn.textContent = st.val.toLocaleString() + ' STORY · 领取';
         btn.onclick = studioClaimNow;
-        if (hint) hint.textContent = '片酬已结算，可领取';
+        if (hint) hint.textContent = '积分已结算，可领取';
       } else if (idle.length > 0 && emptyCount > 0) {
-        // 2. 有空位且有候场：一键演出
-        btn.textContent = '一键演出';
+        // 2. 有空位且有未激活：一键激活
+        btn.textContent = '一键激活';
         btn.onclick = autoPerform;
-        if (hint) hint.textContent = emptyCount + ' 个空位可安排演出';
+        if (hint) hint.textContent = emptyCount + ' 个空位可安排激活';
       } else if (emptyCount <= 0 && exhausted > 0) {
-        // 3a. 全在演且有体力耗尽：一键补充（止损）
+        // 3a. 全激活中且有能量耗尽：一键补充（止损）
         btn.textContent = '一键补充';
         btn.onclick = function () { openBatchModal('charge'); };
-        if (hint) hint.textContent = exhausted + ' 位角色体力已耗尽';
+        if (hint) hint.textContent = exhausted + ' 位角色能量已耗尽';
       } else if (emptyCount <= 0) {
-        // 3b. 全在演且体力充足：一键休息（轮换）
-        btn.textContent = '一键休息';
+        // 3b. 全激活中且能量充足：一键停用（轮换）
+        btn.textContent = '一键停用';
         btn.onclick = autoRest;
-        if (hint) hint.textContent = '可安排休息轮换';
+        if (hint) hint.textContent = '可安排停用轮换';
       } else {
         // 4. 有空位但无角色可派：签约角色
         btn.textContent = '签约角色';
@@ -3263,7 +3263,7 @@
     function deskClaimNow() {
       var st = studioClaimState();
       if (!st) {
-        if (typeof showToast === 'function') showToast('本周结算后片酬自动兑换为 STORY');
+        if (typeof showToast === 'function') showToast('本周结算后积分自动兑换为 STORY');
         return;
       }
       studioClaimNow();
@@ -3326,7 +3326,7 @@
       showToast('调试：Story Claw ' + (state === 'on' ? '已激活（7 天）' : '已取消激活'));
     }
 
-    // ---- Claw 自动补体力（30s 检查一次）----
+    // ---- Claw 自动补能量（30s 检查一次）----
     function clawTick() {
       if (typeof MY_ACTORS === 'undefined') return;
       var cs = ItemStore.clawState();
@@ -3334,7 +3334,7 @@
       var st = getClawSettings();
       var changed = false;
 
-      // 自动演出：空在演位 → 按片酬从高到低安排候场角色上台
+      // 自动激活：空激活位 → 按积分从高到低安排未激活角色上台
       if (st.autoOptimal) {
         var deployed = getDeployedActors();
         var emptyCount = MAX_STAKING_SLOTS - deployed.length;
@@ -3351,7 +3351,7 @@
         }
       }
 
-      // 自动补充：体力归 0 自动补满；缺补给包且开自动休息 → 休息
+      // 自动补充：能量归 0 自动补满；缺补给包且开自动停用 → 停用
       if (st.autoSupply) {
         var urgent = MY_ACTORS.filter(function (a) { return a.isStaking && a.energy <= 0; });
         urgent.forEach(function (a) {
@@ -3414,7 +3414,7 @@
             + '<img src="' + a.avatar + '" style="width:40px;height:40px;border-radius:10px;object-fit:cover;flex-shrink:0;" alt="" />'
             + '<span class="ci-name">' + a.name + caNumStr + '</span>'
             + '<span class="ci-lv">Lv' + a.level + '</span>'
-            + '<span style="font-size:0.7rem;color:var(--text-muted);margin-left:auto;white-space:nowrap;">体力 ' + a.energy + '/' + a.energyMax + '</span>'
+            + '<span style="font-size:0.7rem;color:var(--text-muted);margin-left:auto;white-space:nowrap;">能量 ' + a.energy + '/' + a.energyMax + '</span>'
             + '</div>';
         }).join('');
       }
@@ -3497,7 +3497,7 @@
       }
       const manualNeed = ItemStore.manualNeeded(nextLevel);
       if (!ItemStore.spend('manual', manualNeed)) {
-        showToast('训练手册不足，还差 ' + (manualNeed - ItemStore.count('manual')) + ' 本（可去道具区购买）');
+        showToast('经验包不足，还差 ' + (manualNeed - ItemStore.count('manual')) + ' 本（可去道具区购买）');
         return;
       }
       selectedConsumeIds.forEach(id => {
@@ -3542,7 +3542,7 @@
     function closeNominalOutputModal() { document.getElementById('nominalOutputModal').classList.remove('active'); document.body.style.overflow = ''; }
 
     // ============================================================
-    //  片酬详情弹窗
+    //  积分详情弹窗
     // ============================================================
     function openActorPowerModal(actorId) {
       const actor = MY_ACTORS.find(a => a.id === actorId);
@@ -3553,12 +3553,12 @@
       document.getElementById('powerModalBreakdown').innerHTML =
         // ---- 公式（中等）：抽象 + 代入真实数值 ----
         '<div style="text-align:center;margin-bottom:22px;line-height:1.9;">' +
-          '<div style="font-family:\'SF Mono\', Menlo, monospace;font-size:0.82rem;color:var(--text-muted);">Lv.' + bd.level + '片酬 = Lv.1片酬 × 片酬系数</div>' +
+          '<div style="font-family:\'SF Mono\', Menlo, monospace;font-size:0.82rem;color:var(--text-muted);">Lv.' + bd.level + '积分 = Lv.1积分 × 积分系数</div>' +
         '</div>' +
         // ---- 明细（最弱）：靠缩进分层，无框无线 ----
         '<div style="line-height:2;">' +
           '<div style="display:flex;justify-content:space-between;font-size:0.82rem;">' +
-            '<span style="color:var(--text-muted);">Lv.1片酬</span>' +
+            '<span style="color:var(--text-muted);">Lv.1积分</span>' +
             '<span style="font-weight:700;color:var(--text);">' + bd.ipPower.toFixed(2) + '</span>' +
           '</div>' +
           '<div style="display:flex;justify-content:space-between;font-size:0.78rem;padding-left:16px;">' +
@@ -3570,7 +3570,7 @@
             '<span style="color:var(--text-sub);">× ' + bd.heat.toFixed(1) + '</span>' +
           '</div>' +
           '<div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-top:8px;">' +
-            '<span style="color:var(--text-muted);">片酬系数<span style="font-size:0.72rem;color:var(--text-sub);">（Lv.' + bd.level + ' ' + bd.levelName + '）</span></span>' +
+            '<span style="color:var(--text-muted);">积分系数<span style="font-size:0.72rem;color:var(--text-sub);">（Lv.' + bd.level + ' ' + bd.levelName + '）</span></span>' +
             '<span style="font-weight:700;color:var(--text);">× ' + bd.miningCoeff + '</span>' +
           '</div>' +
         '</div>';
@@ -3605,9 +3605,9 @@
       if (!manualDone) {
         var gap = manualReq - manualStock;
         bodyHtml += '<div style="text-align:left;margin-bottom:16px;">' +
-          '<div style="font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:4px;">训练手册不足，还需 ' + gap + ' 本</div>' +
-          '<div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">训练手册 10 USDC/本，可在道具区购买</div>' +
-          '<button class="modal-btn confirm" onclick="this.closest(\'.modal-overlay\').remove();openShopSafe(\'manual\')" style="margin-bottom:0;">去购买训练手册</button>' +
+          '<div style="font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:4px;">经验包不足，还需 ' + gap + ' 本</div>' +
+          '<div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">经验包 10 USDC/本，可在道具区购买</div>' +
+          '<button class="modal-btn confirm" onclick="this.closest(\'.modal-overlay\').remove();openShopSafe(\'manual\')" style="margin-bottom:0;">去购买经验包</button>' +
           '</div>';
       }
       if (!cloneDone) {
@@ -3622,9 +3622,9 @@
       if (!manualDone && !cloneDone) {
         bodyHtml = '<div style="text-align:left;">' +
           '<div style="margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);">' +
-            '<div style="font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:4px;">训练手册不足，还需 ' + (manualReq - manualStock) + ' 本</div>' +
-            '<div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">训练手册 10 USDC/本，可在道具区购买</div>' +
-            '<button class="modal-btn confirm" onclick="this.closest(\'.modal-overlay\').remove();openShopSafe(\'manual\')" style="margin-bottom:0;">去购买训练手册</button>' +
+            '<div style="font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:4px;">经验包不足，还需 ' + (manualReq - manualStock) + ' 本</div>' +
+            '<div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">经验包 10 USDC/本，可在道具区购买</div>' +
+            '<button class="modal-btn confirm" onclick="this.closest(\'.modal-overlay\').remove();openShopSafe(\'manual\')" style="margin-bottom:0;">去购买经验包</button>' +
           '</div>' +
           '<div>' +
             '<div style="font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:4px;">还需 ' + (2 - have) + ' 张同IP同等级角色</div>' +
@@ -3704,9 +3704,9 @@
     // ============================================================
     //  角色回收（demo：模拟发放，角色永久销毁）
     //  残值 = P0×80% + 升级投入×50%（升级投入 = 累计消耗手册折价 10 USDC/本）
-    //  返还 = 80% USDC + 20% 生态资产（固定折成训练手册）
+    //  返还 = 80% USDC + 20% 生态资产（固定折成经验包）
     // ============================================================
-    // 累计训练手册消耗：Lv1=0、Lv2=100、Lv3=300、Lv4=700、Lv5=1500
+    // 累计经验包消耗：Lv1=0、Lv2=100、Lv3=300、Lv4=700、Lv5=1500
     function recycleBooks(level) { return [0, 1, 3, 7, 15][level] || 0; }
     function recycleValue(actor) {
       var mint = (actor.initPrice || 0) * 0.8;
@@ -3714,7 +3714,7 @@
       var total = mint + upgrade;
       return { mint: mint, upgrade: upgrade, total: total };
     }
-    // 回收列表：按片酬倒序，卡片信息精简（头像 + 名称#编号 + Lv + 可回收金额）
+    // 回收列表：按积分倒序，卡片信息精简（头像 + 名称#编号 + Lv + 可回收金额）
     function openRecycleList() {
       if (typeof MY_ACTORS === 'undefined' || !MY_ACTORS.length) { showToast('暂无角色可回收'); return; }
       var list = MY_ACTORS.slice().sort(function (a, b) { return computeActorPower(a) - computeActorPower(b); });
@@ -3725,7 +3725,7 @@
         rows += '<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;margin-bottom:8px;">'
           + '<img src="' + a.avatar + '" alt="" style="width:40px;height:40px;border-radius:10px;object-fit:cover;flex-shrink:0;">'
           + '<div style="flex:1;min-width:0;"><div style="font-size:0.9rem;font-weight:700;color:var(--text);">' + a.name + ' ' + numStr + '</div>'
-          + '<div style="font-size:0.74rem;color:var(--text-muted);margin-top:2px;">Lv.' + a.level + ' · 片酬 ' + computeActorPower(a).toFixed(1) + ' ' + salaryUnit() + '</div></div>'
+          + '<div style="font-size:0.74rem;color:var(--text-muted);margin-top:2px;">Lv.' + a.level + ' · 积分 ' + computeActorPower(a).toFixed(1) + ' ' + salaryUnit() + '</div></div>'
           + '<button onclick="openRecycleConfirm(\'' + a.id + '\')" style="flex-shrink:0;padding:7px 16px;border-radius:999px;border:none;background:var(--text);color:#fff;font-size:0.8rem;font-weight:600;cursor:pointer;">回收</button>'
           + '</div>';
       });
@@ -3784,7 +3784,7 @@
       MY_ACTORS = MY_ACTORS.filter(function (a) { return a.id !== actorId; });
       document.querySelectorAll('.modal-overlay[data-recycle]').forEach(function (o) { o.remove(); });
       renderAll();
-      showToast('回收完成：+' + usdc.toFixed(2) + ' USDC、训练手册 ×' + books);
+      showToast('回收完成：+' + usdc.toFixed(2) + ' USDC、经验包 ×' + books);
     }
 
     // ============================================================
@@ -3829,7 +3829,7 @@
     //  Trust 风险提示
     // ============================================================
     function openUserTrustTooltip() {
-      openStatTooltip('风险账户', '该账户信任系数异常，片酬权重将受影响。');
+      openStatTooltip('风险账户', '该账户信任系数异常，积分权重将受影响。');
     }
 
     function openStatTooltip(title, desc) {
@@ -3848,7 +3848,7 @@
     }
 
     // ============================================================
-    //  体力 Tick 模拟（每秒 = 1 点体力）
+    //  能量 Tick 模拟（每秒 = 1 点能量）
     // ============================================================
     function energyTick() {
       MY_ACTORS.forEach(actor => {

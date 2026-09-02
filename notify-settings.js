@@ -10,7 +10,7 @@
 //    master               总开关
 //    revenue.ip           收益 - IP 签约
 //    revenue.manage       收益 - 角色管理
-//    revenue.show         收益 - 演出收益
+//    revenue.show         收益 - 激活收益
 //    social.like          互动 - 点赞
 //    social.save          互动 - 收藏
 //    social.comment       互动 - 评论
@@ -170,7 +170,7 @@
     rows += switchHTML('revenue', groupOn('revenue'), '收益通知（总）', '');
     rows += switchHTML('revenue.ip', !!s.revenue.ip, 'IP 签约', '');
     rows += switchHTML('revenue.manage', !!s.revenue.manage, '角色管理', '');
-    rows += switchHTML('revenue.show', !!s.revenue.show, '演出收益', '');
+    rows += switchHTML('revenue.show', !!s.revenue.show, '激活收益', '');
     rows += '<div class="sf-notify-group-title">互动通知</div>';
     rows += switchHTML('social', groupOn('social'), '互动通知（总）', '');
     rows += switchHTML('social.like', !!s.social.like, '点赞', '');

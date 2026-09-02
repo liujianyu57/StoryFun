@@ -224,7 +224,7 @@
 
     .char-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-bottom: 28px; }
 
-    /* 角色 IP 卡（参考 studio.html 的演出位卡，去掉体力条/补充/休息） */
+    /* 角色 IP 卡（参考 studio.html 的激活位卡，去掉能量条/补充/停用） */
     .char-card { position: relative; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--surface); transition: all 0.25s ease; display: flex; flex-direction: column; min-width: 0; }
     .char-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
     .char-card .char-avatar-area { position: relative; width: 100%; aspect-ratio: 1 / 1; background: linear-gradient(135deg, #e8f5ef, #d4ece5); overflow: hidden; flex-shrink: 0; z-index: 1; }
