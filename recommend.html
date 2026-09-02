@@ -428,6 +428,32 @@ body.clean-mode .clean-exit-btn{display:flex}
 <div class="side-overlay" id="sideOverlay"></div>
 <div class="side-drawer" id="sideDrawer">
   <div class="sd-header"><button class="sd-close" id="sdClose">✕</button></div>
+  <!-- ═══ 资产区（余额 + 操作） ═══ -->
+  <div class="sd-assets" style="padding:0 20px 14px;">
+    <div class="sd-assets-balance" style="display:flex;gap:8px;margin-bottom:10px;">
+      <div class="sd-asset-item" style="flex:1;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.04);">
+        <span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.45);letter-spacing:.04em;">STORY</span>
+        <span class="sd-balance-story" style="font-size:16px;font-weight:700;color:#1a1a2e;" id="sdBalanceStory">10,123</span>
+      </div>
+      <div class="sd-asset-item" style="flex:1;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.04);">
+        <span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.45);letter-spacing:.04em;">USDC</span>
+        <span class="sd-balance-usdc" style="font-size:16px;font-weight:700;color:#1a1a2e;" id="sdBalanceUsdc">100.23</span>
+      </div>
+      <div class="sd-asset-item" style="flex:1;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.04);cursor:pointer;" onclick="showToast('💎 点数购买功能请前往个人中心')">
+        <span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.45);letter-spacing:.04em;">点数</span>
+        <span class="sd-balance-pass" style="font-size:14px;font-weight:700;color:#1a1a2e;" id="sdBalancePoints">500</span>
+      </div>
+      <div class="sd-asset-item" style="flex:1;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.04);cursor:pointer;" onclick="location.href='pass.html'">
+        <span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.45);letter-spacing:.04em;">Pass</span>
+        <span class="sd-balance-pass" style="font-size:14px;font-weight:700;color:#1a1a2e;" id="sdBalancePass">未持有</span>
+      </div>
+    </div>
+    <div class="sd-assets-actions" style="display:flex;gap:8px;">
+      <button onclick="openDepositModal()" style="flex:1;padding:10px 0;border-radius:999px;border:none;background:#1a1a2e;color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">充值</button>
+      <button onclick="openWithdrawModal()" style="flex:1;padding:10px 0;border-radius:999px;border:none;background:rgba(0,0,0,.08);color:#1a1a2e;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">提现</button>
+      <button onclick="showToast('📈 交易功能开发中')" style="flex:1;padding:10px 0;border-radius:999px;border:none;background:rgba(0,0,0,.08);color:#1a1a2e;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">交易STORY</button>
+    </div>
+  </div>
   <div class="sd-user" style="display:flex;flex-direction:row;align-items:stretch;gap:10px;padding:8px 20px 20px;">
     <div onclick="openShopSafe()" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 0;border-radius:12px;cursor:pointer;background:rgba(0,0,0,.03);">
       <span style="width:24px;height:24px;color:#1a1a2e;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>
@@ -686,7 +712,42 @@ function openSide(){
     location.href = 'mobile-login.html?redirect=' + encodeURIComponent(location.pathname);
     return;
   }
+  syncSideAssets();
   sideDrawer.classList.add("open");sideOverlay.classList.add("open");
+}
+
+/* ── 抽屉资产余额同步（与 profile-center 一致） ── */
+function syncSideAssets() {
+  var storyEl = document.getElementById('sdBalanceStory');
+  var usdcEl = document.getElementById('sdBalanceUsdc');
+  if (typeof currentUser === 'undefined' || !currentUser || !currentUser.balances) return;
+  if (storyEl && typeof currentUser.balances.story === 'number') {
+    storyEl.textContent = currentUser.balances.story.toLocaleString();
+  }
+  if (usdcEl) {
+    var u = currentUser.balances.usdc;
+    if (typeof u === 'number') usdcEl.textContent = u.toFixed(2);
+    else if (typeof u === 'object') {
+      var t = 0; for (var k in u) { if (typeof u[k] === 'number') t += u[k]; }
+      usdcEl.textContent = t.toFixed(2);
+    }
+  }
+  var passEl = document.getElementById('sdBalancePass');
+  if (passEl) {
+    var passHeld = false;
+    try { passHeld = localStorage.getItem('storyfun_pass_held') === '1'; } catch(e) {}
+    passEl.textContent = passHeld ? '已持有' : '未持有';
+    passEl.style.color = passHeld ? '#34c759' : '#1a1a2e';
+  }
+  var pointsEl = document.getElementById('sdBalancePoints');
+  if (pointsEl) {
+    var b = currentUser.balances;
+    var u = b ? b.usdc : null;
+    var points = 500;
+    if (typeof u === 'number') points = u;
+    else if (typeof u === 'object') { var t = 0; for (var k in u) { if (typeof u[k] === 'number') t += u[k]; } points = t; }
+    pointsEl.textContent = Math.round(points).toLocaleString();
+  }
 }
 function closeSide(){sideDrawer.classList.remove("open");sideOverlay.classList.remove("open")}
 menuBtn.addEventListener("click",function(e){e.stopPropagation();openSide()});

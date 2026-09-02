@@ -190,8 +190,6 @@
     .mobile-stats { display: none; }
     .mobile-tabs { display: none; }
     .mobile-drama-grid { display: none; }
-    .mobile-assets { display: none; }
-    .mobile-asset-actions { display: none; }
     .mobile-empty { display: none; }
 
     @media (max-width: 1120px) { .works-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
@@ -313,94 +311,6 @@
       .issued-ip-empty-main { font-size: 0.95rem; font-weight: 700; color: var(--text); }
       .issued-ip-empty-sub { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
       .issued-ip-empty .ip-empty-btn { margin-top: 7px; padding: 7px 16px; border-radius: 999px; border: none; background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: inherit; }
-
-      /* ── Mobile Assets Balance ── */
-      .mobile-assets {
-        display: flex;
-        gap: 10px;
-        padding: 12px 16px 8px;
-        margin: 0;
-      }
-      .mobile-assets .ma-item {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 12px 14px;
-      }
-      .mobile-assets .ma-icon {
-        width: 36px;
-        height: 36px;
-        border-radius: 12px;
-        flex-shrink: 0;
-      }
-      .mobile-assets .ma-icon.ma-story {
-        background: #000000;
-      }
-      .mobile-assets .ma-info {
-        display: flex;
-        flex-direction: column;
-        gap: 1px;
-        min-width: 0;
-      }
-      .mobile-assets .ma-info .ma-name {
-        font-size: 11px;
-        font-weight: 600;
-        color: var(--text-sub);
-        letter-spacing: 0.03em;
-      }
-      .mobile-assets .ma-info .ma-balance {
-        font-size: 16px;
-        font-weight: 700;
-        color: var(--text);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      /* ── Mobile Asset Actions ── */
-      .mobile-asset-actions {
-        display: flex;
-        gap: 8px;
-        padding: 0 16px 12px;
-        border-bottom: 8px solid var(--bg);
-      }
-      .mobile-asset-actions .maa-btn {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        padding: 10px 0;
-        border-radius: 999px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        border: none;
-        background: var(--bg);
-        color: var(--text);
-        font-family: inherit;
-        transition: all 0.2s;
-        -webkit-tap-highlight-color: transparent;
-      }
-      .mobile-asset-actions .maa-btn:active { opacity: 0.7; }
-      .mobile-asset-actions .maa-btn svg { flex-shrink: 0; }
-      .mobile-asset-actions .maa-btn.maa-primary {
-        background: #000000;
-        color: #fff;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-      }
-      .mobile-asset-actions .maa-btn.maa-primary:active { opacity: 0.85; }
-      .mobile-asset-actions .maa-btn.maa-secondary {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        color: var(--text-muted);
-      }
-      .mobile-asset-actions .maa-btn.maa-secondary:active { background: var(--bg); }
-
 
       /* ── Mobile Segmented Tabs ── */
       .mobile-tabs {
@@ -711,31 +621,6 @@
     </div>
   </div>
 
-  <!-- ===== MOBILE ASSETS BALANCE ===== -->
-  <div class="mobile-assets">
-    <div class="ma-item" onclick="openIAPModal()" style="cursor:pointer;">
-      <div class="ma-icon" style="display:flex;align-items:center;justify-content:center;font-size:22px;">💎</div>
-      <div class="ma-info">
-        <span class="ma-name">点数</span>
-        <span class="ma-balance" id="mobileBalancePoints">500</span>
-      </div>
-    </div>
-    <div class="ma-item" onclick="openStorySheet()" style="cursor:pointer;">
-      <div class="ma-icon ma-story"></div>
-      <div class="ma-info">
-        <span class="ma-name">STORY</span>
-        <span class="ma-balance" id="mobileBalanceStory">10,123</span>
-      </div>
-    </div>
-    <div class="ma-item" onclick="location.href='pass.html'" style="cursor:pointer;">
-      <div class="ma-icon" style="display:flex;align-items:center;justify-content:center;font-size:20px;">🎫</div>
-      <div class="ma-info">
-        <span class="ma-name">Pass</span>
-        <span class="ma-balance" id="mobileBalancePass" style="font-size:0.78rem;">未持有</span>
-      </div>
-    </div>
-  </div>
-
   <!-- ===== MOBILE ISSUED IP SECTION ===== -->
   <div class="issued-ip-section" id="mobileIssuedIPSection" style="padding:12px 16px;background:#fff;">
     <div class="issued-ip-header">
@@ -985,21 +870,6 @@
       const bioEl = document.getElementById('profileBio');
       if (bioEl) bioEl.textContent = bio;
       updateAvatarDisplay(avatar, name, 'avatarContainer', 'avatarLetter');
-
-      // Mobile balances
-      const balStory = document.getElementById('mobileBalanceStory');
-      if (balStory && currentUser.balances?.story !== undefined) {
-        balStory.textContent = currentUser.balances.story.toLocaleString();
-      }
-      var getUsdc = function() { var b = currentUser.balances; if (!b) return 0; var u = b.usdc; if (typeof u === 'number') return u; if (typeof u === 'object') { var t = 0; for (var k in u) { if (typeof u[k] === 'number') t += u[k]; } return t; } return 0; };
-      const balPoints = document.getElementById('mobileBalancePoints');
-      if (balPoints) balPoints.textContent = getUsdc().toLocaleString();
-      const balPass = document.getElementById('mobileBalancePass');
-      if (balPass) {
-        var passHeld = localStorage.getItem('storyfun_pass_held') === '1';
-        balPass.textContent = passHeld ? '已持有' : '未持有';
-        balPass.style.color = passHeld ? '#34c759' : '';
-      }
     }
 
     function updateAvatarDisplay(avatarUrl, name, containerId, letterId) {
@@ -1085,15 +955,6 @@
       const bioEl = document.getElementById('profileBio');
       if (bioEl) bioEl.textContent = newBio;
       updateAvatarDisplay(newAvatar, newName, 'avatarContainer', 'avatarLetter');
-
-      // Mobile balances
-      const balStory = document.getElementById('mobileBalanceStory');
-      if (balStory && currentUser.balances?.story !== undefined) {
-        balStory.textContent = currentUser.balances.story.toLocaleString();
-      }
-      var getUsdc = function() { var b = currentUser.balances; if (!b) return 0; var u = b.usdc; if (typeof u === 'number') return u; if (typeof u === 'object') { var t = 0; for (var k in u) { if (typeof u[k] === 'number') t += u[k]; } return t; } return 0; };
-      const balPoints = document.getElementById('mobileBalancePoints');
-      if (balPoints) balPoints.textContent = getUsdc().toLocaleString();
 
       // Mobile
       const mNameEl = document.getElementById('mobileProfileName');
