@@ -174,6 +174,7 @@
   <div class="tab-bar">
     <button class="tab-item active" data-tab="following" onclick="switchTab('following')">关注</button>
     <button class="tab-item" data-tab="followers" onclick="switchTab('followers')">粉丝</button>
+    <button class="tab-item" data-tab="certified" onclick="switchTab('certified')">认证粉丝</button>
     <button class="tab-item" data-tab="mutual" onclick="switchTab('mutual')">互关</button>
   </div>
 
@@ -212,6 +213,11 @@ var DATA = {
     { name:'SMILE', desc:'喜剧短剧·笑面人生', avatar:'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&q=80', followed:false },
     { name:'DREAMER', desc:'悬疑短剧·第七层梦境', avatar:'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&q=80', followed:false }
   ],
+  certified: [
+    { name:'林梦瑶', desc:'推理小说迷，家里堆了三百多本阿婆和东野圭吾。', avatar:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80', followed:true, certified:true },
+    { name:'赵无极', desc:'武术教练，带学生参加全国比赛，顺带在短剧里客串。', avatar:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80', followed:true, certified:true },
+    { name:'Luna', desc:'在读研究生，研究AI伦理，也在AI短剧上小有名气。', avatar:'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&q=80', followed:true, certified:true }
+  ],
   mutual: [
     { name:'清风明月', desc:'独立创作者｜短剧导演', avatar:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80', followed:true },
     { name:'李云飞', desc:'短剧创作者｜动作冒险', avatar:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80', followed:true },
@@ -232,7 +238,8 @@ function renderList() {
       '<img class="user-avatar" src="'+u.avatar+'" alt="'+u.name+'" onerror="this.style.display=\'none\'">' +
       '<div class="user-info">' +
         '<div class="user-name-row"><span class="user-name">'+u.name+'</span>'+
-        (u.followed && currentTab !== 'following' && currentTab !== 'followers' && currentTab !== 'mutual' ? '<span class="user-badge">互关</span>' : '') +
+        (u.followed && currentTab !== 'following' && currentTab !== 'followers' && currentTab !== 'mutual' && currentTab !== 'certified' ? '<span class="user-badge">互关</span>' : '') +
+        (u.certified ? '<span class="user-badge" style="background:rgba(0,0,0,0.9);color:#fff;">已认证</span>' : '') +
         '</div>' +
         '<div class="user-desc">'+u.desc+'</div>' +
       '</div>' +
@@ -281,7 +288,7 @@ function switchTab(tab) {
 // Init from URL
 var params = new URLSearchParams(window.location.search);
 var initialTab = params.get('tab');
-if (initialTab && ['following','followers','mutual'].indexOf(initialTab) !== -1) {
+if (initialTab && ['following','followers','certified','mutual'].indexOf(initialTab) !== -1) {
   currentTab = initialTab;
   document.querySelectorAll('.tab-item').forEach(function(t){
     t.classList.toggle('active', t.dataset.tab === initialTab);
