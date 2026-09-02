@@ -520,12 +520,6 @@
       <h1 style="margin:0;font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;color:var(--text);">IP 市场</h1>
       <button class="ip-guide-btn" id="ipGuideBtn" title="IP 市场是什么？" style="margin-left:0;">?</button>
     </div>
-    <!-- Pass 引导条（未持有通行证时显示） -->
-    <div id="passGuideBar" style="display:none;align-items:center;gap:10px;padding:10px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(0,0,0,0.04),rgba(0,0,0,0.01));border:1px solid var(--border-dark, rgba(0,0,0,0.12));margin-bottom:16px;font-size:0.82rem;">
-      <span style="font-size:1rem;">🎫</span>
-      <span style="flex:1;color:var(--text-muted);line-height:1.5;">购买 IP 卡需先持有 <strong style="color:var(--text);">Pass 通行证</strong>，持证关注创作者即可成为认证粉丝</span>
-      <button onclick="location.href='pass.html'" style="flex-shrink:0;padding:8px 18px;border-radius:999px;border:none;background:var(--accent);color:#fff;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:inherit;">去购买</button>
-    </div>
     <!-- Sort -->
     <div class="sort-container" id="sortContainer">
       <span class="sort-tag active" data-sort="price-asc">价格最低</span>
@@ -834,17 +828,6 @@
     //  Init Sorting (via actor-card.js API)
     // ============================================================
     initActorSorting({ sortContainerId: 'sortContainer', gridSelector: '#actorGrid', defaultSort: 'price-asc' });
-
-    // Pass 引导条（未持有通行证时显示）
-    function syncPassGuideBar() {
-      var bar = document.getElementById('passGuideBar');
-      if (!bar) return;
-      var held = false;
-      try { held = localStorage.getItem('storyfun_pass_held') === '1'; } catch(e) {}
-      bar.style.display = held ? 'none' : 'flex';
-    }
-    syncPassGuideBar();
-    document.addEventListener('auth-ready', syncPassGuideBar);
 
     // ============================================================
     //  Wire Up Card Interactions
