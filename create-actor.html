@@ -84,6 +84,7 @@
     .success-modal h2 { font-size: 1.4rem; margin: 0 0 8px; color: var(--text); }
     .success-modal p { font-size: 0.92rem; color: var(--text-muted); margin: 0 0 28px; line-height: 1.6; }
     .success-modal .success-actor-name { font-weight: 700; color: var(--accent); }
+    .success-modal .success-ip-id { font-family: "SF Mono", Menlo, monospace; font-size: 0.8rem; color: var(--text-hint); margin-top: -18px; margin-bottom: 28px; word-break: break-all; letter-spacing: 0.02em; }
     .success-modal .success-buttons { display: flex; flex-direction: column; gap: 10px; }
     .success-modal .success-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; border-radius:999px; border: none; background: var(--accent); color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s ease; }
     .success-modal .success-btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
@@ -725,7 +726,8 @@
       <button class="auth-modal-close" onclick="closeSuccessModal()" style="position:absolute;top:16px;right:16px;">&times;</button>
       <div class="success-modal-icon">🎉</div>
       <h2>发行成功！</h2>
-      <p>IP 卡合集「<span class="success-actor-name" id="successActorName">—</span>」已成功发行。<br>发行者也需要购买 IP 卡才能持有哦～</p>
+      <p>IP 卡合集「<span class="success-actor-name" id="successActorName">—</span>」已发行</p>
+      <p class="success-ip-id">IP <span id="successIpId">—</span></p>
       <div class="success-buttons">
         <button class="success-btn-primary" id="successGoSignBtn">去我的 IP</button>
         <button class="success-btn-outline" onclick="closeSuccessModal()">稍后再说</button>
@@ -932,7 +934,8 @@
       creator: currentUser && currentUser.username ? currentUser.username : (currentUser && currentUser.name ? currentUser.name : '—'),
       collection: '—',
       childActors: [],
-      isCreatorIP: true   // 新模型标记：账号 = 创作者 = IP
+      isCreatorIP: true,  // 新模型标记：账号 = 创作者 = IP
+      ipId: generateIpId() // 23 位数字 IP 编号（链上 ID 语义）
     };
 
 
@@ -957,14 +960,30 @@
 
   // ── Success Modal ──
 
+  // 生成 23 位随机数字 IP 编号（首位非 0，避免前导零丢失）
+  function generateIpId() {
+    var digits = [];
+    digits.push(String(Math.floor(Math.random() * 9) + 1));
+    for (var i = 1; i < 23; i++) {
+      digits.push(String(Math.floor(Math.random() * 10)));
+    }
+    return digits.join('');
+  }
+
   function showSuccessModal(actorData) {
     var overlay = document.getElementById('successModalOverlay');
     var nameEl = document.getElementById('successActorName');
+    var ipIdEl = document.getElementById('successIpId');
     var goSignBtn = document.getElementById('successGoSignBtn');
 
     // Fill IP name
     if (nameEl) {
       nameEl.textContent = actorData.name;
+    }
+
+    // Fill IP id（23 位数字编号）
+    if (ipIdEl && actorData.ipId) {
+      ipIdEl.textContent = actorData.ipId;
     }
 
     // Bind "去我的 IP" button — navigate to 我的 IP (studio.html 经纪人页)
