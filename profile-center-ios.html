@@ -308,8 +308,10 @@
       .issued-ip-body { padding: 8px 10px 10px; }
       .issued-ip-name { font-size: 0.85rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .issued-ip-id { font-size: 0.62rem; color: var(--text-muted); font-family: "SF Mono", Menlo, monospace; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .issued-ip-empty { display: flex; align-items: center; gap: 12px; padding: 16px 14px; border-radius: 14px; border: 1px dashed rgba(0,0,0,0.15); background: #fff; color: var(--text-muted); font-size: 0.82rem; flex-wrap: wrap; }
-      .issued-ip-empty .ip-empty-btn { margin-left: auto; padding: 7px 16px; border-radius: 999px; border: none; background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+      .issued-ip-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; padding: 16px 14px; border-radius: 14px; border: 1px dashed rgba(0,0,0,0.15); background: #fff; color: var(--text-muted); font-size: 0.82rem; }
+      .issued-ip-empty-main { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+      .issued-ip-empty-sub { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+      .issued-ip-empty .ip-empty-btn { margin-top: 7px; padding: 7px 16px; border-radius: 999px; border: none; background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: inherit; }
 
       /* ── Mobile Assets Balance ── */
       .mobile-assets {
@@ -1108,7 +1110,8 @@
       if (ips.length === 0) {
         container.innerHTML =
           '<div class="issued-ip-empty">' +
-            '<span>你还没有发行 IP，快来创建你的第一个 IP 卡合集吧</span>' +
+            '<div class="issued-ip-empty-main">将账号发行成 IP</div>' +
+            '<div class="issued-ip-empty-sub">粉丝购买 IP 卡获分成 · 持卡赚取 STORY 奖励</div>' +
             '<button class="ip-empty-btn" onclick="location.href=\'create-actor.html\'">去发行</button>' +
           '</div>';
         return;

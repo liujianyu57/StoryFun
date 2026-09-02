@@ -73,8 +73,10 @@
     .issued-ip-body { padding: 10px 12px 12px; }
     .issued-ip-name { font-size: 0.92rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .issued-ip-id { font-size: 0.68rem; color: var(--text-muted); font-family: "SF Mono", Menlo, monospace; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .issued-ip-empty { display: flex; align-items: center; gap: 12px; padding: 20px 18px; border-radius: 16px; border: 1px dashed var(--border-dark, rgba(0,0,0,0.15)); background: var(--surface); color: var(--text-muted); font-size: 0.88rem; flex-wrap: wrap; }
-    .issued-ip-empty .ip-empty-btn { margin-left: auto; padding: 8px 18px; border-radius: 999px; border: none; background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+    .issued-ip-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 20px 18px; border-radius: 16px; border: 1px dashed var(--border-dark, rgba(0,0,0,0.15)); background: var(--surface); color: var(--text-muted); font-size: 0.88rem; }
+    .issued-ip-empty-main { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .issued-ip-empty-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+    .issued-ip-empty .ip-empty-btn { margin-top: 8px; padding: 8px 18px; border-radius: 999px; border: none; background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit; }
 
     /* ===== Tabs (Desktop) ===== */
     .tab-bar { display: flex; align-items: center; gap: 0; background: rgba(0,0,0,0.03); border-radius: 12px; padding: 3px; width: fit-content; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
@@ -1184,7 +1186,8 @@
       if (ips.length === 0) {
         container.innerHTML =
           '<div class="issued-ip-empty">' +
-            '<span>你还没有发行 IP，快来创建你的第一个 IP 卡合集吧</span>' +
+            '<div class="issued-ip-empty-main">将账号发行成 IP</div>' +
+            '<div class="issued-ip-empty-sub">粉丝购买 IP 卡获分成 · 持卡赚取 STORY 奖励</div>' +
             '<button class="ip-empty-btn" onclick="location.href=\'create-actor.html\'">去发行</button>' +
           '</div>';
         return;
