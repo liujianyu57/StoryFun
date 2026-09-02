@@ -8,8 +8,8 @@
 //
 //  类型结构（与 notifications.html 的 data-category/data-revtype/data-sotype 对应）：
 //    master               总开关
-//    revenue.ip           收益 - IP 签约
-//    revenue.manage       收益 - 角色管理
+//    revenue.ip           收益 - IP 购买
+//    revenue.manage       收益 - IP 卡管理
 //    revenue.show         收益 - 激活收益
 //    social.like          互动 - 点赞
 //    social.save          互动 - 收藏
@@ -168,8 +168,8 @@
     rows += switchHTML('master', !!s.master, '接收通知', '');
     rows += '<div class="sf-notify-group-title">收益通知</div>';
     rows += switchHTML('revenue', groupOn('revenue'), '收益通知（总）', '');
-    rows += switchHTML('revenue.ip', !!s.revenue.ip, 'IP 签约', '');
-    rows += switchHTML('revenue.manage', !!s.revenue.manage, '角色管理', '');
+    rows += switchHTML('revenue.ip', !!s.revenue.ip, 'IP 购买', '');
+    rows += switchHTML('revenue.manage', !!s.revenue.manage, 'IP 卡管理', '');
     rows += switchHTML('revenue.show', !!s.revenue.show, '激活收益', '');
     rows += '<div class="sf-notify-group-title">互动通知</div>';
     rows += switchHTML('social', groupOn('social'), '互动通知（总）', '');

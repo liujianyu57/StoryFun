@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Story.fun | 角色主页</title>
+  <title>Story.fun | IP 卡主页</title>
   <style>
     :root {
       --bg: #f5faff;
@@ -853,7 +853,7 @@
     .stat-tooltip-box .button-secondary { padding: 8px 24px; font-size: 0.88rem; background: rgba(15, 22, 42, 0.05); color: var(--text); border: none; cursor: pointer; border-radius: 999px; transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center; }
     .stat-tooltip-box .button-secondary:hover { background: rgba(0, 0, 0,0.08); color: var(--accent); }
 
-    /* ═══ Treasury / 角色IP金库 — 极简重构 ═══ */
+    /* ═══ Treasury / IP 卡金库 — 极简重构 ═══ */
     .treasury-panel {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -1033,7 +1033,7 @@
     <!-- Actor Hero -->
     <section class="actor-hero" id="actorHero">
       <div class="actor-hero-avatar">
-        <img id="actorAvatar" src="" alt="角色头像" />
+        <img id="actorAvatar" src="" alt="IP 卡头像" />
       </div>
       <div class="actor-hero-info">
         <div>
@@ -1052,17 +1052,17 @@
             <span class="ahs-unit">片酬/h</span>
           </div>
         </div>
-        <!-- 签约价格（匹配 actors.html 卡片风格） -->
+        <!-- 购买价格（匹配 actors.html 卡片风格） -->
         <div class="actor-price" id="actorPriceRow">
           <span class="actor-price-label">
-            签约价格
+            购买价格
             <span id="priceRemainLabel" style="margin-left:4px;color:var(--text-muted);font-weight:400;"></span>
           </span>
           <span class="actor-price-value" id="priceValue">—</span>
         </div>
         <div id="actionRow" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;">
-          <!-- 可签约 -->
-          <button class="action-btn primary" id="mintBtn" style="min-width:180px;justify-content:center;">签约</button>
+          <!-- 可购买 -->
+          <button class="action-btn primary" id="mintBtn" style="min-width:180px;justify-content:center;">购买</button>
           <!-- 已售罄：地板价标签 -->
           <span id="floorPriceTag" style="display:none;font-size:0.95rem;color:var(--text);padding:10px 14px;background:var(--accent-soft);border:1.5px solid var(--accent);border-radius:12px;font-weight:600;display:inline-flex;align-items:center;gap:4px;">地板价 <strong id="floorPriceValue" style="color:var(--accent);font-weight:800;font-size:1.05rem;"></strong></span>
           <!-- 已售罄：去交易按钮 -->
@@ -1085,12 +1085,12 @@
         </div>
         <div class="empty-state" id="emptyState" style="display:none;">
           <div class="empty-icon">🎭</div>
-          <p>暂无签约艺人参演任何短剧</p>
+          <p>暂无购买艺人参演任何短剧</p>
         </div>
       </section>
     </div>
 
-    <!-- ═══ Tab: 信息 — 发行信息 + 角色 IP 金库 ═══ -->
+    <!-- ═══ Tab: 信息 — 发行信息 + IP 卡 金库 ═══ -->
     <div class="tab-pane" id="tabInfo">
       <!-- NFT Info Panel -->
       <section class="nft-info-panel">
@@ -1113,7 +1113,7 @@
             <div class="info-value" id="infoTotalSupply">—</div>
           </div>
           <div class="nft-info-item">
-            <div class="info-label">已签约</div>
+            <div class="info-label">已购买</div>
             <div class="info-value" id="infoMinted">—</div>
           </div>
           <div class="nft-info-item">
@@ -1133,7 +1133,7 @@
             </div>
           </div>
           <div class="price-curve-formula" style="margin-bottom:12px;">
-            公式：<code>价格 = 初始价格 × 5<sup>(已签约数 ÷ 发行总量)</sup></code>
+            公式：<code>价格 = 初始价格 × 5<sup>(已售数 ÷ 发行总量)</sup></code>
           </div>
           <div style="position:relative;">
             <canvas id="inlineCurveCanvas" style="display:block;width:100%;height:200px;border-radius:10px;background:#fafdff;"></canvas>
@@ -1156,17 +1156,17 @@
         </div>
       </section>
 
-      <!-- ═══ 角色 IP 金库 ═══ -->
+      <!-- ═══ IP 卡 金库 ═══ -->
       <section class="treasury-panel" id="treasuryPanel">
         <div class="treasury-header">
-          <h3><span>🏦</span> 角色 IP 金库</h3>
+          <h3><span>🏦</span> IP 卡 金库</h3>
           <button class="info-help-btn" id="treasuryHelp" type="button" aria-label="金库说明">?</button>
         </div>
         <div class="treasury-amount-row">
           <div class="ta-value"><span id="treasuryAmount">—</span> <span class="usdc">USDC</span></div>
         </div>
         <div class="treasury-tags">
-          <span class="tt-item"><span class="tt-dot green"></span> 签约收入 · 沉淀 <span class="tt-pct">30%</span></span>
+          <span class="tt-item"><span class="tt-dot green"></span> 购买收入 · 沉淀 <span class="tt-pct">30%</span></span>
           <span class="tt-item"><span class="tt-dot orange"></span> 二级版税 · 沉淀 <span class="tt-pct">30%</span></span>
         </div>
       </section>
@@ -1178,14 +1178,14 @@
     <div class="mint-modal" role="dialog" aria-modal="true" aria-labelledby="mintModalTitle">
       <button class="mint-modal-close" type="button" id="mintModalClose" aria-label="关闭弹窗">✕</button>
       <div class="mint-modal-hero">
-        <img id="mintModalImage" src="" alt="角色预览" />
+        <img id="mintModalImage" src="" alt="IP 卡预览" />
         <div class="mint-modal-hero-overlay"></div>
-        <div class="mint-modal-badge" id="mintModalTag">角色 IP</div>
+        <div class="mint-modal-badge" id="mintModalTag">IP 卡</div>
         <div class="soldout-overlay" id="mintSoldoutOverlay" style="display:none"><span>已售罄</span></div>
       </div>
       <div class="mint-modal-body" id="mintModalBody">
         <div class="mint-modal-header">
-          <div id="mintModalTitle">确认签约 · Lv.1 群演</div>
+          <div id="mintModalTitle">确认购买 · Lv.1 群演</div>
           <div class="mint-modal-actor-name" id="mintModalActorName">—</div>
         </div>
 
@@ -1195,7 +1195,7 @@
           </div>
           <div class="mpb-price-row">
             <span class="mpb-price-value" id="mintEstimate">—</span>
-            <span class="mpb-price-label">签约价格</span>
+            <span class="mpb-price-label">购买价格</span>
           </div>
           <div class="mpb-progress" id="mpbProgress">
             <span class="mpb-progress-text">总发行 <strong id="mpbPctTotal">0</strong> &nbsp;·&nbsp; 剩余 <strong id="mpbRemain">0</strong></span>
@@ -1203,7 +1203,7 @@
         </div>
         <div class="mint-modal-footer">
           <div class="mint-slippage-notice" id="slippageNotice">已开启 1% 滑点保护，价格超出时将取消交易</div>
-          <button class="mint-btn primary" type="button" id="mintConfirm">确认签约</button>
+          <button class="mint-btn primary" type="button" id="mintConfirm">确认购买</button>
           <button class="mint-btn secondary" type="button" id="mintCancel">取消</button>
         </div>
       </div>
@@ -1212,17 +1212,17 @@
           <div class="stamp-seal">
             <div class="stamp-seal-inner">
               <span>✓</span>
-              <span>签约</span>
+              <span>购买</span>
             </div>
           </div>
           <div class="stamp-ripple"></div>
           <div class="stamp-ripple"></div>
         </div>
         <div class="success-content">
-          <h2>签约成功</h2>
+          <h2>购买成功</h2>
           <p id="successText">已获得 Lv.1 群演「<strong id="successActorName">—</strong>」，快去安排激活吧。</p>
           <div class="success-actions">
-            <button class="success-btn primary" id="viewNftBtn">查看我的角色</button>
+            <button class="success-btn primary" id="viewNftBtn">查看我的 IP 卡</button>
             <button class="success-btn secondary" id="continueBtn">继续浏览</button>
           </div>
         </div>
@@ -1236,15 +1236,15 @@
       <!-- 曲线价格模式 -->
       <div id="priceTooltipCurve">
         <h3>📈 曲线价格</h3>
-        <p class="price-tip-sub">价格按联合曲线公式随已签约数自动上涨，早期签约更优惠</p>
+        <p class="price-tip-sub">价格按联合曲线公式随已售数自动上涨，早期购买更优惠</p>
         <p style="font-size:0.72rem; color:var(--text-muted); line-height:1.5; margin:-4px 0 8px; padding:6px 8px; background:rgba(244,67,54,0.06); border-radius:8px;">初始价格不代表平台估值，曲线上涨不代表二级价格上涨，平台不承诺收益。</p>
         <div class="price-curve-formula">
-          公式：<code>价格 = 初始价格 × 5<sup>(已签约数 ÷ 发行总量)</sup></code>
+          公式：<code>价格 = 初始价格 × 5<sup>(已售数 ÷ 发行总量)</sup></code>
         </div>
         <div class="price-curve-wrap">
           <canvas id="priceCurveCanvas" width="500" height="270"></canvas>
           <div class="price-curve-info">
-            <span>已签约 <strong id="curveMintedLabel">0</strong></span>
+            <span>已购买 <strong id="curveMintedLabel">0</strong></span>
             <span>初始价格 <strong id="curveInitialPrice" style="color:var(--text-muted)">—</strong></span>
             <span>当前价格 <strong id="curveCurrentPrice" style="color:var(--accent)">—</strong></span>
           </div>
@@ -1273,7 +1273,7 @@
             <div style="color:var(--text); font-size:0.85rem; font-weight:600;" id="curveTotalSupply">—</div>
           </div>
           <div style="background:var(--bg); border-radius:8px; padding:7px 4px; text-align:center;">
-            <div style="color:var(--text-muted); font-size:0.68rem;">已签约</div>
+            <div style="color:var(--text-muted); font-size:0.68rem;">已购买</div>
             <div style="color:var(--text); font-size:0.85rem; font-weight:600;" id="curveMintedSupply">—</div>
           </div>
           <div style="background:var(--bg); border-radius:8px; padding:7px 4px; text-align:center;">
@@ -1285,10 +1285,10 @@
       <!-- 固定价格模式 -->
       <div id="priceTooltipFixed" style="display:none;">
         <h3>💰 固定价格</h3>
-        <p class="price-tip-sub" style="margin-bottom:16px;">该角色 IP 采用固定价格模式，每个角色都以统一价格签约，销量变化不影响价格。</p>
+        <p class="price-tip-sub" style="margin-bottom:16px;">该 IP 卡 采用固定价格模式，每张 IP 卡都以统一价格购买，销量变化不影响价格。</p>
         <div style="background:var(--bg); border-radius:12px; padding:16px; margin-bottom:12px; text-align:left; font-size:0.85rem; line-height:1.7; color:var(--text-muted);">
-          • 发行者设定固定价格后，所有签约均按此价格结算<br/>
-          • 不会因已签约数增加而价格上涨<br/>
+          • 发行者设定固定价格后，所有购买均按此价格结算<br/>
+          • 不会因已售数增加而价格上涨<br/>
           • 适合希望锁定成本的买家
         </div>
       </div>
@@ -1341,7 +1341,7 @@
   <script src="ai-chat.js"></script>
   <script>
     // ============================================================
-    //  角色数据（模拟链上数据）
+    //  IP 卡数据（模拟链上数据）
     // ============================================================
     const ACTORS_DATA = {
       '苏婉清': {
@@ -1435,7 +1435,7 @@
       'Luna': {
         id: 'C001', name: 'Luna', pricing: 'curve', issuanceType: 'official',
 
-        desc: '未来偶像型AI角色，适合对话与剧情分润场景。拥有独特的未来感和科技气质。',
+        desc: '未来偶像型AIIP 卡，适合对话与剧情分润场景。拥有独特的未来感和科技气质。',
         avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80',
         totalSupply: 5000, minted: 5000, available: 0, holders: 4900,
         price: '10 USDC', reserved: 0, contract: '0x7A2b...3fD8', standard: 'Solana SPL',
@@ -1481,7 +1481,7 @@
       return (pc * h).toFixed(2);
     }
 
-    // 关闭签约弹窗
+    // 关闭购买弹窗
     function closeMintModal() {
       var mintModal = document.getElementById('mintModal');
       if (mintModal) {
@@ -1490,7 +1490,7 @@
       }
     }
 
-    // 确认签约（模拟链上交互）
+    // 确认购买（模拟链上交互）
     function doMintConfirm() {
       var btn = document.getElementById('mintConfirm');
       if (!btn) return;
@@ -1505,7 +1505,7 @@
         var success = document.getElementById('mintModalSuccess');
         if (success) success.classList.add('show');
         btn.disabled = false;
-        btn.textContent = '确认签约';
+        btn.textContent = '确认购买';
       }, 1200);
     }
 
@@ -1531,7 +1531,7 @@
       tooltip.classList.add('active');
     }
 
-    // 打开签约弹窗（顶层版本，全部通过 ID 读取 DOM）
+    // 打开购买弹窗（顶层版本，全部通过 ID 读取 DOM）
     window.openMintModal = function(actorData) {
       if (!actorData) return;
       var mintModal = document.getElementById('mintModal');
@@ -1542,7 +1542,7 @@
       setText('mintModalActorName', actorData.name);
       var img = document.getElementById('mintModalImage');
       if (img) img.src = actorData.avatar;
-      setText('mintModalTag', '角色 IP • ' + (actorData.collection || actorData.id || '—'));
+      setText('mintModalTag', 'IP 卡 • ' + (actorData.collection || actorData.id || '—'));
       setDisplay('mintSoldoutOverlay', actorData.available <= 0 ? 'flex' : 'none');
 
       var success = document.getElementById('mintModalSuccess');
@@ -1567,7 +1567,7 @@
           sn.style.display = 'none';
         } else if (actorData.available <= 0) {
           sn.style.display = 'block';
-          sn.textContent = '该角色 IP 已售罄';
+          sn.textContent = '该 IP 卡 已售罄';
         } else {
           sn.style.display = 'block';
           sn.textContent = '已开启 1% 滑点保护，价格超出时将取消交易';
@@ -1663,8 +1663,8 @@
       }
 
       if (!actor) {
-        document.getElementById('actorName').textContent = '未知角色';
-        document.getElementById('actorDesc').textContent = '未找到该角色的信息';
+        document.getElementById('actorName').textContent = '未知IP 卡';
+        document.getElementById('actorDesc').textContent = '未找到该 IP 卡的信息';
         return;
       }
 
@@ -1674,7 +1674,7 @@
       document.getElementById('actorName').textContent = actor.name;
       
       document.getElementById('actorCreatorTag').textContent = '发行者 ' + (actor.creator || '—');
-      document.getElementById('actorCollectionTag').textContent = '角色 IP ' + (actor.collection || actor.id || '—');
+      document.getElementById('actorCollectionTag').textContent = 'IP 卡 ' + (actor.collection || actor.id || '—');
       document.getElementById('actorDesc').textContent = actor.desc;
 
       // ═══ Trust 风险标签 ═══
@@ -1686,7 +1686,7 @@
         riskTag.title = '点击查看详情';
         riskTag.addEventListener('click', function(e) {
           e.stopPropagation();
-          openStatTooltip('⚠️ 风险IP', '该角色IP信任系数异常，挖矿权重将受影响。');
+          openStatTooltip('⚠️ 风险IP', '该 IP 卡信任系数异常，积分权重将受影响。');
         });
         tagsContainer.appendChild(riskTag);
       }
@@ -1772,11 +1772,11 @@
             window.open('https://market.story.fun/trade/' + actor.name.toLowerCase(), '_blank');
           });
         } else {
-          // 可签约：苹果风大按钮（直接绑定事件，更稳健）
+          // 可购买：苹果风大按钮（直接绑定事件，更稳健）
           window._profileActor = actor;
           actionRow.innerHTML =
             '<button class="action-btn primary js-open-mint" style="width:100%;justify-content:center;padding:14px 36px;font-size:1rem;border-radius:14px;">' +
-              actor.price + ' 签约' +
+              actor.price + ' 购买' +
             '</button>';
           // 直接在创建按钮后绑定 click 事件
           var mintClickBtn = actionRow.querySelector('.js-open-mint');
@@ -1818,7 +1818,7 @@
               '<span style="font-weight:600;font-size:0.84rem;color:var(--text);">热度系数</span>' +
               '<span style="font-weight:700;font-size:0.92rem;color:var(--accent);">× ' + heat.toFixed(1) + '</span>' +
             '</div>' +
-            '<div style="font-size:0.72rem;color:var(--text-muted);margin-top:4px;line-height:1.4;">角色 IP 近 30 天热度乘子，取决于短剧完播、点赞、收藏等互动表现</div>' +
+            '<div style="font-size:0.72rem;color:var(--text-muted);margin-top:4px;line-height:1.4;">IP 卡 近 30 天热度乘子，取决于短剧完播、点赞、收藏等互动表现</div>' +
           '</div>';
         document.getElementById('ipPowerModal').classList.add('active');
       };
@@ -1900,7 +1900,7 @@
           ctx.fillText(Math.round((i / 4) * total), x, h - 6);
         }
         ctx.fillStyle = '#8b9bb0'; ctx.font = '7px sans-serif';
-        ctx.fillText('已签约数', pad.left + plotW / 2, h - 16);
+        ctx.fillText('已售数', pad.left + plotW / 2, h - 16);
         ctx.save();
         ctx.translate(8, pad.top + plotH / 2);
         ctx.rotate(-Math.PI / 2);
@@ -1941,7 +1941,7 @@
       document.getElementById('infoContract').textContent = actor.contract;
       document.getElementById('infoPricingType').textContent = actor.pricing === 'curve' ? '📈 曲线价格' : '💰 固定价格';
 
-      // ═══ 填充发行信息 grid 字段（总发行量/已签约/剩余） ═══
+      // ═══ 填充发行信息 grid 字段（总发行量/已购买/剩余） ═══
       document.getElementById('infoTotalSupply').textContent = actor.totalSupply.toLocaleString();
       document.getElementById('infoMinted').textContent = actor.minted.toLocaleString();
       document.getElementById('infoRemain').textContent = actor.available.toLocaleString();
@@ -1956,8 +1956,8 @@
       if (treasuryHelp) {
         treasuryHelp.addEventListener('click', function(e) {
           e.stopPropagation();
-          openStatTooltip('🏦 角色 IP 金库',
-            '签约收入的 30% 自动沉淀至角色 IP 金库，用于支撑 IP 生态的长期发展。\n' +
+          openStatTooltip('🏦 IP 卡 金库',
+            '购买收入的 30% 自动沉淀至IP 卡 金库，用于支撑 IP 生态的长期发展。\n' +
             '二级市场版税收入的 30% 同样归入金库，形成持续资金蓄水池。\n\n' +
             'V1 版本金库仅提供数据展示，暂不开放分配。'
           );
@@ -2039,7 +2039,7 @@
         ctx.fillText(Math.round((i / 4) * total), x, h - 10);
       }
       ctx.fillStyle = '#8b9bb0'; ctx.font = '9px sans-serif';
-      ctx.fillText('已签约数', pad.left + plotW / 2, h - 24);
+      ctx.fillText('已售数', pad.left + plotW / 2, h - 24);
       ctx.save();
       ctx.translate(10, pad.top + plotH / 2);
       ctx.rotate(-Math.PI / 2);
@@ -2124,7 +2124,7 @@
       var totalDramas = 0;
       var cardItems = [];
 
-      // 合并同一短剧的多角色出演者（与原有逻辑一致）
+      // 合并同一短剧的多IP 卡出演者（与原有逻辑一致）
       var dramaActorMap = {};
       for (var actorKey in ACTORS_DATA) {
         var ad = ACTORS_DATA[actorKey];
@@ -2241,7 +2241,7 @@
     }
     document.getElementById('upgradeModalCurrent').innerHTML =
       '<div style="background:var(--accent-soft);border-radius:14px;padding:16px 12px 12px;text-align:center;line-height:1.7;">' +
-        '<div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:6px;">该IP参演短剧的当前完播数可支持角色升级至</div>' +
+        '<div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:6px;">该IP参演短剧的当前完播数可支持IP 卡升级至</div>' +
         '<div style="font-size:1.6rem;font-weight:800;color:var(--accent);letter-spacing:-0.02em;">Lv.' + maxLevel + '</div>' +
       '</div>';
     document.getElementById('upgradeTable').innerHTML = UPGRADE_TABLE.map(function(r) {

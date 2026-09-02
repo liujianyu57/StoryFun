@@ -224,7 +224,7 @@
 
     .char-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-bottom: 28px; }
 
-    /* 角色 IP 卡（参考 studio.html 的激活位卡，去掉能量条/补充/停用） */
+    /* IP 卡 卡（参考 studio.html 的激活位卡，去掉能量条/补充/停用） */
     .char-card { position: relative; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--surface); transition: all 0.25s ease; display: flex; flex-direction: column; min-width: 0; }
     .char-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
     .char-card .char-avatar-area { position: relative; width: 100%; aspect-ratio: 1 / 1; background: linear-gradient(135deg, #e8f5ef, #d4ece5); overflow: hidden; flex-shrink: 0; z-index: 1; }
@@ -604,7 +604,7 @@
       .upload-item .title-edit input { font-size: 0.85rem; width: 100%; border-radius:999px; margin-top: 6px; }
       .upload-item .item-actions { margin-left: auto; gap: 4px; flex-shrink: 0; align-self: flex-start; }
 
-      /* ── 角色卡片：Apple 风格 ── */
+      /* ── IP 卡卡片：Apple 风格 ── */
       .char-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 20px; }
       .char-panel-header {
         flex-direction: column;
@@ -868,8 +868,8 @@
 
         <!-- Limit Hint -->
         <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.7;display:flex;flex-direction:column;gap:4px;">
-          <div>· 每部短剧最多绑定 5 个角色 IP，上架 7 天内可新增，发布后不可解除或更换。</div>
-          <div>· 绑定后，角色IP将关联短剧的完播和热度数据，用于升级角色和产出STORY。</div>
+          <div>· 每部短剧最多绑定 5 个IP 卡，上架 7 天内可新增，发布后不可解除或更换。</div>
+          <div>· 绑定后，IP 卡将关联短剧的完播和热度数据，用于升级 IP 卡和产出STORY。</div>
           <div>· 绑定 IP 为选填，可不绑定直接发布。</div>
         </div>
 
@@ -890,7 +890,7 @@
     <div class="char-modal-overlay" id="actorBindModal">
       <div class="char-modal">
         <div class="char-modal-header">
-          <h3 id="actorBindModalTitle">🎭 选择角色 IP</h3>
+          <h3 id="actorBindModalTitle">🎭 选择IP 卡</h3>
           <button class="char-modal-close" onclick="charManager.closeBindModal()">✕</button>
         </div>
         <div class="char-modal-body">
@@ -1021,7 +1021,7 @@ function goToStep(num) {
       '江小鱼': { name: '江小鱼', image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=200&q=80', description: '古灵精怪的江湖少年，机智幽默，轻功了得，总能在危机关头化险为夷。', power: '3,980' }
     };
 
-    // 角色 IP 编号映射（卡片与绑定弹窗共用）
+    // IP 卡 编号映射（卡片与绑定弹窗共用）
     const ACTOR_IP_ID = {
       'Luna': '5874...2301',
       '苏婉清': '3131...7979',
@@ -1051,11 +1051,11 @@ function goToStep(num) {
 
       addActor(actorKey) {
         if (this.characters.includes(actorKey)) {
-          this.showToast('该角色 IP 已在此剧中绑定');
+          this.showToast('该IP 卡 已在此剧中绑定');
           return false;
         }
         if (this.characters.length >= 5) {
-          this.showToast('每部短剧最多绑定 5 个角色 IP');
+          this.showToast('每部短剧最多绑定 5 个IP 卡');
           return false;
         }
         this.characters.push(actorKey);
@@ -1145,7 +1145,7 @@ function goToStep(num) {
         this.bindSelection = this.bindSelection || [];
 
         if (actorKeys.length === 0) {
-          grid.innerHTML = '<div class="actor-bind-empty"><div class="empty-icon">🎭</div>您还没有持有任何角色 IP<br/><button class="char-bind-btn" style="margin-top:14px;max-width:240px;" onclick="charManager.gotoMarket()">前往 IP 市场 →</button></div>';
+          grid.innerHTML = '<div class="actor-bind-empty"><div class="empty-icon">🎭</div>您还没有持有任何IP 卡<br/><button class="char-bind-btn" style="margin-top:14px;max-width:240px;" onclick="charManager.gotoMarket()">前往 IP 市场 →</button></div>';
           countEl.textContent = '';
           if (confirmBtn) confirmBtn.disabled = true;
           return;
@@ -1185,7 +1185,7 @@ function goToStep(num) {
             } else {
               const maxSelect = Math.max(0, 5 - this.characters.length);
               if (this.bindSelection.length >= maxSelect) {
-                this.showToast('最多还可绑定 ' + maxSelect + ' 个角色 IP');
+                this.showToast('最多还可绑定 ' + maxSelect + ' 个IP 卡');
                 return;
               }
               this.bindSelection.push(key);
@@ -1206,7 +1206,7 @@ function goToStep(num) {
         this.closeBindModal();
         this.render();
         if (added.length > 0) {
-          this.showToast('✅ 已绑定 ' + added.length + ' 个角色 IP');
+          this.showToast('✅ 已绑定 ' + added.length + ' 个IP 卡');
         }
       },
 

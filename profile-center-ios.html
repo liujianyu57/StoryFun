@@ -748,7 +748,7 @@
       <span style="font-size:1.1rem;font-weight:700;">购买点数</span>
       <span onclick="event.stopPropagation();closeIAPModal();openPointsHistory();" style="font-size:0.82rem;color:var(--text-muted);cursor:pointer;font-weight:500;">记录</span>
     </div>
-    <p style="font-size:0.82rem;color:var(--text-sub);text-align:center;margin:-8px 0 4px;">点数用于签约角色等 App 内服务</p>
+    <p style="font-size:0.82rem;color:var(--text-sub);text-align:center;margin:-8px 0 4px;">点数用于购买 IP 卡等 App 内服务</p>
     <p style="font-size:13px;color:var(--text);text-align:center;margin-bottom:14px;font-weight:600;">💎 余额：<span id="sheetPointsBalance">500</span></p>
     <div style="display:flex;flex-direction:column;gap:10px;">
       <button class="iap-pkg-btn" onclick="purchasePoints(1)">
@@ -1204,11 +1204,11 @@
     /* ── Points History ── */
     var POINTS_HISTORY = [
       { action: '购买', points: 60, price: '$78.00', time: '08-05 17:30', type: 'plus' },
-      { action: '签约角色', points: -10, price: '', time: '08-04 14:20', type: 'minus' },
-      { action: '升级角色', points: -5, price: '', time: '08-04 10:15', type: 'minus' },
+      { action: '购买 IP 卡', points: -10, price: '', time: '08-04 14:20', type: 'minus' },
+      { action: '升级IP 卡', points: -5, price: '', time: '08-04 10:15', type: 'minus' },
       { action: '购买', points: 6, price: '$7.80', time: '08-03 09:15', type: 'plus' },
       { action: '补充能量', points: -2, price: '', time: '08-02 21:00', type: 'minus' },
-      { action: '发行角色IP', points: -50, price: '', time: '08-01 16:30', type: 'minus' },
+      { action: '发行IP 卡', points: -50, price: '', time: '08-01 16:30', type: 'minus' },
       { action: '铸造短剧NFT', points: -100, price: '', time: '07-30 11:20', type: 'minus' },
       { action: '购买', points: 120, price: '$156.00', time: '07-28 08:45', type: 'plus' },
     ];

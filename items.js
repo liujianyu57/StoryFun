@@ -82,8 +82,8 @@ window.ItemStore = (function () {
 })();
 
 window.ITEM_DEFS = {
-  supply:    { key: 'supply',    name: '能量补给包', icon: '🧃', price: 10,    unit: 'USDC', desc: '补满角色能量', detail: '补满角色能量，按角色等级消耗。' },
-  manual:    { key: 'manual',    name: '经验包',   icon: '📘', price: 10,   unit: 'USDC', desc: '升级角色', detail: '角色升级材料，升级时按角色等级消耗。' },
-  clawWeek:  { key: 'clawWeek',  name: 'Story Claw 周卡',  icon: '🐾', price: 800,  unit: 'STORY', desc: '7 天自动运营', detail: '购买后立即生效，7 天自动运营：\n· 期间所有角色产出 +5%\n· 自动安排最优激活\n· 自动补充能量\n· 能量耗尽自动停用\n续费延长有效期，产出加成不叠加。' },
-  clawMonth: { key: 'clawMonth', name: 'Story Claw 月卡',  icon: '🐾', price: 3000, unit: 'STORY', desc: '30 天自动运营', detail: '购买后立即生效，30 天自动运营：\n· 期间所有角色产出 +5%\n· 自动安排最优激活\n· 自动补充能量\n· 能量耗尽自动停用\n续费延长有效期，产出加成不叠加。' },
+  supply:    { key: 'supply',    name: '能量补给包', icon: '🧃', price: 10,    unit: 'USDC', desc: '补满IP 卡能量', detail: '补满IP 卡能量，按IP 卡等级消耗。' },
+  manual:    { key: 'manual',    name: '经验包',   icon: '📘', price: 10,   unit: 'USDC', desc: '升级IP 卡', detail: 'IP 卡升级材料，升级时按IP 卡等级消耗。' },
+  clawWeek:  { key: 'clawWeek',  name: 'Story Claw 周卡',  icon: '🐾', price: 800,  unit: 'STORY', desc: '7 天自动运营', detail: '购买后立即生效，7 天自动运营：\n· 期间所有IP 卡产出 +5%\n· 自动安排最优激活\n· 自动补充能量\n· 能量耗尽自动停用\n续费延长有效期，产出加成不叠加。' },
+  clawMonth: { key: 'clawMonth', name: 'Story Claw 月卡',  icon: '🐾', price: 3000, unit: 'STORY', desc: '30 天自动运营', detail: '购买后立即生效，30 天自动运营：\n· 期间所有IP 卡产出 +5%\n· 自动安排最优激活\n· 自动补充能量\n· 能量耗尽自动停用\n续费延长有效期，产出加成不叠加。' },
 };

@@ -12,9 +12,9 @@ window.Shop = (function () {
 
   var ITEMS = [
     { key: 'supply', name: '能量补给包', icon: '🧃', price: 10, unit: 'USDC', tile: '#FFF3E2',
-      desc: '补满角色能量，按角色等级消耗。' },
+      desc: '补满IP 卡能量，按IP 卡等级消耗。' },
     { key: 'manual', name: '经验包', icon: '📘', price: 10, unit: 'USDC', tile: '#EDF2FF',
-      desc: '角色升级材料，升级时按角色等级消耗。' },
+      desc: 'IP 卡升级材料，升级时按IP 卡等级消耗。' },
     { key: 'clawWeek', name: 'Story Claw 周卡', icon: '🐾', price: 800, unit: 'STORY', tile: '#EAF6EF', claw: 'week', days: 7,
       benefits: ['自动使用能量包进行补充', '无能量包时自动停用', '自动安排最优激活', '产出STORY +5%'] },
     { key: 'clawMonth', name: 'Story Claw 月卡', icon: '🐾', price: 3000, unit: 'STORY', tile: '#EAF6EF', claw: 'month', days: 30,

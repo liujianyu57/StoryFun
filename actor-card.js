@@ -1,12 +1,12 @@
 // ============================================================
-//  Story.fun - 角色 IP 卡片公共组件 (actor-card.js)
+//  Story.fun - IP 卡卡片公共组件 (actor-card.js)
 //
 //  功能：
-//    1. 自动注入角色 IP 卡片完整 CSS（含三档响应式：桌面/平板/手机）
+//    1. 自动注入IP 卡卡片完整 CSS（含三档响应式：桌面/平板/手机）
 //    2. 提供发行标识徽章系统（官方/合作/认证/社区）
-//    3. 提供角色头像与积分数据库
+//    3. 提供IP 卡头像与积分数据库
 //    4. 提供卡片渲染 API renderActorCard / renderActorCardList
-//    5. 提供交互初始化 hooks（排序/签约弹窗/价格曲线/积分弹窗等）
+//    5. 提供交互初始化 hooks（排序/购买弹窗/价格曲线/积分弹窗等）
 //
 //  用法：
 //    <script src="actor-card.js"></script>
@@ -18,18 +18,18 @@
 //
 //  卡片数据结构：
 //    {
-//      id: '1',                              // 角色 ID
-//      name: 'Luna',                         // 角色名
+//      id: '1',                              // IP 卡 ID
+//      name: 'Luna',                         // IP 卡名
 //      avatar: 'https://...',                // 头像图
 //      description: '未来偶像型AI角色...',    // 描述
 //      issuanceType: 'official',             // 发行标识: official/partner/certified/community
 //      pricing: 'curve',                     // 定价模式: curve/fixed
-//      collection: 'C001',                   // 角色 IP 编号
+//      collection: 'C001',                   // IP 卡 编号
 //      total: 5000,                          // 总发行量
-//      minted: 5000,                         // 已签约数
+//      minted: 5000,                         // 已购买数
 //      available: 0,                         // 剩余数（可选，自动计算为 total - minted）
 //      holders: 4900,                        // 持有者数
-//      price: '10 USDC',                     // 当前签约价（显示用）
+//      price: '10 USDC',                     // 当前购买价（显示用）
 //      initPrice: 30,                        // 初始价格（计算用数值）
 //      creator: 'storyfun_labs',             // 发行者
 //      views: '2.6万',                       // 完播数据
@@ -330,7 +330,7 @@
   //  数据常量
   // ============================================================
 
-  /** 角色头像数据库 */
+  /** IP 卡头像数据库 */
   var ACTOR_AVATARS = {
     'Luna': 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80',
     '苏婉清': 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=500&q=80',
@@ -396,7 +396,7 @@
     return computePriceCoefficient(initPrice || 0) * (heat || 0);
   }
 
-  /** 获取角色最高可升级等级 */
+  /** 获取IP 卡最高可升级等级 */
   function getMaxUpgradeLevel(viewsStr) {
     var viewsNum = parseChineseNum(viewsStr);
     var maxLevel = 1;
@@ -414,7 +414,7 @@
   // ============================================================
 
   /**
-   * 渲染单张角色 IP 卡片
+   * 渲染单张IP 卡卡片
    * @param {Object} data 卡片数据
    * @returns {string} HTML 字符串
    */
@@ -458,7 +458,7 @@
     '</div>';
 
     // 价格行
-    var priceLabel = pricing === 'curve' ? '签约价' : '签约价';
+    var priceLabel = pricing === 'curve' ? '购买价' : '购买价';
     var priceStatus = isSoldout ? ' · 已售罄' : (' · 剩余 ' + available.toLocaleString() + ' 个');
     var priceRow = '<div class="ac-price-row">' +
       '<span class="ac-price-label">' + priceLabel + ' ' + priceHelpBtn + priceStatus + '</span>' +
@@ -473,7 +473,7 @@
       '</div>';
     } else {
       actionHTML = '<div class="ac-action-area">' +
-        '<button class="ac-mint-btn" data-actor="' + escapeHTML(name) + '" data-total-supply="' + total + '" data-minted="' + minted + '" data-available="' + available + '" data-price="' + escapeHTML(price) + '" data-pricing="' + pricing + '" data-collection="' + escapeHTML(collection) + '" data-init-price="' + initPrice + '" data-avatar="' + escapeHTML(avatar) + '">' + escapeHTML(price) + ' 签约</button>' +
+        '<button class="ac-mint-btn" data-actor="' + escapeHTML(name) + '" data-total-supply="' + total + '" data-minted="' + minted + '" data-available="' + available + '" data-price="' + escapeHTML(price) + '" data-pricing="' + pricing + '" data-collection="' + escapeHTML(collection) + '" data-init-price="' + initPrice + '" data-avatar="' + escapeHTML(avatar) + '">' + escapeHTML(price) + ' 购买</button>' +
       '</div>';
     }
 
@@ -487,7 +487,7 @@
     return '<article class="ac-card" data-actor="' + escapeHTML(name) + '" data-id="' + id + '" data-issuance-type="' + issuanceType + '" data-pricing="' + pricing + '" data-total="' + total + '" data-minted="' + minted + '" data-available="' + available + '" data-price="' + escapeHTML(price) + '" data-init-price="' + initPrice + '" data-creator="' + escapeHTML(creator) + '" data-collection="' + escapeHTML(collection) + '" data-views="' + escapeHTML(views) + '" data-heat="' + heat + '" data-avatar="' + escapeHTML(avatar) + '">' +
       '<div class="ac-card-banner" style="' + bannerBg + '">' +
         '<div class="ac-avatar">' +
-          '<img src="' + avatar + '" alt="角色 ' + escapeHTML(name) + '" loading="lazy" />' +
+          '<img src="' + avatar + '" alt="IP 卡 ' + escapeHTML(name) + '" loading="lazy" />' +
         '</div>' +
         (collection ? '<div class="ac-collection-tag">' + escapeHTML(collection) + '</div>' : '') +
       '</div>' +
@@ -504,7 +504,7 @@
   }
 
   /**
-   * 批量渲染角色 IP 卡片列表
+   * 批量渲染IP 卡卡片列表
    * @param {Array} items 卡片数据数组
    * @returns {string} HTML 字符串
    */
@@ -529,7 +529,7 @@
   // ============================================================
 
   /**
-   * 初始化角色卡片的排序交互
+   * 初始化 IP 卡卡片的排序交互
    * @param {Object} options
    * @param {string} options.sortContainerId   - 排序标签容器 ID
    * @param {string} options.gridSelector      - 卡片容器选择器（默认 '.ac-grid, .grid'）

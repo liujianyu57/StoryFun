@@ -1744,7 +1744,7 @@
           <button class="batch-btn charge" id="batchChargeBtn" onclick="openBatchModal('charge')">一键补充</button>
           <button class="batch-btn rest" id="batchRestBtn" onclick="autoRest()">一键停用</button>
           <button id="itemsTopBtn" onclick="openItemsSheet()" title="我的道具" style="margin-left:auto;padding:7px 18px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:0.8rem;font-weight:600;color:var(--text);flex-shrink:0;">🎒 我的道具</button>
-          <button id="recycleTopBtn" onclick="openRecycleList()" title="角色回收" style="margin-left:8px;padding:7px 18px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:0.8rem;font-weight:600;color:var(--text);flex-shrink:0;">♻ 回收</button>
+          <button id="recycleTopBtn" onclick="openRecycleList()" title="IP 卡回收" style="margin-left:8px;padding:7px 18px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:0.8rem;font-weight:600;color:var(--text);flex-shrink:0;">♻ 回收</button>
         </div>
         <div class="cta-hint" id="ctaHint"></div>
       </section>
@@ -1806,9 +1806,9 @@
 
     <!-- ===== 空状态（无角色） ===== -->
     <div class="empty-state" id="emptyState" style="display:none;">
-      <h3>还没有签约角色</h3>
-      <p>去 NFT 市场浏览角色形象，Mint 一个属于你自己的角色 NFT，开始经营经纪公司。</p>
-      <a class="btn-primary" href="actors.html" style="text-decoration:none;">签约角色</a>
+      <h3>还没有购买 IP 卡</h3>
+      <p>去 IP 市场浏览IP 卡形象，Mint 一个属于你自己的IP 卡，开始经营经纪公司。</p>
+      <a class="btn-primary" href="actors.html" style="text-decoration:none;">购买 IP 卡</a>
     </div>
 
   </div>
@@ -1816,9 +1816,9 @@
   <!-- ===== 全屏选角色（查看全部 / 空槽位点击） ===== -->
   <div class="modal-overlay" id="fullPickerModal">
     <div class="modal-card wide" style="position:relative;">
-      <h2>候选角色</h2>
+      <h2>候选 IP 卡</h2>
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;z-index:1;" onclick="closeFullPicker()">✕</button>
-      <p style="text-align:center;color:var(--text-muted);font-size:0.78rem;margin:0 0 12px 0;">停用中的角色每小时恢复1点能量</p>
+      <p style="text-align:center;color:var(--text-muted);font-size:0.78rem;margin:0 0 12px 0;">停用中的 IP 卡每小时恢复1点能量</p>
       <div class="picker-grid" id="fullPickerGrid"></div>
     </div>
   </div>
@@ -1844,7 +1844,7 @@
   <!-- ===== 升级管理全屏弹窗 ===== -->
   <div class="modal-overlay" id="upgradeModal">
     <div class="modal-card upgrade-modal-card" style="max-width:88vw;width:min(95vw,1200px);position:relative;">
-      <h2>升级角色</h2>
+      <h2>升级 IP 卡</h2>
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;z-index:1;" onclick="closeUpgradeModal()">✕</button>
       <div class="upgrade-list" id="upgradeList"></div>
     </div>
@@ -1854,7 +1854,7 @@
   <div class="modal-overlay" id="batchModal">
     <div class="modal-card" style="position:relative;">
       <h2 style="text-align:center;margin:0 0 4px;">一键补充</h2>
-      <div style="text-align:center;font-size:0.78rem;color:var(--text-muted);margin-bottom:14px;">补满激活中角色的能量</div>
+      <div style="text-align:center;font-size:0.78rem;color:var(--text-muted);margin-bottom:14px;">补满激活中 IP 卡的能量</div>
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);" onclick="closeBatchModal()">✕</button>
       <div style="background:var(--bg);border-radius:12px;padding:16px;margin-bottom:12px;text-align:center;">
         <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;">
@@ -1880,7 +1880,7 @@
         <div style="font-size:1.5rem;font-weight:800;color:var(--text);" id="modalStakeActorName">—</div>
         <div style="font-size:0.85rem;color:var(--text-muted);margin-top:2px;" id="modalStakeActorLevel">—</div>
       </div>
-      <p class="modal-sub" style="font-size:0.88rem;color:var(--text-muted);margin-bottom:20px;border-top:1px solid var(--border);padding-top:14px;">该角色激活时自动产生积分收益。激活中每小时消耗 1 点能量，能量耗尽则停止产出。</p>
+      <p class="modal-sub" style="font-size:0.88rem;color:var(--text-muted);margin-bottom:20px;border-top:1px solid var(--border);padding-top:14px;">该 IP 卡激活时自动产生积分收益。激活中每小时消耗 1 点能量，能量耗尽则停止产出。</p>
       <button class="modal-btn confirm" onclick="confirmStake()">确认安排</button>
       <button class="modal-btn cancel" onclick="closeStakeModal()">取消</button>
     </div>
@@ -1889,7 +1889,7 @@
   <!-- ===== Level Detail Modal (咖位升级) ===== -->
   <div class="modal-overlay" id="levelModal">
     <div class="modal-card" style="position:relative;">
-      <h2 id="modalLevelTitle">升级角色</h2>
+      <h2 id="modalLevelTitle">升级 IP 卡</h2>
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;z-index:1;" onclick="closeLevelModal()">✕</button>
 
       <div id="modalLevelSummary" style="text-align:center;margin-bottom:16px;padding:10px 14px;border-radius:10px;background:rgba(0, 0, 0,0.05);">
@@ -1900,7 +1900,7 @@
       </div>
 
       <div class="consume-list" id="consumeList">
-        <div class="consume-list-title">选择要消耗的同IP同等级角色 <span class="checked-count" id="consumeCheckedCount">0/2</span></div>
+        <div class="consume-list-title">选择要消耗的同IP同等级IP卡 <span class="checked-count" id="consumeCheckedCount">0/2</span></div>
         <div class="consume-grid" id="consumeGrid"></div>
       </div>
 
@@ -1978,7 +1978,7 @@
     <div class="modal-card" style="max-width:440px;">
       <h2>本周名义产出</h2>
       <div style="background:var(--accent-soft);border-radius:14px;padding:14px;margin-bottom:16px;text-align:center;">
-        <div style="font-size:0.85rem;font-weight:600;color:var(--text);">我的所有角色的周累计名义产出累加</div>
+        <div style="font-size:0.85rem;font-weight:600;color:var(--text);">我的所有 IP 卡的周累计名义产出累加</div>
         <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">单卡公式见下方说明 ↓</div>
       </div>
       <p class="modal-sub" style="margin-bottom:12px;">单卡名义产出 = 单卡小时权重 × R_base × 有效激活时长</p>
@@ -1986,10 +1986,10 @@
         <div style="font-size:0.85rem;line-height:1.8;color:var(--text-muted);">
           <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);">
             <span>单卡小时权重</span>
-            <span style="font-weight:700;color:var(--accent);text-align:right;">= 角色积分</span>
+            <span style="font-weight:700;color:var(--accent);text-align:right;">= IP 卡积分</span>
           </div>
           <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);">
-            <span>角色积分</span>
+            <span>IP 卡积分</span>
             <span style="font-weight:700;color:var(--text);text-align:right;">= IP积分 × 积分系数 × CP系数</span>
           </div>
           <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);">
@@ -2043,7 +2043,7 @@
   <div class="modal-overlay" id="actorPowerModal">
     <div class="modal-card" style="max-width:420px;padding:24px 20px 20px;position:relative;">
       <button style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;z-index:1;" onclick="closeActorPowerModal()">✕</button>
-      <h2 style="font-size:1.15rem;margin:0 0 4px;">角色积分</h2>
+      <h2 style="font-size:1.15rem;margin:0 0 4px;">IP 卡积分</h2>
       <div id="powerModalBreakdown" style="display:flex;flex-direction:column;gap:0;margin-bottom:18px;text-align:left;"></div>
     </div>
   </div>
@@ -2066,7 +2066,7 @@
 
       <!-- L3: 移动端按钮行 -->
       <div class="recall-mob-btn" style="display:none;">
-        <button class="modal-btn confirm" onclick="confirmRecall()" style="background:rgba(244,91,105,0.9);margin-bottom:0;">该角色</button>
+        <button class="modal-btn confirm" onclick="confirmRecall()" style="background:rgba(244,91,105,0.9);margin-bottom:0;">该 IP 卡</button>
       </div>
 
     </div>
@@ -2090,14 +2090,14 @@
       <div class="rules-modal-scroll">
 
         <div class="rules-section">
-          <p style="margin:0;font-size:0.85rem;line-height:1.8;">签约角色、安排激活，每小时获得积分。<br>升级角色，成倍提升每小时积分。<br>能量耗尽时及时补充，产出不间断。<br>每周一 00:00 (UTC) 开始结算本期收益，前往收益页领取。</p>
+          <p style="margin:0;font-size:0.85rem;line-height:1.8;">购买 IP 卡、安排激活，每小时获得积分。<br>升级 IP 卡，成倍提升每小时积分。<br>能量耗尽时及时补充，产出不间断。<br>每周一 00:00 (UTC) 开始结算本期收益，前往收益页领取。</p>
         </div>
 
         <!-- 怎么玩 -->
         <div class="rules-section">
           <div class="qa-item">
-            <div class="qa-question" onclick="this.parentElement.classList.toggle('open')"><span class="qa-arrow">▸</span>怎么让角色开始赚钱？</div>
-            <div class="qa-answer"><div class="qa-answer-inner">安排未激活角色激活，每小时消耗 1 点能量并产出积分。<br>积分在每期结束时统一结算，结算后可前往收益页面领取。</div></div>
+            <div class="qa-question" onclick="this.parentElement.classList.toggle('open')"><span class="qa-arrow">▸</span>怎么让 IP 卡开始赚钱？</div>
+            <div class="qa-answer"><div class="qa-answer-inner">安排未激活 IP 卡激活，每小时消耗 1 点能量并产出积分。<br>积分在每期结束时统一结算，结算后可前往收益页面领取。</div></div>
           </div>
 
           <div class="qa-item">
@@ -2119,10 +2119,10 @@
           <div class="qa-item">
             <div class="qa-question" onclick="this.parentElement.classList.toggle('open')"><span class="qa-arrow">▸</span>积分怎么算？</div>
             <div class="qa-answer"><div class="qa-answer-inner">
-            <p style="font-size:0.82rem;color:var(--text-muted);margin:0 0 8px;">咖位越高、角色越贵、短剧越火，每小时积分就越高。</p>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin:0 0 8px;">咖位越高、IP 卡越贵、短剧越火，每小时积分就越高。</p>
             <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px;font-family:'SF Mono','Menlo',monospace;font-size:0.82rem;color:var(--text);">
-              <div>角色积分 = Lv.1 角色积分 × 积分系数</div>
-              <div>Lv.1 角色积分 = 价格系数 × 热度系数</div>
+              <div>IP 卡积分 = Lv.1 IP 卡积分 × 积分系数</div>
+              <div>Lv.1 IP 卡积分 = 价格系数 × 热度系数</div>
             </div>
             <p style="font-size:0.78rem;color:var(--text-muted);margin:0 0 6px;">系数说明</p>
             <div style="display:flex;flex-direction:column;gap:6px;font-size:0.82rem;">
@@ -2132,7 +2132,7 @@
                 P0 ≤ 100U → 系数 = P0 ÷ 100（线性增长）<br>
                 P0 > 100U → 系数 = 1.6 × (P0/100)<sup>1.3</sup> / [(P0/100)<sup>1.3</sup> + 0.6]（渐近上限 1.6）
               </div>
-              <div>热度系数：角色IP参演短剧的完播、点赞、收藏、评分越多，热度越高</div>
+              <div>热度系数：IP 卡参演短剧的完播、点赞、收藏、评分越多，热度越高</div>
             </div>
             </div></div>
           </div>
@@ -2154,7 +2154,7 @@
         <!-- 怎么变强 -->
         <div class="rules-section">
           <div class="qa-item">
-            <div class="qa-question" onclick="this.parentElement.classList.toggle('open')"><span class="qa-arrow">▸</span>怎么升级角色？</div>
+            <div class="qa-question" onclick="this.parentElement.classList.toggle('open')"><span class="qa-arrow">▸</span>怎么升级 IP 卡？</div>
             <div class="qa-answer"><div class="qa-answer-inner">
             <p style="font-size:0.84rem;line-height:1.7;margin:0 0 8px;color:var(--text-muted);">升级条件：消耗 2 张同IP同等级分身 + IP参演短剧累计完播数达标</p>
             <div style="display:flex;flex-direction:column;gap:6px;">
@@ -2208,7 +2208,7 @@
     }
 
     // ============================================================
-    //  IP积分 / 角色积分
+    //  IP积分 / IP 卡积分
     // ============================================================
     function computeIPPower(actor) {
       const priceCoeff = computePriceCoefficient(actor.initPrice || 0);
@@ -2426,12 +2426,12 @@
 
       var ready = upgradable.filter(canUpgrade).length;
       if (upgradable.length === 0) {
-        wrap.innerHTML = '<div class="todo-ok">暂无角色可升级</div>';
+        wrap.innerHTML = '<div class="todo-ok">暂无 IP 卡可升级</div>';
         return;
       }
 
       wrap.innerHTML =
-        '<div class="us-row"><span class="us-label">可升级角色</span><span class="us-value highlight">' + ready +  ' 位</span></div>'
+        '<div class="us-row"><span class="us-label">可升级 IP 卡</span><span class="us-value highlight">' + ready +  ' 位</span></div>'
         + '<button class="us-cta" onclick="openUpgradeModal()">去升级</button>';
     }
 
@@ -2456,7 +2456,7 @@
       var readyCount = upgradable.filter(canUpgrade).length;
 
       if (upgradable.length === 0) {
-        list.innerHTML = '<div class="ur-empty">暂无角色可升级</div>';
+        list.innerHTML = '<div class="ur-empty">暂无 IP 卡可升级</div>';
         return;
       }
 
@@ -2481,11 +2481,11 @@
 
         return '<div class="upgrade-row' + cardCls + '" onclick="openLevelModal(\'' + actor.id + '\')">'
           + '<div class="ur-avatar-wrap">'
-          + '<img src="' + actor.avatar + '" alt="" onclick="event.stopPropagation();location.href=\'actor-profile.html?name=' + encodeURIComponent(actor.name) + '\'" style="cursor:pointer;" title="查看角色主页" />'
+          + '<img src="' + actor.avatar + '" alt="" onclick="event.stopPropagation();location.href=\'actor-profile.html?name=' + encodeURIComponent(actor.name) + '\'" style="cursor:pointer;" title="查看IP 卡主页" />'
           + '<span class="ur-lv-badge" style="background:' + levelCfg.color + ';" onclick="event.stopPropagation();">Lv' + actor.level + '</span>'
           + '</div>'
           + '<div class="ur-header">'
-          + '<div class="ur-name" onclick="event.stopPropagation();location.href=\'actor-profile.html?name=' + encodeURIComponent(actor.name) + '\'" style="cursor:pointer;" title="查看角色主页">' + actor.name + ' #' + parseInt(actor.id.match(/\d+/)[0], 10) + '</div>'
+          + '<div class="ur-name" onclick="event.stopPropagation();location.href=\'actor-profile.html?name=' + encodeURIComponent(actor.name) + '\'" style="cursor:pointer;" title="查看IP 卡主页">' + actor.name + ' #' + parseInt(actor.id.match(/\d+/)[0], 10) + '</div>'
           + '</div>'
           + '<div class="ur-compare">'
           + '<div class="ur-compare-lv-row">'
@@ -2508,7 +2508,7 @@
           + '</div>'
           + '<div class="ur-cond">'
           + '<div class="ur-cond-body">'
-          + '<span class="ur-cond-label">同IP同等级角色</span>'
+          + '<span class="ur-cond-label">同IP同等级IP卡</span>'
           + '<span class="ur-cond-status' + (cloneReady ? ' done' : ' pending') + '"' + (!cloneReady ? ' onclick="event.stopPropagation();openSignCloneModal(\'' + actor.id + '\')"' : '') + '>' + (cloneReady ? '✓' : '+') + '</span>'
           + '</div>'
           + '<div class="ur-cond-bar-wrap"><i class="fill-amber" style="width:' + Math.round((have / 2) * 100) + '%;"></i><span class="ur-cond-bar-text">' + have + '/2</span></div>'
@@ -2717,7 +2717,7 @@
       if (countEl) countEl.textContent = idle.length;
 
       if (idle.length === 0) {
-        container.innerHTML = '<div class="pool-empty">全部角色都在激活</div>';
+        container.innerHTML = '<div class="pool-empty">全部 IP 卡都在激活</div>';
         return;
       }
 
@@ -2763,7 +2763,7 @@
       var idle = getSortedIdle();
 
       if (idle.length === 0) {
-        grid.innerHTML = '<div class="picker-empty">没有空闲的角色</div>';
+        grid.innerHTML = '<div class="picker-empty">没有空闲的 IP 卡</div>';
         return;
       }
 
@@ -2773,12 +2773,12 @@
         var barCls = energyBarCls(actor.energy);
 
         return '<div class="picker-card">'
-          + '<div class="slot-av-wrap" onclick="event.stopPropagation();location.href=\'actor-profile.html?name=' + encodeURIComponent(actor.name) + '\'" style="cursor:pointer;" title="查看角色主页">'
+          + '<div class="slot-av-wrap" onclick="event.stopPropagation();location.href=\'actor-profile.html?name=' + encodeURIComponent(actor.name) + '\'" style="cursor:pointer;" title="查看IP 卡主页">'
           + '<img src="' + actor.avatar + '" alt="" />'
           + '<span class="slot-lv" style="background:' + levelCfg.color + ';">Lv' + actor.level + '</span>'
           + '</div>'
           + '<div class="slot-body">'
-          + '<div class="slot-name" onclick="event.stopPropagation();location.href=\'actor-profile.html?name=' + encodeURIComponent(actor.name) + '\'" style="cursor:pointer;" title="查看角色主页">' + actor.name + ' #' + parseInt(actor.id.match(/\d+/)[0], 10) + '</div>'
+          + '<div class="slot-name" onclick="event.stopPropagation();location.href=\'actor-profile.html?name=' + encodeURIComponent(actor.name) + '\'" style="cursor:pointer;" title="查看IP 卡主页">' + actor.name + ' #' + parseInt(actor.id.match(/\d+/)[0], 10) + '</div>'
           + '<div class="slot-energy">'
           + '<div class="slot-bar"><i class="' + barCls + '" style="width:' + pct + '%;"></i></div>'
           + '<svg class="slot-energy-icon" width="11" height="11" viewBox="0 0 11 11" fill="var(--accent)" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 0.5L2.5 5.5h2.5l-1 5 4-5H5.5l1-5z"/></svg>'
@@ -2821,7 +2821,7 @@
     function openBatchModal(type) {
       // 一键补充（charge 专用弹窗，参考补满能量设计）
       var targets = MY_ACTORS.filter(function(a) { return a.isStaking && a.energy < a.energyMax; });
-      if (targets.length === 0) { showToast('激活中的角色能量已满'); return; }
+      if (targets.length === 0) { showToast('激活中的 IP 卡能量已满'); return; }
       var totalNeed = 0;
       targets.forEach(function(a) { totalNeed += ItemStore.supplyNeeded(a.level); });
       var stock = ItemStore.count('supply');
@@ -2860,7 +2860,7 @@
       }
       ItemStore.spend('supply', totalNeed);
       targets.forEach(function(a) { a.energy = a.energyMax; a.status = 'active'; });
-      showToast('已补充 ' + targets.length + ' 位角色的能量（消耗补给包 ×' + totalNeed + '）');
+      showToast('已补充 ' + targets.length + ' 张 IP 卡的能量（消耗补给包 ×' + totalNeed + '）');
       closeBatchModal();
       renderAll();
     }
@@ -2872,25 +2872,25 @@
       if (emptyCount <= 0) { showToast('激活位已满'); return; }
       var candidates = MY_ACTORS.filter(function(a) { return !a.isStaking; })
         .sort(function(a, b) { return computeActorPower(b) - computeActorPower(a); });
-      if (candidates.length === 0) { showToast('没有未激活角色'); return; }
+      if (candidates.length === 0) { showToast('没有未激活 IP 卡'); return; }
       var count = Math.min(emptyCount, candidates.length);
       candidates.slice(0, count).forEach(function(a) {
         a.isStaking = true;
         a.status = 'active';
         a.stakingDays = 0;
       });
-      showToast('已安排 ' + count + ' 位角色激活');
+      showToast('已安排 ' + count + ' 张 IP 卡激活');
     }
 
     // 一键停用：所有激活角色停用
     function autoRest() {
       var targets = getDeployedActors();
-      if (targets.length === 0) { showToast('没有激活角色'); return; }
+      if (targets.length === 0) { showToast('没有激活 IP 卡'); return; }
       targets.forEach(function(a) {
         a.isStaking = false;
         a.status = 'idle';
       });
-      showToast('已让 ' + targets.length + ' 位角色停用');
+      showToast('已让 ' + targets.length + ' 张 IP 卡停用');
     }
 
     // 批量按钮状态（无可用项时置灰）
@@ -2910,9 +2910,9 @@
       if (!MY_ACTORS || MY_ACTORS.length === 0) {
         document.getElementById('emptyState').style.display = 'block';
         document.getElementById('deployArea').innerHTML = '';
-        document.getElementById('poolList').innerHTML = '<div class="pool-empty">还没有角色</div>';
-        document.getElementById('todoList').innerHTML = '<div class="todo-ok">暂无角色</div>';
-        document.getElementById('upgradeSummary').innerHTML = '<div class="todo-ok">暂无角色可升级</div>';
+        document.getElementById('poolList').innerHTML = '<div class="pool-empty">还没有 IP 卡</div>';
+        document.getElementById('todoList').innerHTML = '<div class="todo-ok">暂无 IP 卡</div>';
+        document.getElementById('upgradeSummary').innerHTML = '<div class="todo-ok">暂无 IP 卡可升级</div>';
         return;
       }
       document.getElementById('emptyState').style.display = 'none';
@@ -3180,7 +3180,7 @@
       return claimVal > 0 ? { val: claimVal } : null;
     }
     // 智能主按钮（移动端）：按状态自动切换
-    // 1 领取（最高优先） > 2 一键激活（有空位且有未激活） > 3 一键补充（全激活中） > 4 签约角色（无角色可派）
+    // 1 领取（最高优先） > 2 一键激活（有空位且有未激活） > 3 一键补充（全激活中） > 4 购买 IP 卡（无角色可派）
     function updateStudioClaimBadge() {
       var btn = document.getElementById('batchPerformBtn');
       if (!btn) return;
@@ -3246,17 +3246,17 @@
         // 3a. 全激活中且有能量耗尽：一键补充（止损）
         btn.textContent = '一键补充';
         btn.onclick = function () { openBatchModal('charge'); };
-        if (hint) hint.textContent = exhausted + ' 位角色能量已耗尽';
+        if (hint) hint.textContent = exhausted + ' 张 IP 卡能量已耗尽';
       } else if (emptyCount <= 0) {
         // 3b. 全激活中且能量充足：一键停用（轮换）
         btn.textContent = '一键停用';
         btn.onclick = autoRest;
         if (hint) hint.textContent = '可安排停用轮换';
       } else {
-        // 4. 有空位但无角色可派：签约角色
-        btn.textContent = '签约角色';
+        // 4. 有空位但无角色可派：购买 IP 卡
+        btn.textContent = '购买 IP 卡';
         btn.onclick = function () { location.href = 'actors.html'; };
-        if (hint) hint.textContent = '需要 ' + emptyCount + ' 个新角色';
+        if (hint) hint.textContent = '需要 ' + emptyCount + ' 张新 IP 卡';
       }
     }
     // 桌面端领取：有货直接领，无货提示结算说明
@@ -3404,7 +3404,7 @@
 
       const grid = document.getElementById('consumeGrid');
       if (sameIpSameLevel.length === 0) {
-        grid.innerHTML = '<div class="consume-empty">没有可消耗的同IP同等级角色</div>';
+        grid.innerHTML = '<div class="consume-empty">没有可消耗的同IP同等级IP卡</div>';
       } else {
         grid.innerHTML = sameIpSameLevel.map(a => {
           var caNum = a.id.match(/\d+/);
@@ -3613,8 +3613,8 @@
       if (!cloneDone) {
         var need = 2 - have;
         bodyHtml += '<div style="text-align:left;margin-top:12px;">' +
-          '<div style="font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:4px;">还需 ' + need + ' 张同IP同等级角色</div>' +
-          '<div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">去角色主页签约更多「' + actor.name + '」</div>' +
+          '<div style="font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:4px;">还需 ' + need + ' 张同IP同等级IP卡</div>' +
+          '<div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">去 IP 卡主页购买更多「' + actor.name + '」</div>' +
           '<button class="modal-btn confirm" onclick="window.location.href=\'actor-profile.html?name=' + encodeURIComponent(actor.name) + '\'">去获取角色</button>' +
           '</div>';
       }
@@ -3627,8 +3627,8 @@
             '<button class="modal-btn confirm" onclick="this.closest(\'.modal-overlay\').remove();openShopSafe(\'manual\')" style="margin-bottom:0;">去购买经验包</button>' +
           '</div>' +
           '<div>' +
-            '<div style="font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:4px;">还需 ' + (2 - have) + ' 张同IP同等级角色</div>' +
-            '<div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">去角色主页签约更多「' + actor.name + '」</div>' +
+            '<div style="font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:4px;">还需 ' + (2 - have) + ' 张同IP同等级IP卡</div>' +
+            '<div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">去 IP 卡主页购买更多「' + actor.name + '」</div>' +
             '<button class="modal-btn confirm" onclick="window.location.href=\'actor-profile.html?name=' + encodeURIComponent(actor.name) + '\'">去获取角色</button>' +
           '</div>' +
         '</div>';
@@ -3649,7 +3649,7 @@
     }
 
     // ============================================================
-    //  签约弹窗（公共组件 SignModal）—— 升级列表「同IP同等级角色」的 +
+    //  购买弹窗（公共组件 SignModal）—— 升级列表「同IP同等级IP卡」的 +
     // ============================================================
     function openSignCloneModal(actorId) {
       var actor = MY_ACTORS.find(function(a) { return a.id === actorId; });
@@ -3658,9 +3658,9 @@
       var initPrice = actor.initPrice || 0;
       window.SignModal.open({
         name: actor.name,
-        title: '确认签约 · Lv.' + actor.level + ' ' + lv.name,
+        title: '确认购买 · Lv.' + actor.level + ' ' + lv.name,
         image: actor.avatar,
-        tag: '角色 IP',
+        tag: 'IP 卡',
         price: (initPrice || 10) + ' USDC',
         pricing: 'curve',
         coeff: initPrice > 0 ? computePriceCoefficient(initPrice).toFixed(4) : null,
@@ -3687,13 +3687,13 @@
           done();
         },
         success: {
-          text: '已获得同IP同等级角色「<strong>' + actor.name + '</strong>」',
+          text: '已获得同IP同等级IP卡「<strong>' + actor.name + '</strong>」',
           primary: {
             label: '完成',
             onClick: function() {
               renderAll();
               if (document.getElementById('upgradeModal') && document.getElementById('upgradeModal').classList.contains('active')) renderUpgradeList();
-              showToast('签约成功，已获得同IP同等级角色');
+              showToast('购买成功，已获得同IP同等级IP卡');
             }
           },
           secondary: null
@@ -3702,7 +3702,7 @@
     }
 
     // ============================================================
-    //  角色回收（demo：模拟发放，角色永久销毁）
+    //  IP 卡回收（demo：模拟发放，角色永久销毁）
     //  残值 = P0×80% + 升级投入×50%（升级投入 = 累计消耗手册折价 10 USDC/本）
     //  返还 = 80% USDC + 20% 生态资产（固定折成经验包）
     // ============================================================
@@ -3716,7 +3716,7 @@
     }
     // 回收列表：按积分倒序，卡片信息精简（头像 + 名称#编号 + Lv + 可回收金额）
     function openRecycleList() {
-      if (typeof MY_ACTORS === 'undefined' || !MY_ACTORS.length) { showToast('暂无角色可回收'); return; }
+      if (typeof MY_ACTORS === 'undefined' || !MY_ACTORS.length) { showToast('暂无 IP 卡可回收'); return; }
       var list = MY_ACTORS.slice().sort(function (a, b) { return computeActorPower(a) - computeActorPower(b); });
       var rows = '';
       list.forEach(function (a) {
@@ -3735,7 +3735,7 @@
       overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(15,23,42,0.4);backdrop-filter:blur(4px);';
       overlay.innerHTML = '<div class="modal-card" style="position:relative;max-width:420px;width:calc(100% - 32px);padding:22px 20px;">'
         + '<button onclick="this.closest(\'.modal-overlay\').remove()" style="position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.04);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;color:var(--text-muted);">✕</button>'
-        + '<h2 style="margin:0 0 14px;font-size:1.1rem;">♻ 角色回收</h2>'
+        + '<h2 style="margin:0 0 14px;font-size:1.1rem;">♻ IP 卡回收</h2>'
         + '<div style="max-height:50vh;overflow-y:auto;">' + rows + '</div>'
         + '</div>';
       document.body.appendChild(overlay);
@@ -3760,7 +3760,7 @@
           + '<div style="font-size:1.1rem;font-weight:700;color:var(--text);">' + usdc.toFixed(2) + ' USDC</div>'
           + '<div style="font-size:1.1rem;font-weight:700;color:var(--text);margin-top:4px;">📘 ×' + books + '</div>'
         + '</div>'
-        + '<div style="background:rgba(244,91,105,.08);border:1px solid rgba(244,91,105,.2);border-radius:10px;padding:10px 12px;font-size:0.8rem;color:#d0344a;margin-bottom:14px;">⚠ 角色将被永久销毁，不可恢复</div>'
+        + '<div style="background:rgba(244,91,105,.08);border:1px solid rgba(244,91,105,.2);border-radius:10px;padding:10px 12px;font-size:0.8rem;color:#d0344a;margin-bottom:14px;">⚠ IP 卡将被永久销毁，不可恢复</div>'
         + '<button id="recycleConfirmBtn" style="width:100%;height:44px;border:none;border-radius:999px;background:#d0344a;color:#fff;font-size:0.95rem;font-weight:700;cursor:pointer;">确认销毁</button>'
         + '<button class="modal-btn cancel" onclick="this.closest(\'.modal-overlay\').remove()" style="width:100%;margin-top:8px;">取消</button>'
         + '</div>';
@@ -3795,9 +3795,9 @@
       overlay.className = 'modal-overlay active';
       overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(15,23,42,0.4);backdrop-filter:blur(4px);';
       overlay.innerHTML = '<div class="modal-card" style="max-width:400px;text-align:center;padding:28px 24px 22px;">' +
-        '<h2 style="margin:0 0 8px;font-size:1.1rem;">需要更多角色</h2>' +
-        '<p class="modal-sub" style="margin:0 0 18px;font-size:0.9rem;line-height:1.7;color:var(--text-muted);">升级需要消耗 2 张同IP同等级角色。<br>去角色主页获取更多「' + actorName + '」</p>' +
-        '<button class="modal-btn confirm" onclick="window.location.href=\'actor-profile.html?name=' + encodeURIComponent(actorName) + '\'" style="margin-bottom:10px;">去角色主页</button>' +
+        '<h2 style="margin:0 0 8px;font-size:1.1rem;">需要更多 IP 卡</h2>' +
+        '<p class="modal-sub" style="margin:0 0 18px;font-size:0.9rem;line-height:1.7;color:var(--text-muted);">升级需要消耗 2 张同IP同等级IP卡。<br>去IP 卡主页获取更多「' + actorName + '」</p>' +
+        '<button class="modal-btn confirm" onclick="window.location.href=\'actor-profile.html?name=' + encodeURIComponent(actorName) + '\'" style="margin-bottom:10px;">去IP 卡主页</button>' +
         '<button class="modal-btn cancel" onclick="this.closest(\'.modal-overlay\').remove()" style="width:100%;">关闭</button>' +
         '</div>';
       document.body.appendChild(overlay);
@@ -3815,7 +3815,7 @@
       overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(15,23,42,0.4);backdrop-filter:blur(4px);';
       overlay.innerHTML = '<div class="modal-card" style="max-width:400px;text-align:center;padding:28px 24px 22px;">' +
         '<h2 style="margin:0 0 8px;font-size:1.1rem;">需要更多完播</h2>' +
-        '<p class="modal-sub" style="margin:0 0 18px;font-size:0.9rem;line-height:1.7;color:var(--text-muted);">让角色参演短剧可以获得完播数据。<br>去创作页面为「' + actorName + '」安排参演</p>' +
+        '<p class="modal-sub" style="margin:0 0 18px;font-size:0.9rem;line-height:1.7;color:var(--text-muted);">让 IP 卡参演短剧可以获得完播数据。<br>去创作页面' + actorName + '」安排参演</p>' +
         '<button class="modal-btn confirm" onclick="window.location.href=\'narrator.html\'" style="margin-bottom:10px;">去参演短剧</button>' +
         '<button class="modal-btn cancel" onclick="this.closest(\'.modal-overlay\').remove()" style="width:100%;">关闭</button>' +
         '</div>';

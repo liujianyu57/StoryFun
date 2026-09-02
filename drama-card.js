@@ -4,7 +4,7 @@
 //  功能：
 //    1. 自动注入短剧卡片完整 CSS（含移动端适配）
 //    2. 提供短剧认证徽章系统（官方/合作/认证/社区）
-//    3. 提供通用角色 IP 数据库（头像 + 挖矿片酬）
+//    3. 提供通用IP 卡 数据库（头像 + 挖矿片酬）
 //    4. 提供卡片渲染 API renderDramaCard / renderDramaCardList
 //
 //  用法：
@@ -20,7 +20,7 @@
 //      category: '古风',                    // 分类（data-category，用于筛选）
 //      sort:   'recommended',              // 排序标记（data-sort，用于筛选）
 //      certType: 'official',               // 认证类型：official/partner/creator/community
-//      actors: ['苏婉清', '李云飞'],        // 参演角色 IP 名称数组
+//      actors: ['苏婉清', '李云飞'],        // 参演IP 卡 名称数组
 //      views:  '22.3万',                   // 观看数
 //      heat:   '333.2万',                  // 热度
 //      rating: '4.8',                      // 评分
@@ -102,7 +102,7 @@
 .card-stats .cs-rating { color: #fff; }
 .card-stats .cs-rating svg { stroke: #fff; opacity: 1; }
 
-/* ═══ 参演角色 IP 头像 + 片酬 ═══ */
+/* ═══ 参演IP 卡 头像 + 片酬 ═══ */
 .card-actors {
   position: absolute;
   bottom: 34px;
@@ -165,7 +165,7 @@
 .card-actor-name { display: none; }
 .card-foot { display: none; }
 
-/* ═══ 角色 IP 弹窗 ═══ */
+/* ═══ IP 卡 弹窗 ═══ */
 .actors-modal-overlay {
   position: fixed;
   inset: 0;
@@ -301,7 +301,7 @@
   // ============================================================
   //  短剧标识配置（与 index.html 现有逻辑保持一致）
   // ============================================================
-  //  角色 IP 数据库（与 actors.html / index.html 保持一致）
+  //  IP 卡 数据库（与 actors.html / index.html 保持一致）
   // ============================================================
   var ACTOR_AVATARS = {
     'Luna': 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80',
@@ -349,7 +349,7 @@
   }
 
   /**
-   * 渲染单个参演角色 IP 头像
+   * 渲染单个参演IP 卡 头像
    */
   function renderActorItem(name) {
     var avatarUrl = ACTOR_AVATARS[name] || DEFAULT_AVATAR;
@@ -444,7 +444,7 @@
   }
 
   // ============================================================
-  //  角色 IP 弹窗
+  //  IP 卡 弹窗
   // ============================================================
   function openActorsModal(actorNames) {
     // Remove any existing modal
@@ -469,7 +469,7 @@
     overlay.id = 'actors-modal-overlay';
     overlay.className = 'actors-modal-overlay';
     overlay.innerHTML = '<div class="actors-modal-panel">' +
-      '<div class="actors-modal-header"><h3>参演角色 IP</h3><button class="actors-modal-close" onclick="document.getElementById(\'actors-modal-overlay\').remove()">&times;</button></div>' +
+      '<div class="actors-modal-header"><h3>参演IP 卡</h3><button class="actors-modal-close" onclick="document.getElementById(\'actors-modal-overlay\').remove()">&times;</button></div>' +
       '<div class="actors-modal-list">' + itemsHTML + '</div>' +
     '</div>';
 

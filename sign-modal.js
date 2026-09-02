@@ -1,15 +1,15 @@
 /* ============================================================
-   Story.fun 签约弹窗公共组件（sign-modal.js）
+   Story.fun 购买弹窗公共组件（sign-modal.js）
    自包含样式 + 结构 + 确认/成功状态流转（样式原样参考 actors.html 的 mint modal）
    任何页面可调用：window.SignModal.open(config) / SignModal.close()
 
    config 字段：
      name / title / image / tag / price / pricing('curve'|'fixed') / coeff(可空) / total / minted
-     onConfirm(done)   点「确认签约」→ 业务完成后调 done() → 切成功态
+     onConfirm(done)   点「确认购买」→ 业务完成后调 done() → 切成功态
      onPriceHelp(name) ? 按钮回调（页面级价格 tooltip），不传则隐藏
      success: {
        text (HTML),
-       primary:  { label, href? | onClick? },  默认「查看我的角色」→ studio.html
+       primary:  { label, href? | onClick? },  默认「查看我的IP 卡」→ studio.html
        secondary:{ label, onClick? }           默认「继续浏览」→ 关闭；传 null 只留主按钮
      }
    ============================================================ */
@@ -135,9 +135,9 @@ window.SignModal = (function () {
       '<div class="mint-modal" role="dialog" aria-modal="true">' +
         '<button class="mint-modal-close" type="button" aria-label="关闭弹窗">✕</button>' +
         '<div class="mint-modal-hero">' +
-          '<img src="' + config.image + '" alt="角色预览" />' +
+          '<img src="' + config.image + '" alt="IP 卡预览" />' +
           '<div class="mint-modal-hero-overlay"></div>' +
-          '<div class="mint-modal-badge">' + (config.tag || '角色 IP') + '</div>' +
+          '<div class="mint-modal-badge">' + (config.tag || 'IP 卡') + '</div>' +
         '</div>' +
         '<div class="mint-modal-body">' +
           '<div class="mint-modal-header">' +
@@ -151,24 +151,24 @@ window.SignModal = (function () {
             '</div>' +
             '<div class="mpb-price-row">' +
               '<span class="mpb-price-value">' + config.price + '</span>' +
-              '<span class="mpb-price-label">签约价</span>' +
+              '<span class="mpb-price-label">购买价</span>' +
             '</div>' +
             '<div class="mpb-progress">总发行 <strong>' + (config.total || 0).toLocaleString() + '</strong> · 剩余 <strong>' + Math.max(0, remain).toLocaleString() + '</strong></div>' +
           '</div>' +
           slip +
           '<div class="mint-modal-footer">' +
-            '<button class="mint-btn primary" type="button">确认签约</button>' +
+            '<button class="mint-btn primary" type="button">确认购买</button>' +
             '<button class="mint-btn secondary" type="button">取消</button>' +
           '</div>' +
         '</div>' +
         '<div class="mint-modal-success">' +
           '<div class="stamp-icon-wrap">' +
-            '<div class="stamp-seal"><div class="stamp-seal-inner"><span>✓</span><span>签约</span></div></div>' +
+            '<div class="stamp-seal"><div class="stamp-seal-inner"><span>✓</span><span>购买</span></div></div>' +
             '<div class="stamp-ripple"></div>' +
             '<div class="stamp-ripple"></div>' +
           '</div>' +
           '<div class="success-content">' +
-            '<h2>签约成功</h2>' +
+            '<h2>购买成功</h2>' +
             '<p>' + (config.success ? config.success.text : '') + '</p>' +
             '<div class="success-actions">' +
               (config.success && config.success.primary ? '<button class="success-btn primary" type="button">' + config.success.primary.label + '</button>' : '') +
@@ -190,8 +190,8 @@ window.SignModal = (function () {
     // ? 价格帮助（始终显示；默认内置气泡说明，调用方传 onPriceHelp 则覆盖为页面实现）
     var isCurve = pricing === 'curve';
     var defaultHelpText = isCurve
-      ? '签约价随已签约数按联合曲线上涨，越早签约越便宜。'
-      : '该角色 IP 采用固定价格，销量变化不影响签约价。';
+      ? '购买价随已售数按联合曲线上涨，越早购买越便宜。'
+      : '该 IP 卡 采用固定价格，销量变化不影响购买价。';
     overlay.querySelectorAll('.actor-price-help').forEach(function (b) {
       b.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -200,13 +200,13 @@ window.SignModal = (function () {
       });
     });
 
-    // 确认签约 → 业务 → 成功态
+    // 确认购买 → 业务 → 成功态
     var confirmBtn = overlay.querySelector('.mint-btn.primary');
     confirmBtn.addEventListener('click', function () {
       if (confirmBtn.disabled) return;
       confirmBtn.disabled = true;
       var orig = confirmBtn.textContent;
-      confirmBtn.textContent = '签约中…';
+      confirmBtn.textContent = '购买中…';
       var done = function () {
         showSuccess(overlay, config);
       };
