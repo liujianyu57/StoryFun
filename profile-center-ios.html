@@ -298,8 +298,6 @@
       .issued-ip-section { display: flex; flex-direction: column; gap: 12px; }
       .issued-ip-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
       .issued-ip-title { font-size: 1.05rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
-      .issued-ip-more { padding: 6px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #fff; color: var(--accent); font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
-      .issued-ip-more:hover { border-color: var(--accent); }
       .issued-ip-list { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
       .issued-ip-list::-webkit-scrollbar { display: none; }
       .issued-ip-card { flex-shrink: 0; width: 120px; border-radius: 14px; border: 1px solid var(--border-light); background: #fff; overflow: hidden; cursor: pointer; transition: all 0.25s ease; -webkit-tap-highlight-color: transparent; }
@@ -732,7 +730,6 @@
   <div class="issued-ip-section" id="mobileIssuedIPSection" style="padding:12px 16px;background:#fff;">
     <div class="issued-ip-header">
       <span class="issued-ip-title">发行的 IP</span>
-      <button class="issued-ip-more" onclick="location.href='create-actor.html'">发行新 IP</button>
     </div>
     <div class="issued-ip-list" id="mobileIssuedIPList"></div>
   </div>
