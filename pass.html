@@ -152,9 +152,39 @@
       .pass-hero-title { font-size: 1.3rem; }
       .pass-price-row { padding: 14px 20px; }
     }
+
+    /* ═══ 移动端返回按钮（桌面隐藏） ═══ */
+    .pass-back-btn {
+      position: fixed;
+      top: calc(12px + env(safe-area-inset-top, 0px));
+      left: 12px;
+      z-index: 230;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .pass-back-btn:active { transform: scale(0.9); }
+    @media (max-width: 680px) {
+      .pass-back-btn { display: flex; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- 移动端返回按钮 -->
+  <button class="pass-back-btn" onclick="history.back()" aria-label="返回">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
 
   <div class="app-shell">
     <h1 class="page-title">Pass 通行证</h1>
@@ -303,7 +333,11 @@
     if (e.target === document.getElementById('successModal')) closeSuccessModal();
   });
 
-  document.addEventListener('DOMContentLoaded', syncPassUI);
+  // 页面加载时重置 Pass 持有状态（刷新/重新进入均为未持有，便于反复演示购买流程）
+  document.addEventListener('DOMContentLoaded', function() {
+    try { localStorage.removeItem(PASS_STORAGE_KEY); } catch(e) {}
+    syncPassUI();
+  });
   </script>
 
 </body>
