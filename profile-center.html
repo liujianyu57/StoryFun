@@ -879,6 +879,13 @@
         <span class="ma-balance" id="mobileBalanceUsdc">100.23</span>
       </div>
     </div>
+    <div class="ma-item" onclick="location.href='pass.html'" style="cursor:pointer;">
+      <div class="ma-icon" style="display:flex;align-items:center;justify-content:center;font-size:20px;">🎫</div>
+      <div class="ma-info">
+        <span class="ma-name">Pass</span>
+        <span class="ma-balance" id="mobileBalancePass" style="font-size:0.78rem;">未持有</span>
+      </div>
+    </div>
   </div>
   <!-- ===== MOBILE ASSETS ACTIONS ===== -->
   <div class="mobile-asset-actions">
@@ -1251,6 +1258,12 @@
       const balUsdc = document.getElementById('mobileBalanceUsdc');
       if (balUsdc && currentUser.balances?.usdc !== undefined) {
         balUsdc.textContent = currentUser.balances.usdc.toFixed(2);
+      }
+      const balPass = document.getElementById('mobileBalancePass');
+      if (balPass) {
+        var passHeld = localStorage.getItem('storyfun_pass_held') === '1';
+        balPass.textContent = passHeld ? '已持有' : '未持有';
+        balPass.style.color = passHeld ? '#34c759' : '';
       }
 
       // Mobile

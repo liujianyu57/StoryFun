@@ -91,6 +91,10 @@
                         '<svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' +
                         '<span class="sb-label">我的</span>' +
                     '</a>' +
+                    '<a href="pass.html" class="sb-nav-item" data-page="pass.html">' +
+                        '<svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M20 12l-8-8-8 8 8 8 8-8z"/><path d="M12 4v16M20 12H4"/></svg>' +
+                        '<span class="sb-label">Pass</span>' +
+                    '</a>' +
                 '<div class="sb-divider"></div>' +
                     '<a href="whitepaper.html" class="sb-nav-item" data-page="whitepaper.html">' +
                         '<svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>' +
