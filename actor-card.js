@@ -241,17 +241,6 @@
 }\
 .ac-actions-soldout .ac-trade-btn { flex: 1; min-width: 0; }\
 \
-/* ═══ 底部脚注 ═══ */\
-.ac-meta-foot {\
-  text-align: center;\
-  font-size: 0.68rem;\
-  color: rgba(0,0,0,0.3);\
-  padding: 4px 0 0;\
-  white-space: nowrap;\
-  overflow: hidden;\
-  text-overflow: ellipsis;\
-}\
-\
 /* ═══ 帮助按钮 ═══ */\
 .ac-price-help {\
   display: inline-flex;\
@@ -316,7 +305,6 @@
   .ac-action-area { margin-top: 6px; }\
   .ac-mint-btn { padding: 9px 12px; font-size: 0.78rem; font-weight: 600; border-radius:999px; }\
   .ac-trade-btn { padding: 9px 12px; font-size: 0.78rem; font-weight: 600; border-radius:999px; }\
-  .ac-meta-foot { font-size: 0.62rem; }\
   .ac-collection-tag { left: 8px; bottom: 8px; font-size: 0.55rem; padding: 2px 8px; }\
 }\
 ';
@@ -477,13 +465,6 @@
       '</div>';
     }
 
-    // 脚注
-    var metaParts = [];
-    var remainText = isSoldout ? '已售罄' : '剩余 ' + available.toLocaleString();
-    metaParts.push(remainText);
-    if (creator) metaParts.push('@' + creator);
-    var metaFoot = '<div class="ac-meta-foot">' + metaParts.join(' · ') + '</div>';
-
     return '<article class="ac-card" data-actor="' + escapeHTML(name) + '" data-id="' + id + '" data-issuance-type="' + issuanceType + '" data-pricing="' + pricing + '" data-total="' + total + '" data-minted="' + minted + '" data-available="' + available + '" data-price="' + escapeHTML(price) + '" data-init-price="' + initPrice + '" data-creator="' + escapeHTML(creator) + '" data-collection="' + escapeHTML(collection) + '" data-views="' + escapeHTML(views) + '" data-heat="' + heat + '" data-avatar="' + escapeHTML(avatar) + '">' +
       '<div class="ac-card-banner" style="' + bannerBg + '">' +
         '<div class="ac-avatar">' +
@@ -498,7 +479,6 @@
         statsHTML +
         priceRow +
         actionHTML +
-        metaFoot +
       '</div>' +
     '</article>';
   }
